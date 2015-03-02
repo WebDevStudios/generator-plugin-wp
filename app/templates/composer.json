@@ -1,0 +1,21 @@
+{
+	"name": "<%= slug %>",
+	"description": "<%= description %>",
+	"keywords": ["wordpress", "plugin", "generator-plugin-wp"],
+	"homepage": "<%= homepage %>",
+	"license": "<%= license %>",
+	"authors": [
+	{
+		"name": "<%= author %>",
+		"homepage": "<%= authorurl %>"
+	}
+	],
+	"minimum-stability": "dev",
+	"type": "wordpress-plugin",
+	"autoload": {
+		"classmap": ["<%= slug %>.php", "includes/"]
+	},
+	"require": {
+		"php": ">=5.2"
+	}
+}

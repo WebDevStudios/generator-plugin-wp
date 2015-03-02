@@ -1,0 +1,18 @@
+{
+  "name": "<%= slug %>",
+  "description": "<%= description %>",
+  "license": "<%= license %>",
+  "authors": [
+    "<%= author %>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

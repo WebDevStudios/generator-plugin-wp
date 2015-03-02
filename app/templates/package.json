@@ -1,0 +1,16 @@
+{
+	"name": "<%= slug %>",
+	"version": "<%= version %>",
+	"description": "<%= description %>",
+	"author": {
+		"name": "<%= author %>",
+		"url": "<%= authorurl %>"
+	},
+	"license": "<%= license %>",
+	"devDependencies": {
+	    "grunt": "latest",
+	    "grunt-contrib-watch": "latest",
+	    "grunt-wp-i18n": "latest",
+	    "load-grunt-tasks": "latest"
+	}
+}
