@@ -4,7 +4,7 @@
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "CamdenSegal/generator-plugin-wp",
+  "repository": "WebDevStudios/generator-plugin-wp",
   "author": {
     "name": "Camden Segal",
     "email": "camden.segal@gmail.com",
