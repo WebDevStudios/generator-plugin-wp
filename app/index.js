@@ -13,7 +13,7 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the neat' + chalk.red('Plugin WP') + ' generator!'
+      'Welcome to the neat ' + chalk.red('Plugin WP') + ' generator!'
     ));
 
     var prompts = [{
@@ -40,12 +40,20 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'author',
       message: 'Author',
-      default: 'WebDevStudios'
+      default: 'WebDevStudios',
+      save: true
+    }, {
+      type: 'input',
+      name: 'authoremail',
+      message: 'Author Email',
+      default: 'contact@webdevstudios.com',
+      save: true
     }, {
       type: 'input',
       name: 'authorurl',
       message: 'Author URL',
-      default: 'http://webdevstudios.com'
+      default: 'http://webdevstudios.com',
+      save: true
     }, {
       type: 'input',
       name: 'license',
@@ -81,45 +89,50 @@ module.exports = yeoman.generators.Base.extend({
       this.description = this._.clean( props.description );
       this.version     = this._.clean( props.version );
       this.author      = this._.clean( props.author );
+      this.authoremail = this._.clean( props.authoremail );
       this.authorurl   = this._.clean( props.authorurl );
       this.license     = this._.clean( props.license );
       this.slug        = this._.slugify( props.slug );
       this.classname   = this._.classify( props.classname );
       this.prefix      = this._.underscored( props.prefix );
+      this.year        = new Date().getFullYear();
 
       done();
     }.bind(this));
   },
 
   writing: {
+    folder: function() {
+      this.destinationRoot( this.slug );
+    },
+
     dotfiles: function() {
       this.fs.copy(
         this.templatePath('_bowerrc'),
-        this.destinationPath( this.slug + '/.bowerrc' )
+        this.destinationPath( '/.bowerrc' )
       );
       this.fs.copy(
         this.templatePath('_gitignore'),
-        this.destinationPath( this.slug + '/.gitignore' )
+        this.destinationPath( '/.gitignore' )
       );
     },
 
     configs: function() {
       this.fs.copyTpl(
         this.templatePath('*.json'),
-        this.destinationPath( this.slug + '/'),
+        this.destinationPath( '/'),
         this
       );
-      this.fs.copyTpl(
+      this.fs.copy(
         this.templatePath('Gruntfile.js'),
-        this.destinationPath( this.slug + '/Gruntfile.js'),
-        this
+        this.destinationPath( '/Gruntfile.js')
       );
     },
 
     php: function() {
       this.fs.copyTpl(
         this.templatePath('plugin.php'),
-        this.destinationPath( this.slug + '/' + this.slug + '.php'),
+        this.destinationPath( '/' + this.slug + '.php'),
         this
       );
     },
@@ -127,13 +140,27 @@ module.exports = yeoman.generators.Base.extend({
     readmes: function() {
       this.fs.copyTpl(
         this.templatePath('README.md'),
-        this.destinationPath( this.slug + '/README.md'),
+        this.destinationPath( '/README.md'),
         this
       );
 
       this.fs.copyTpl(
         this.templatePath('readme.txt'),
-        this.destinationPath( this.slug + '/readme.txt'),
+        this.destinationPath( '/readme.txt'),
+        this
+      );
+    },
+
+    folders: function() {
+      this.fs.copyTpl(
+        this.templatePath('assets/README.md'),
+        this.destinationPath( 'assets/README.md'),
+        this
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('includes/README.md'),
+        this.destinationPath( 'includes/README.md'),
         this
       );
     }

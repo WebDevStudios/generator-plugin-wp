@@ -1,25 +1,22 @@
-# {%= title %} #
-**Contributors:**      WebDevStudios
-**Donate link:**       {%= donate_link %}
+# <%= name %> #
+**Contributors:**      <%= author %>
+**Donate link:**       <%= homepage %>
 **Tags:**
 **Requires at least:** 3.6.0
 **Tested up to:**      3.6.0
-**Stable tag:**        0.1.0
-**License:**           GPLv2 or later
-**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html
-
-{%= description %}
+**Stable tag:**        <%= version %>
+**License:**           <%= license %>
 
 ## Description ##
 
-
+<%= description %>
 
 ## Installation ##
 
 ### Manual Installation ###
 
-1. Upload the entire `/{%= name %}` directory to the `/wp-content/plugins/` directory.
-2. Activate {%= title %} through the 'Plugins' menu in WordPress.
+1. Upload the entire `/<%= slug %>` directory to the `/wp-content/plugins/` directory.
+2. Activate <%= name %> through the 'Plugins' menu in WordPress.
 
 ## Frequently Asked Questions ##
 
@@ -29,5 +26,5 @@
 
 ## Changelog ##
 
-### 0.1.0 ###
+### <%= version %> ###
 * First release
