@@ -8,6 +8,20 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
   },
 
+  _wpClassify: function( s ) {
+    var words  = this._.words( s ),
+        result = '';
+
+    for ( var i = 0; i < words.length; i += 1 ) {
+      result += this._.capitalize( words[i] );
+      if ( (i + 1) < words.length ) {
+        result += '_';
+      }
+    }
+
+    return result;
+  },
+
   prompting: function () {
     var done = this.async();
 
@@ -71,7 +85,7 @@ module.exports = yeoman.generators.Base.extend({
       name: 'classname',
       message: 'Plugin Class Name',
       default: function( prompts ) {
-        return this._.classify( prompts.name );
+        return this._wpClassify( prompts.name );
       }.bind(this)
     }, {
       type: 'input',
@@ -93,7 +107,7 @@ module.exports = yeoman.generators.Base.extend({
       this.authorurl   = this._.clean( props.authorurl );
       this.license     = this._.clean( props.license );
       this.slug        = this._.slugify( props.slug );
-      this.classname   = this._.classify( props.classname );
+      this.classname   = this._wpClassify( props.classname );
       this.prefix      = this._.underscored( props.prefix );
       this.year        = new Date().getFullYear();
 
