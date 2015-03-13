@@ -185,6 +185,8 @@ module.exports = yeoman.generators.Base.extend({
       skipInstall: this.options['skip-install']
     });
 
-    this.spawnCommand('composer', ['install']);
+    if ( ! this.options['skip-install'] ) {
+      this.spawnCommand('composer', ['install']);
+    }
   }
 });

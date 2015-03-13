@@ -11,7 +11,7 @@ describe('plugin-wp:app', function () {
       .inDir(path.join(os.tmpdir(), './temp-test'))
       .withOptions({ 'skip-install': true })
       .withPrompt({
-        someOption: true
+        name: 'Test Plugin NAME'
       })
       .on('end', done);
   });
@@ -20,8 +20,14 @@ describe('plugin-wp:app', function () {
     assert.file([
       'bower.json',
       'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      '.bowerrc',
+      '.gitignore',
+      'Gruntfile.js',
+      'README.md',
+      'readme.txt',
+      'test-plugin-name.php',
+      'assets/README.md',
+      'includes/README.md'
     ]);
   });
 });
