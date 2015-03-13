@@ -1,4 +1,4 @@
-# generator-plugin-wp [![Build Status](https://secure.travis-ci.org/CamdenSegal/generator-plugin-wp.png?branch=master)](https://travis-ci.org/CamdenSegal/generator-plugin-wp)
+# generator-plugin-wp [![Build Status](https://secure.travis-ci.org/WebDevStudios/generator-plugin-wp.png?branch=master)](https://travis-ci.org/WebDevStudios/generator-plugin-wp)
 
 > [Yeoman](http://yeoman.io) generator for WordPress plugins.
 
