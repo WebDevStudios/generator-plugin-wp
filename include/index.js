@@ -23,9 +23,10 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     settingValues: function() {
-      this.version = this.pkg.version;
+      this.version     = this.pkg.version;
+      this.name        = this.rc.name;
       this.includename = this.rc.name + ' ' + this._.capitalize( this.name );
-      this.classname = this.rc.classname + '_' + this._.capitalize( this.name ).trim();
+      this.classname   = this.rc.classname + '_' + this._.capitalize( this.name ).trim();
     }
   },
 
