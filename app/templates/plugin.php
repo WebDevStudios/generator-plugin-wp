@@ -42,7 +42,7 @@ require 'vendor/autoload_52.php';
  */
 class <%= classname %> {
 
-	const VERSION = '<%= version %>';
+	protected const VERSION = '<%= version %>';
 
 	protected $basename = '';
 	protected $url  = '';
@@ -50,7 +50,7 @@ class <%= classname %> {
 
 	/**
 	 * Sets up our plugin
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 */
 	public function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
@@ -83,7 +83,7 @@ class <%= classname %> {
 
 	/**
 	 * Activate the plugin
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 */
 	function _activate() {
 		// Make sure any rewrite functionality has been loaded
@@ -93,7 +93,7 @@ class <%= classname %> {
 	/**
 	 * Deactivate the plugin
 	 * Uninstall routines should be in uninstall.php
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 */
 	function _deactivate() {
 
@@ -101,7 +101,7 @@ class <%= classname %> {
 
 	/**
 	 * Init hooks
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 * @return null
 	 */
 	public function init() {
@@ -114,7 +114,7 @@ class <%= classname %> {
 
 	/**
 	 * Check that all plugin requirements are met
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 * @return boolean
 	 */
 	public static function meets_requirements() {
@@ -128,7 +128,7 @@ class <%= classname %> {
 	/**
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
@@ -149,7 +149,7 @@ class <%= classname %> {
 	/**
 	 * Magic getter for our object.
 	 *
-	 * @since  <$= version %>
+	 * @since  <%= version %>
 	 * @param string $field
 	 * @throws Exception Throws an exception if the field is invalid.
 	 * @return mixed
