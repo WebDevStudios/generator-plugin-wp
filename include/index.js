@@ -12,6 +12,20 @@ module.exports = yeoman.generators.Base.extend({
     this.log('You called the PluginWP subgenerator with the name ' + this.name + '.');
   },
 
+  _wpClassify: function( s ) {
+    var words  = this._.words( s ),
+        result = '';
+
+    for ( var i = 0; i < words.length; i += 1 ) {
+      result += this._.capitalize( words[i] );
+      if ( (i + 1) < words.length ) {
+        result += '_';
+      }
+    }
+
+    return result;
+  },
+
   configuring: {
 
     readingYORC: function() {
@@ -24,9 +38,9 @@ module.exports = yeoman.generators.Base.extend({
 
     settingValues: function() {
       this.version     = this.pkg.version;
-      this.name        = this.rc.name;
+      this.name        = this._.titleize( this.name.replace('-', ' ') );
       this.includename = this.rc.name + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classname + '_' + this._.capitalize( this.name ).trim();
+      this.classname   = this.rc.classname + '_' + this._wpClassify( this.name );
     }
   },
 

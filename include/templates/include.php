@@ -2,7 +2,7 @@
 /**
  * <%= includename %>
  * @version <%= version %>
- * @package <%= name %>
+ * @package <%= rc.name %>
  */
 
 class <%= classname %> {
