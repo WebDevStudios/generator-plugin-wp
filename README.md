@@ -45,3 +45,13 @@ CMB2 will now appear under `vendor`
         -cmb2
 ```
 See the complete list of WebDevStudios packages: https://packagist.org/packages/webdevstudios/
+
+## Additional Commands
+
+While in the plugin directory, you can run additional commands to automatically generate files.
+
+To create a blank `frontend.php` class:
+
+```bash
+yo plugin-wp:include frontend
+```
