@@ -98,7 +98,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       // Sanitize inputs
-      this.name        = this._.titleize( props.name );
+      this.name        = this._.clean( props.name );
       this.homepage    = this._.clean( props.homepage );
       this.description = this._.clean( props.description );
       this.version     = this._.clean( props.version );

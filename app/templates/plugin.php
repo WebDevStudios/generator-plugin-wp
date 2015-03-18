@@ -42,7 +42,7 @@ require 'vendor/autoload_52.php';
  */
 class <%= classname %> {
 
-	protected const VERSION = '<%= version %>';
+	const VERSION = '<%= version %>';
 
 	protected $basename = '';
 	protected $url  = '';
@@ -67,7 +67,7 @@ class <%= classname %> {
 	 */
 	function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->admin = new <= classname %>_Admin( $this );
+		// $this->admin = new <%= classname %>_Admin( $this );
 	}
 
 	/**
