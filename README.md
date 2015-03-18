@@ -20,3 +20,11 @@ Finally, initiate the generator:
 ```bash
 yo plugin-wp
 ```
+
+## Adding Packages with Composer
+
+After generating your plugin, CD into it's directory.
+
+```bash
+composer require webdevstudios/cmb2
+```
