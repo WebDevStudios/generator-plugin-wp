@@ -26,5 +26,22 @@ yo plugin-wp
 After generating your plugin, CD into it's directory.
 
 ```bash
+cd plugins/wds-foo-plugin
+```
+
+Now, let's add [CMB2](https://github.com/WebDevStudios/CMB2):
+
+```bash
 composer require webdevstudios/cmb2
 ```
+
+CMB2 will now appear under `vendor`
+
+```bash
+-plugins
+  -wds-foo-plugin
+    -vendor
+      -webdevstudios
+        -cmb2
+```
+See the complete list of WebDevStudios packages: https://packagist.org/packages/webdevstudios/
