@@ -20,3 +20,38 @@ Finally, initiate the generator:
 ```bash
 yo plugin-wp
 ```
+
+## Adding Packages with Composer
+
+After generating your plugin, CD into it's directory.
+
+```bash
+cd plugins/wds-foo-plugin
+```
+
+Now, let's add [CMB2](https://github.com/WebDevStudios/CMB2):
+
+```bash
+composer require webdevstudios/cmb2
+```
+
+CMB2 will now appear under `vendor`
+
+```bash
+-plugins
+  -wds-foo-plugin
+    -vendor
+      -webdevstudios
+        -cmb2
+```
+See the complete list of WebDevStudios packages: https://packagist.org/packages/webdevstudios/
+
+## Additional Commands
+
+While in the plugin directory, you can run additional commands to automatically generate files.
+
+To create a blank `frontend.php` class:
+
+```bash
+yo plugin-wp:include frontend
+```
