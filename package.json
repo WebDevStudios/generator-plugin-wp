@@ -18,7 +18,9 @@
   },
   "files": [
     "app",
-    "include"
+    "include",
+    "js",
+    "styles"
   ],
   "keywords": [
     "yeoman-generator"

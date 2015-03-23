@@ -6,19 +6,19 @@ var helpers = require('yeoman-generator').test;
 var fs = require('fs-extra');
 var os = require('os');
 
-describe('PluginWp:include', function () {
+describe('PluginWp:js', function () {
   before(function (done) {
-    helpers.run(path.join( __dirname, '../include'))
+    helpers.run(path.join( __dirname, '../js'))
       .inDir(path.join(os.tmpdir(), './temp-test'), function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withArguments('new-include', '--force')
+      .withPrompt({ type: 'Browserify' })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
-      'includes/new-include.php'
+      'assets/js/components/main.js'
     ]);
   });
 });
