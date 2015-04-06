@@ -31,7 +31,11 @@ module.exports = yeoman.generators.Base.extend({
 
   configuring: function() {
 
-    this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js']}");
+    if ( this.type === 'Basic' ) {
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js']}");
+    } else {
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js']}");
+    }
     this.gruntfile.registerTask('scripts', 'jshint');
 
     if ( this.type === 'Concat' ) {
