@@ -82,5 +82,5 @@ module.exports = yeoman.generators.Base.extend({
         this.npmInstall(['grunt-browserify'], { 'saveDev': true });
       }
     }
-  },
+  }
 });

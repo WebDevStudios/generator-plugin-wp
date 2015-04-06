@@ -6,19 +6,19 @@ var helpers = require('yeoman-generator').test;
 var fs = require('fs-extra');
 var os = require('os');
 
-describe('PluginWp:include', function () {
+describe('PluginWp:css', function () {
   before(function (done) {
-    helpers.run(path.join( __dirname, '../include'))
-      .inDir(path.join(os.tmpdir(), './sub-inc-test'), function (dir) {
+    helpers.run(path.join( __dirname, '../css'))
+      .inDir(path.join(os.tmpdir(), './sub-css-test'), function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withArguments('new-include', '--force')
+      .withOptions({ 'skip-install': true })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
-      'includes/new-include.php'
+      'assets/css/sass/styles.scss'
     ]);
   });
 });

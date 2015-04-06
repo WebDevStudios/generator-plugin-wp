@@ -9,9 +9,10 @@ var os = require('os');
 describe('PluginWp:js', function () {
   before(function (done) {
     helpers.run(path.join( __dirname, '../js'))
-      .inDir(path.join(os.tmpdir(), './temp-test'), function (dir) {
+      .inDir(path.join(os.tmpdir(), './sub-js-test'), function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
+      .withOptions({ 'skip-install': true })
       .withPrompt({ type: 'Browserify' })
       .on('end', done);
   });

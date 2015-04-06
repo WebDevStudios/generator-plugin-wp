@@ -177,6 +177,22 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath( 'includes/README.md'),
         this
       );
+    },
+
+    saveConfig: function() {
+      this.config.set( 'name', this.name );
+      this.config.set( 'homepage', this.homepage );
+      this.config.set( 'description', this.description );
+      this.config.set( 'version', this.version );
+      this.config.set( 'author', this.author );
+      this.config.set( 'authoremail', this.authoremail );
+      this.config.set( 'authorurl', this.authorurl );
+      this.config.set( 'license', this.license );
+      this.config.set( 'slug', this.slug );
+      this.config.set( 'classname', this.classname );
+      this.config.set( 'prefix', this.prefix );
+      this.config.set( 'year', this.year );
+      this.config.save();
     }
   },
 
@@ -188,22 +204,5 @@ module.exports = yeoman.generators.Base.extend({
     if ( ! this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
     }
-  },
-
-  end: function() {
-    this.config.set()
-    this.config.set( 'name', this.name );
-    this.config.set( 'homepage', this.homepage );
-    this.config.set( 'description', this.description );
-    this.config.set( 'version', this.version );
-    this.config.set( 'author', this.author );
-    this.config.set( 'authoremail', this.authoremail );
-    this.config.set( 'authorurl', this.authorurl );
-    this.config.set( 'license', this.license );
-    this.config.set( 'slug', this.slug );
-    this.config.set( 'classname', this.classname );
-    this.config.set( 'prefix', this.prefix );
-    this.config.set( 'year', this.year );
-    this.config.save();
   }
 });
