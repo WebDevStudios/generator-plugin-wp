@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
-    this.rc = this.config.getAll()
+    this.rc = this.config.getAll();
   },
 
   prompting: function () {
@@ -23,7 +23,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       // Sanitize inputs
-      this.type        = props.type;
+      this.type = props.type;
 
       done();
     }.bind(this));
@@ -32,9 +32,9 @@ module.exports = yeoman.generators.Base.extend({
   configuring: function() {
 
     if ( this.type === 'Basic' ) {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js']}");
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', '"+ this.classname +"' ] } }");
     } else {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js']}");
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', 'require', '"+ this.classname +"' ] } }");
     }
     this.gruntfile.registerTask('scripts', 'jshint');
 
