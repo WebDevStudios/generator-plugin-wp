@@ -5,7 +5,7 @@
  * Licensed under the GPLv2+ license.
  */
 
-window.{%= class_name %} = window.{%= class_name %} || {};
+window.<%= class_name %> = window.<%= class_name %> || {};
 
 ( function( window, document, $, that, undefined ) {
 	'use strict';
@@ -27,4 +27,4 @@ window.{%= class_name %} = window.{%= class_name %} || {};
 
 	$( that.init );
 
-} ) ( window, document, jQuery, {%= class_name %} );
+} ) ( window, document, jQuery, <%= class_name %> );
