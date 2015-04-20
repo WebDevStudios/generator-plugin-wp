@@ -68,18 +68,35 @@ class <%= classname %> {
 
 	const VERSION = '<%= version %>';
 
+	protected $url      = '';
+	protected $path     = '';
 	protected $basename = '';
-	protected $url  = '';
-	protected $path = '';
+	protected static $single_instance = null;
+
+	/**
+	 * Creates or returns an instance of this class.
+	 * @since  0.1.0
+	 * @return <%= classname %> A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$single_instance ) {
+			self::$single_instance = new self();
+		}
+
+		return self::$single_instance;
+	}
 
 	/**
 	 * Sets up our plugin
 	 * @since  <%= version %>
 	 */
-	public function __construct() {
+	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
 		$this->url      = plugin_dir_url( __FILE__ );
 		$this->path     = plugin_dir_path( __FILE__ );
+
+		$instance->plugin_classes();
+		$instance->hooks();
 	}
 
 	/**
@@ -116,9 +133,7 @@ class <%= classname %> {
 	 * Uninstall routines should be in uninstall.php
 	 * @since  <%= version %>
 	 */
-	function _deactivate() {
-
-	}
+	function _deactivate() {}
 
 	/**
 	 * Init hooks
@@ -202,19 +217,11 @@ class <%= classname %> {
 }
 
 /**
- * Grab the <%= classname %> object and return it
+ * Grab the <%= classname %> object and return it.
+ * Wrapper for <%= classname %>::get_instance()
  */
 function <%= prefix %>() {
-	static $instance = null;
-
-	if ( is_null( $instance ) ) {
-		// init our class
-		$instance = new <%= classname %>();
-		$instance->plugin_classes();
-		$instance->hooks();
-	}
-
-	return $instance;
+	return <%= classname %>::get_instance();
 }
 
 // Kick it off
