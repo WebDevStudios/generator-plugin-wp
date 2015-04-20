@@ -9,7 +9,8 @@ module.exports = yeoman.generators.Base.extend({
       desc: 'The include name'
     });
 
-    this.log('You called the PluginWP subgenerator with the name ' + this.name + '.');
+    // Have Yeoman greet the user.
+    this.log('Welcome to the neat Plugin WP Include subgenerator!');
   },
 
   _wpClassify: function( s ) {

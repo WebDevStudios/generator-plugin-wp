@@ -6,7 +6,7 @@ var helpers = require('yeoman-generator').test;
 var fs = require('fs-extra');
 var os = require('os');
 
-describe('PluginWp:include', function () {
+describe('plugin-wp:include', function () {
   before(function (done) {
     helpers.run(path.join( __dirname, '../include'))
       .inDir(path.join(os.tmpdir(), './sub-inc-test'), function (dir) {

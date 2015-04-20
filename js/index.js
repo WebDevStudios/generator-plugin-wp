@@ -1,18 +1,17 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var path = require('path');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.rc = this.config.getAll();
+
+    // Have Yeoman greet the user.
+    this.log('Welcome to the neat Plugin WP Javascript subgenerator!');
   },
 
   prompting: function () {
     var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log('Welcome to the neat Plugin WP Javascript subgenerator!');
 
     var prompts = [{
       type: 'list',

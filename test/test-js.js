@@ -3,23 +3,43 @@
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
-var fs = require('fs-extra');
+var fs = require('fs');
 var os = require('os');
 
-describe('PluginWp:js', function () {
+describe('plugin-wp:js', function () {
   before(function (done) {
     helpers.run(path.join( __dirname, '../js'))
-      .inDir(path.join(os.tmpdir(), './sub-js-test'), function (dir) {
-        fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
-      })
+      .inTmpDir()
       .withOptions({ 'skip-install': true })
-      .withPrompt({ type: 'Browserify' })
+      .withPrompts({ type: 'Browserify' })
+      .withLocalConfig({
+        "name": "Subgenerator Test",
+        "homepage": "http://webdevstudios.com",
+        "description": "A radical new plugin for WordPress!",
+        "version": "0.1.0",
+        "author": "WebDevStudios",
+        "authoremail": "contact@webdevstudios.com",
+        "authorurl": "http://webdevstudios.com",
+        "license": "GPLv2",
+        "slug": "subgenerator-test",
+        "classname": "Subgenerator_Test",
+        "prefix": "subgenerator_test",
+        "year": 2015
+      })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
       'assets/js/components/main.js'
+    ]);
+  });
+
+  it('modifies gruntfile', function () {
+    assert.fileContent([
+      [ 'Gruntfile.js', /jshint/ ],
+      [ 'Gruntfile.js', /uglify/ ],
+      [ 'Gruntfile.js', /browserify/ ]
     ]);
   });
 });

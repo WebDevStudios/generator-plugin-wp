@@ -4,14 +4,14 @@ var yeoman = require('yeoman-generator');
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
-    this.rc = this.config.getAll()
+    this.rc = this.config.getAll();
+
+    // Have Yeoman greet the user.
+    this.log('Welcome to the neat Plugin WP Styles subgenerator!');
   },
 
   prompting: function () {
     var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log('Welcome to the neat Plugin WP Styles subgenerator!');
 
     var prompts = [{
       type: 'list',

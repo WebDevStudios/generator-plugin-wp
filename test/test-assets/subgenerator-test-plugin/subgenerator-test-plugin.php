@@ -34,8 +34,10 @@
  * Built using generator-plugin-wp
  */
 
+
 // User composer autoload.
 require 'vendor/autoload_52.php';
+
 
 /**
  * Main initiation class
@@ -50,7 +52,7 @@ class Subgenerator_Test_Plugin {
 
 	/**
 	 * Sets up our plugin
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 */
 	public function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
@@ -67,7 +69,9 @@ class Subgenerator_Test_Plugin {
 	 */
 	function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->admin = new <= classprefix %>Admin( $this );
+
+		// $this->admin = new STP_Admin( $this );
+
 	}
 
 	/**
@@ -83,7 +87,7 @@ class Subgenerator_Test_Plugin {
 
 	/**
 	 * Activate the plugin
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 */
 	function _activate() {
 		// Make sure any rewrite functionality has been loaded
@@ -93,7 +97,7 @@ class Subgenerator_Test_Plugin {
 	/**
 	 * Deactivate the plugin
 	 * Uninstall routines should be in uninstall.php
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 */
 	function _deactivate() {
 
@@ -101,7 +105,7 @@ class Subgenerator_Test_Plugin {
 
 	/**
 	 * Init hooks
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 * @return null
 	 */
 	public function init() {
@@ -114,7 +118,7 @@ class Subgenerator_Test_Plugin {
 
 	/**
 	 * Check that all plugin requirements are met
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 * @return boolean
 	 */
 	public static function meets_requirements() {
@@ -128,7 +132,7 @@ class Subgenerator_Test_Plugin {
 	/**
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
@@ -149,7 +153,7 @@ class Subgenerator_Test_Plugin {
 	/**
 	 * Magic getter for our object.
 	 *
-	 * @since  <$= version %>
+	 * @since  0.1.0
 	 * @param string $field
 	 * @throws Exception Throws an exception if the field is invalid.
 	 * @return mixed
@@ -166,7 +170,6 @@ class Subgenerator_Test_Plugin {
 				throw new Exception( 'Invalid '. __CLASS__ .' property: ' . $field );
 		}
 	}
-
 }
 
 // init our class
