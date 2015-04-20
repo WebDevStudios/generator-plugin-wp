@@ -24,8 +24,8 @@ module.exports = yeoman.generators.Base.extend({
 
   _wpClassPrefix: function( s ) {
     var words = s.replace( /_/g, ' ' );
-    var letters = words.match(/\b(\w)/g);
-    var prefix = letters.join('');
+    var letters = words.replace(/[a-z]/g, '');
+    var prefix = letters.replace(/\s/g, '');
     return prefix + '_';
   },
 
