@@ -67,7 +67,7 @@ class Subgenerator_Test_Plugin {
 	 */
 	function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->admin = new <= classname %>_Admin( $this );
+		// $this->admin = new <= classprefix %>Admin( $this );
 	}
 
 	/**

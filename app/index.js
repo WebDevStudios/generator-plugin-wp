@@ -22,6 +22,13 @@ module.exports = yeoman.generators.Base.extend({
     return result;
   },
 
+  _wpClassPrefix: function( s ) {
+    var words = s.replace( /_/g, ' ' );
+    var letters = words.match(/\b(\w)/g);
+    var prefix = letters.join('');
+    return prefix + '_';
+  },
+
   prompting: function () {
     var done = this.async();
 
@@ -112,6 +119,7 @@ module.exports = yeoman.generators.Base.extend({
       this.authorurl   = this._.clean( props.authorurl );
       this.license     = this._.clean( props.license );
       this.slug        = this._.slugify( props.slug );
+      this.classprefix = this._wpClassPrefix( props.classname );
       this.classname   = this._wpClassify( props.classname );
       this.prefix      = this._.underscored( props.prefix );
       this.year        = new Date().getFullYear();
@@ -208,6 +216,7 @@ module.exports = yeoman.generators.Base.extend({
       this.config.set( 'license', this.license );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
+      this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
       this.config.save();

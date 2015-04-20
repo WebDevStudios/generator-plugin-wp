@@ -41,11 +41,11 @@
  * @param  string $class_name Name of the class being requested
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
-	if ( class_exists( $class_name, false ) || false === stripos( $class_name, '<%= classname %>_' ) ) {
+	if ( class_exists( $class_name, false ) || false === stripos( $class_name, '<%= classprefix %>' ) ) {
 		return;
 	}
 	$filename = strtolower( str_ireplace(
-		array( '<%= classname %>_', '_' ),
+		array( '<%= classprefix %>', '_' ),
 		array( '', '-' ),
 		$class_name
 	) );
@@ -105,7 +105,7 @@ class <%= classname %> {
 	 */
 	function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->admin = new <%= classname %>_Admin( $this );
+		// $this->admin = new <%= classprefix %>Admin( $this );
 	}
 
 	/**

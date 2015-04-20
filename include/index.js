@@ -40,7 +40,7 @@ module.exports = yeoman.generators.Base.extend({
       this.version     = this.pkg.version;
       this.name        = this._.titleize( this.name.replace('-', ' ') );
       this.includename = this.rc.name + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classname + '_' + this._wpClassify( this.name );
+      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
     }
   },
 
