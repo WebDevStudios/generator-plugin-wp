@@ -80,9 +80,6 @@ class <%= classname %> {
 		$this->basename = plugin_basename( __FILE__ );
 		$this->url      = plugin_dir_url( __FILE__ );
 		$this->path     = plugin_dir_path( __FILE__ );
-
-		$this->plugin_classes();
-		$this->hooks();
 	}
 
 	/**
@@ -204,13 +201,21 @@ class <%= classname %> {
 	}<% } %>
 }
 
-// init our class
-$GLOBALS['<%= classname %>'] = new <%= classname %>();
-
 /**
- * Grab the $<%= classname %> object and return it
+ * Grab the <%= classname %> object and return it
  */
 function <%= prefix %>() {
-	global $<%= classname %>;
-	return $<%= classname %>;
+	static $instance = null;
+
+	if ( is_null( $instance ) ) {
+		// init our class
+		$instance = new <%= classname %>();
+		$instance->plugin_classes();
+		$instance->hooks();
+	}
+
+	return $instance;
 }
+
+// Kick it off
+<%= prefix %>();
