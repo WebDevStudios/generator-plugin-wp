@@ -3,8 +3,6 @@
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
-var fs = require('fs');
-var os = require('os');
 
 describe('plugin-wp:js', function () {
   before(function (done) {
