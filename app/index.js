@@ -94,6 +94,11 @@ module.exports = yeoman.generators.Base.extend({
       default: function( prompts ) {
         return this._.underscored( prompts.name );
       }.bind(this)
+    }, {
+      type: 'list',
+      name: 'autoloader',
+      message: 'Use Autoloader',
+      choices: ['Composer', 'Basic', 'None']
     }];
 
     this.prompt(prompts, function (props) {
@@ -110,6 +115,7 @@ module.exports = yeoman.generators.Base.extend({
       this.classname   = this._wpClassify( props.classname );
       this.prefix      = this._.underscored( props.prefix );
       this.year        = new Date().getFullYear();
+      this.autoloader  = props.autoloader;
 
       done();
     }.bind(this));
@@ -133,10 +139,22 @@ module.exports = yeoman.generators.Base.extend({
 
     configs: function() {
       this.fs.copyTpl(
-        this.templatePath('*.json'),
-        this.destinationPath( '/'),
+        this.templatePath('bower.json'),
+        this.destinationPath('/bower.json'),
         this
       );
+      this.fs.copyTpl(
+        this.templatePath('package.json'),
+        this.destinationPath('/package.json'),
+        this
+      );
+      if ( this.autoloader == 'Composer' ) {
+        this.fs.copyTpl(
+          this.templatePath('composer.json'),
+          this.destinationPath('/composer.json'),
+          this
+        );
+      }
       this.fs.copy(
         this.templatePath('Gruntfile.js'),
         this.destinationPath( '/Gruntfile.js')
@@ -201,7 +219,7 @@ module.exports = yeoman.generators.Base.extend({
       skipInstall: this.options['skip-install']
     });
 
-    if ( ! this.options['skip-install'] ) {
+    if ( this.autoloader == 'Composer' && ! this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
     }
   }

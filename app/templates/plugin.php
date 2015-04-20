@@ -34,8 +34,32 @@
  * Built using generator-plugin-wp
  */
 
+<% if ( autoloader == 'Basic' ) { %>
+/**
+ * Autoloads files with classes when needed
+ * @since  0.1.0
+ * @param  string $class_name Name of the class being requested
+ */
+function <%= prefix %>_autoload_classes( $class_name ) {
+	if ( class_exists( $class_name, false ) || false === stripos( $class_name, '<%= classname %>_' ) ) {
+		return;
+	}
+	$filename = strtolower( str_ireplace(
+		array( '<%= classname %>_', '_' ),
+		array( '', '-' ),
+		$class_name
+	) );
+
+	<%= classname %>::include_file( $filename );
+}
+spl_autoload_register( '<%= prefix %>_autoload_classes' );
+<% } else if ( autoloader == 'Composer' ) { %>
 // User composer autoload.
 require 'vendor/autoload_52.php';
+<% } else { %>
+	// Include additional php files here
+	// require 'includes/admin.php';
+<% } %>
 
 /**
  * Main initiation class
@@ -165,8 +189,19 @@ class <%= classname %> {
 			default:
 				throw new Exception( 'Invalid '. __CLASS__ .' property: ' . $field );
 		}
-	}
+	}<% if ( autoloader == 'Basic' ) { %>
 
+	/**
+	 * Include a file from the includes directory
+	 * @since  <%= version %>
+	 * @param  string $filename Name of the file to be included
+	 */
+	public static function include_file( $filename ) {
+		$file = self::dir( 'includes/'. $filename .'.php' );
+		if ( file_exists( $file ) ) {
+			return include_once( $file );
+		}
+	}<% } %>
 }
 
 // init our class
