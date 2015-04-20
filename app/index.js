@@ -98,7 +98,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       // Sanitize inputs
-      this.name        = this._.titleize( props.name );
+      this.name        = this._.clean( props.name );
       this.homepage    = this._.clean( props.homepage );
       this.description = this._.clean( props.description );
       this.version     = this._.clean( props.version );
@@ -177,6 +177,22 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath( 'includes/README.md'),
         this
       );
+    },
+
+    saveConfig: function() {
+      this.config.set( 'name', this.name );
+      this.config.set( 'homepage', this.homepage );
+      this.config.set( 'description', this.description );
+      this.config.set( 'version', this.version );
+      this.config.set( 'author', this.author );
+      this.config.set( 'authoremail', this.authoremail );
+      this.config.set( 'authorurl', this.authorurl );
+      this.config.set( 'license', this.license );
+      this.config.set( 'slug', this.slug );
+      this.config.set( 'classname', this.classname );
+      this.config.set( 'prefix', this.prefix );
+      this.config.set( 'year', this.year );
+      this.config.save();
     }
   },
 

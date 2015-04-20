@@ -1,6 +1,6 @@
 {
   "name": "generator-plugin-wp",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -17,7 +17,10 @@
     "test": "mocha"
   },
   "files": [
-    "app"
+    "app",
+    "include",
+    "js",
+    "styles"
   ],
   "keywords": [
     "yeoman-generator"
@@ -28,6 +31,7 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "fs-extra": "^0.16.5",
     "mocha": "*"
   },
   "peerDependencies": {

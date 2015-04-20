@@ -1,0 +1,7 @@
+/**
+ * <%= rc.name %>
+ * <%= rc.homepage %>
+ *
+ * Copyright (c) <%= new Date().getFullYear() %> <%= rc.author %>
+ * Licensed under the GPLv2+ license.
+ */
