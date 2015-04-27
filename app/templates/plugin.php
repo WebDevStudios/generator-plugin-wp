@@ -95,8 +95,8 @@ class <%= classname %> {
 		$this->url      = plugin_dir_url( __FILE__ );
 		$this->path     = plugin_dir_path( __FILE__ );
 
-		$instance->plugin_classes();
-		$instance->hooks();
+		$this->plugin_classes();
+		$this->hooks();
 	}
 
 	/**
