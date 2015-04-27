@@ -2,15 +2,39 @@
 var yeoman = require('yeoman-generator');
 
 module.exports = yeoman.generators.Base.extend({
-  initializing: function () {
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
     this.argument('name', {
-      required: true,
+      required: false,
       type: String,
       desc: 'The include name'
     });
+  },
 
-    // Have Yeoman greet the user.
-    this.log('Welcome to the neat Plugin WP Include subgenerator!');
+  initializing: {
+    intro: function () {
+      // Have Yeoman greet the user.
+      this.log('Welcome to the neat Plugin WP Include subgenerator!');
+    },
+
+    readingYORC: function() {
+      this.rc = this.config.getAll()
+    },
+
+    readingPackage: function() {
+      this.pkg = this.fs.readJSON( this.destinationPath('package.json'));
+    },
+
+    settingValues: function() {
+      this.version     = this.pkg.version;
+      if ( this.name ) {
+        this.name        = this._.titleize( this.name.replace('-', ' ') );
+      }
+      this.pluginname  = this.rc.name;
+      this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+    }
   },
 
   _wpClassify: function( s ) {
@@ -27,21 +51,68 @@ module.exports = yeoman.generators.Base.extend({
     return result;
   },
 
-  configuring: {
+  _wpClassPrefix: function( s ) {
+    var words = s.replace( /_/g, ' ' );
+    var letters = words.replace(/[a-z]/g, '');
+    var prefix = letters.replace(/\s/g, '');
+    return prefix + '_';
+  },
 
-    readingYORC: function() {
-      this.rc = this.config.getAll()
-    },
+  prompting: function () {
+    var done = this.async();
 
-    readingPackage: function() {
-      this.pkg = this.fs.readJSON( this.destinationPath('package.json'));
-    },
+    var prompts = [];
 
-    settingValues: function() {
-      this.version     = this.pkg.version;
-      this.name        = this._.titleize( this.name.replace('-', ' ') );
-      this.includename = this.rc.name + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+    if ( ! this.version ) {
+      prompts.push({
+        type: 'input',
+        name: 'version',
+        message: 'Version',
+        default: '0.1.0'
+      });
+    }
+
+    if ( ! this.name ) {
+      prompts.push({
+        type: 'input',
+        name: 'name',
+        message: 'Include Name',
+        default: 'frontend'
+      });
+    }
+
+    if ( ! this.pluginname ) {
+      prompts.push({
+        type: 'input',
+        name: 'pluginname',
+        message: 'Plugin Name',
+        default: 'WDS Client Plugin'
+      });
+    }
+
+    if ( prompts.length > 0 ) {
+      this.prompt(prompts, function (props) {
+        if ( props.version ) {
+          this.version = props.version;
+        }
+
+        if ( props.name ) {
+          this.name = this._.titleize( props.name.replace('-', ' ') );
+        }
+
+        if ( props.pluginname ) {
+          this.pluginname  = props.pluginname;
+        }
+
+        if ( props.name || props.pluginname ) {
+          this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.classname   = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+        }
+
+        done();
+      }.bind(this));
+    } else {
+      done();
     }
   },
 

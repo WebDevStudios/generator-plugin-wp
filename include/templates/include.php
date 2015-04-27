@@ -2,7 +2,7 @@
 /**
  * <%= includename %>
  * @version <%= version %>
- * @package <%= rc.name %>
+ * @package <%= pluginname %>
  */
 
 class <%= classname %> {
