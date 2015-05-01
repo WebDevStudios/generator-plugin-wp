@@ -142,8 +142,6 @@ class <%= classname %> {
 	 */
 	public function init() {
 		if ( $this->check_requirements() ) {
-			$locale = apply_filters( 'plugin_locale', get_locale(), '<%= slug %>' );
-			load_textdomain( '<%= slug %>', WP_LANG_DIR . '/<%= slug %>/<%= slug %>-' . $locale . '.mo' );
 			load_plugin_textdomain( '<%= slug %>', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 	}
