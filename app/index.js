@@ -2,10 +2,13 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var updateNotifier = require('update-notifier');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
+
+	updateNotifier({ pkg: this.pkg }).notify();
   },
 
   _wpClassify: function( s ) {
