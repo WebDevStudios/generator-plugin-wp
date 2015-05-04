@@ -8,14 +8,14 @@ module.exports = yeoman.generators.Base.extend({
     this.argument('name', {
       required: false,
       type: String,
-      desc: 'The include name'
+      desc: 'The widget name'
     });
   },
 
   initializing: {
     intro: function () {
       // Have Yeoman greet the user.
-      this.log('Welcome to the neat Plugin WP Include subgenerator!');
+      this.log('Welcome to the neat Plugin WP Widget subgenerator!');
     },
 
     readingYORC: function() {
@@ -32,8 +32,11 @@ module.exports = yeoman.generators.Base.extend({
         this.name        = this._.titleize( this.name.split('-').join(' ') );
       }
       this.pluginname  = this.rc.name;
-      this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.widgetname  = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+      this.slug        = this.rc.slug;
+      this.widgetslug  = this.slug + '-' + this._.slugify( this.name );
+      this.widgetprefix= this._.underscored( this.name );
     }
   },
 
@@ -76,8 +79,8 @@ module.exports = yeoman.generators.Base.extend({
       prompts.push({
         type: 'input',
         name: 'name',
-        message: 'Include Name',
-        default: 'frontend'
+        message: 'Widget Name',
+        default: 'basic-widget'
       });
     }
 
@@ -102,11 +105,14 @@ module.exports = yeoman.generators.Base.extend({
 
         if ( props.pluginname ) {
           this.pluginname  = props.pluginname;
+          this.slug = this._.slugify( props.pluginname );
         }
 
         if ( props.name || props.pluginname ) {
-          this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
-          this.classname   = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+          this.widgetname   = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+          this.widgetslug   = this.slug + '-' + this._.slugify( this.name );
+          this.widgetprefix = this._.underscored( this.slug + ' ' + this.name );
         }
 
         done();
@@ -118,7 +124,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: function () {
     this.fs.copyTpl(
-      this.templatePath('include.php'),
+      this.templatePath('widget.php'),
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
