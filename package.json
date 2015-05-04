@@ -20,7 +20,7 @@
     "app",
     "include",
     "js",
-    "styles"
+    "css"
   ],
   "keywords": [
     "yeoman-generator"
