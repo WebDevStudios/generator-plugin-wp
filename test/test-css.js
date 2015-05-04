@@ -3,6 +3,7 @@
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
+var fs = require('fs-extra');
 
 describe('plugin-wp:css', function () {
   before(function (done) {
@@ -30,13 +31,6 @@ describe('plugin-wp:css', function () {
   it('creates files', function () {
     assert.file([
       'assets/css/sass/styles.scss'
-    ]);
-  });
-
-  it('modifies gruntfile', function () {
-    assert.fileContent([
-      [ 'Gruntfile.js', /sass/ ],
-      [ 'Gruntfile.js', /cssmin/ ]
     ]);
   });
 });

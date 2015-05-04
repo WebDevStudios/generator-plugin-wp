@@ -7,8 +7,6 @@ var updateNotifier = require('update-notifier');
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
-
-	updateNotifier({ pkg: this.pkg }).notify();
   },
 
   _wpClassify: function( s ) {
@@ -39,6 +37,10 @@ module.exports = yeoman.generators.Base.extend({
     this.log(yosay(
       'Welcome to the neat ' + chalk.red('Plugin WP') + ' generator!'
     ));
+
+    updateNotifier({
+      pkg: this.pkg
+    }).notify({defer: false});
 
     var prompts = [{
       type: 'input',

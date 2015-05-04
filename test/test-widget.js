@@ -3,13 +3,15 @@
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
+var fs = require('fs-extra');
 
-describe('plugin-wp:js', function () {
+describe('plugin-wp:widget', function () {
   before(function (done) {
-    helpers.run(path.join( __dirname, '../js'))
-      .inTmpDir()
-      .withOptions({ 'skip-install': true })
-      .withPrompts({ type: 'Browserify' })
+    helpers.run(path.join( __dirname, '../widget'))
+      .inTmpDir( function (dir) {
+        fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
+      })
+      .withArguments('new-widget', '--force')
       .withLocalConfig({
         "name": "Subgenerator Test",
         "homepage": "http://webdevstudios.com",
@@ -29,7 +31,7 @@ describe('plugin-wp:js', function () {
 
   it('creates files', function () {
     assert.file([
-      'assets/js/components/main.js'
+      'includes/new-widget.php'
     ]);
   });
 });

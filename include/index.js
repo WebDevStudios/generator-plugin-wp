@@ -1,5 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var updateNotifier = require('update-notifier');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -60,6 +61,10 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
+
+    updateNotifier({
+      pkg: this.pkg
+    }).notify({defer: false});
 
     var prompts = [];
 

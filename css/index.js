@@ -1,5 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var updateNotifier = require('update-notifier');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -12,6 +13,10 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
+
+    updateNotifier({
+      pkg: this.pkg
+    }).notify({defer: false});
 
     var prompts = [{
       type: 'list',
@@ -29,6 +34,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   configuring: function() {
+    if ( ! this.fs.exists( 'Gruntfile.js') ){
+      this.log( 'No Gruntfile.js found, no Grunt tasks added.' );
+      return;
+    }
 
     if ( this.type === 'SASS' ) {
       this.gruntfile.insertConfig('sass', "{dist: {options: {style: 'expanded', lineNumbers: true}, files: {'assets/css/" + this.rc.slug + ".css': 'assets/css/sass/styles.scss'}}}");;
