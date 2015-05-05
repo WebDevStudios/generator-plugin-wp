@@ -5,9 +5,12 @@
  * @package <%= pluginname %>
  */
 
-<% if ( ! composer ) { %>
-require_once '../vendor/cpt-core/CPT_Core.php';
-<% } %>
+<% if ( ! composer ) {
+	%>require_once '../vendor/cpt-core/CPT_Core.php';<%
+	if ( ! options.nocmb2 ) { %>
+<%		%>require_once '../vendor/cmb2/init.php';<%
+	}
+} %>
 
 class <%= classname %> extends CPT_Core {
 	/**
@@ -38,7 +41,24 @@ class <%= classname %> extends CPT_Core {
 	 * Initiate our hooks
 	 * @since <%= version %>
 	 */
-	public function hooks() {
+	public function hooks() {<% if ( ! options.nocmb2 ) { %>
+		add_action( 'cmb2_init', array( $this, 'fields' ) );
+	}
+
+	/**
+	 * Add custom fields to the CPT
+	 */
+	public function fields() {
+		$prefix = '_<%= cptprefix %>_';
+
+		$box = new_cmb2_box( array(
+			'id'            => $prefix . 'metabox',
+			'title'         => __( '<%= cptname %> Meta Box', '<%= slug %>' ),
+			'object_types'  => array( '<%= cptslug %>', ),
+			'context'       => 'normal',
+			'priority'      => 'high',
+			'show_names'    => true, // Show field names on the left
+		) );<% } %>
 	}
 
 	/**

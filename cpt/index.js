@@ -7,6 +7,8 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
+    this.option('nocmb2');
+
     this.argument('name', {
       required: false,
       type: String,
@@ -38,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.slug       = this.rc.slug;
       this.cptslug    = this.slug + '-' + this._.slugify( this.name );
+      this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
 
       this.composer   = this.fs.exists('composer.json');
     }
@@ -119,6 +122,7 @@ module.exports = yeoman.generators.Base.extend({
           this.cptname   = this.pluginname + ' ' + this._.capitalize( this.name );
           this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
           this.cptslug   = this.slug + '-' + this._.slugify( this.name );
+          this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
         }
 
         done();
@@ -139,13 +143,27 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     if ( this.composer ) {
       this.spawnCommand('composer', ['require', 'webdevstudios/cpt-core']);
-    } else if ( ! this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
+
+      if ( ! this.options['nocmb2'] ) {
+        this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
+      }
+    } else {
       this.mkdir('vendor');
-      ghdownload({
-        user: 'WebDevStudios',
-        repo: 'CPT_Core',
-        ref: 'master'
-      }, this.destinationPath('vendor/cpt-core') );
+      if ( ! this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
+        ghdownload({
+          user: 'WebDevStudios',
+          repo: 'CPT_Core',
+          ref: 'master'
+        }, this.destinationPath('vendor/cpt-core') );
+      }
+
+      if ( ! this.options['nocmb2'] ) {
+        ghdownload({
+          user: 'WebDevStudios',
+          repo: 'CMB2',
+          ref: 'master'
+        }, this.destinationPath('vendor/cmb2') );
+      }
     }
   }
 });
