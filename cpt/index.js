@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var updateNotifier = require('update-notifier');
+var ghdownload = require('github-download');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -9,14 +10,14 @@ module.exports = yeoman.generators.Base.extend({
     this.argument('name', {
       required: false,
       type: String,
-      desc: 'The include name'
+      desc: 'The CPT name'
     });
   },
 
   initializing: {
     intro: function () {
       // Have Yeoman greet the user.
-      this.log('Welcome to the neat Plugin WP Include subgenerator!');
+      this.log('Welcome to the neat Plugin WP CPT subgenerator!');
     },
 
     readingYORC: function() {
@@ -28,13 +29,17 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     settingValues: function() {
-      this.version     = this.pkg.version;
+      this.version    = this.pkg.version;
       if ( this.name ) {
         this.name        = this._.titleize( this.name.split('-').join(' ') );
       }
-      this.pluginname  = this.rc.name;
-      this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+      this.pluginname = this.rc.name;
+      this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.classname  = this.rc.classprefix + this._wpClassify( this.name );
+      this.slug       = this.rc.slug;
+      this.cptslug    = this.slug + '-' + this._.slugify( this.name );
+
+      this.composer   = this.fs.exists('composer.json');
     }
   },
 
@@ -81,8 +86,8 @@ module.exports = yeoman.generators.Base.extend({
       prompts.push({
         type: 'input',
         name: 'name',
-        message: 'Include Name',
-        default: 'frontend'
+        message: 'CPT Name',
+        default: 'basic-cpt'
       });
     }
 
@@ -107,11 +112,13 @@ module.exports = yeoman.generators.Base.extend({
 
         if ( props.pluginname ) {
           this.pluginname  = props.pluginname;
+          this.slug = this._.slugify( props.pluginname );
         }
 
         if ( props.name || props.pluginname ) {
-          this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
-          this.classname   = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+          this.cptname   = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+          this.cptslug   = this.slug + '-' + this._.slugify( this.name );
         }
 
         done();
@@ -123,9 +130,22 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: function () {
     this.fs.copyTpl(
-      this.templatePath('include.php'),
+      this.templatePath('cpt.php'),
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
+  },
+
+  install: function () {
+    if ( this.composer ) {
+      this.spawnCommand('composer', ['require', 'webdevstudios/cpt-core']);
+    } else if ( ! this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
+      this.mkdir('vendor');
+      ghdownload({
+        user: 'WebDevStudios',
+        repo: 'CPT_Core',
+        ref: 'master'
+      }, this.destinationPath('vendor/cpt-core') );
+    }
   }
 });

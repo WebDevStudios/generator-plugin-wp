@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
       this.classname   = this.rc.classprefix + this._wpClassify( this.name );
       this.slug        = this.rc.slug;
       this.widgetslug  = this.slug + '-' + this._.slugify( this.name );
-      this.widgetprefix= this._.underscored( this.name );
+      this.widgetprefix= this._.underscored( this.slug + ' ' + this.name );
     }
   },
 
@@ -66,7 +66,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     updateNotifier({
-      pkg: this.pkg
+      pkg: require('../package.json')
     }).notify({defer: false});
 
     var prompts = [];

@@ -15,7 +15,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     updateNotifier({
-      pkg: this.pkg
+      pkg: require('../package.json')
     }).notify({defer: false});
 
     var prompts = [{
