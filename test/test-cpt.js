@@ -11,6 +11,7 @@ describe('plugin-wp:cpt', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
+      .withOptions({ 'skip-install': true })
       .withArguments('new-cpt', '--force')
       .withLocalConfig({
         "name": "Subgenerator Test",

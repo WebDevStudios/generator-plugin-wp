@@ -22,7 +22,8 @@
     "js",
     "css",
     "widget",
-    "cpt"
+    "cpt",
+	"options"
   ],
   "keywords": [
     "yeoman-generator"

@@ -12,14 +12,14 @@ module.exports = yeoman.generators.Base.extend({
     this.argument('name', {
       required: false,
       type: String,
-      desc: 'The CPT name'
+      desc: 'The options page name'
     });
   },
 
   initializing: {
     intro: function () {
       // Have Yeoman greet the user.
-      this.log('Welcome to the neat Plugin WP CPT subgenerator!');
+      this.log('Welcome to the neat Plugin WP Options Page subgenerator!');
     },
 
     readingYORC: function() {
@@ -36,11 +36,11 @@ module.exports = yeoman.generators.Base.extend({
         this.name        = this._.titleize( this.name.split('-').join(' ') );
       }
       this.pluginname = this.rc.name;
-      this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.optionsname    = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.slug       = this.rc.slug;
-      this.cptslug    = this.slug + '-' + this._.slugify( this.name );
-      this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
+      this.optionsslug    = this.slug + '-' + this._.slugify( this.name );
+      this.optionsprefix  = this._.underscored( this.slug + ' ' + this.name );
 
       this.composer   = this.fs.exists('composer.json');
     }
@@ -89,8 +89,8 @@ module.exports = yeoman.generators.Base.extend({
       prompts.push({
         type: 'input',
         name: 'name',
-        message: 'CPT Name',
-        default: 'basic-cpt'
+        message: 'Options Page Name',
+        default: 'basic-options'
       });
     }
 
@@ -119,10 +119,10 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         if ( props.name || props.pluginname ) {
-          this.cptname   = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.optionsname   = this.pluginname + ' ' + this._.capitalize( this.name );
           this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
-          this.cptslug   = this.slug + '-' + this._.slugify( this.name );
-          this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
+          this.optionsslug   = this.slug + '-' + this._.slugify( this.name );
+          this.optionsprefix  = this._.underscored( this.slug + ' ' + this.name );
         }
 
         done();
@@ -134,7 +134,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: function () {
     this.fs.copyTpl(
-      this.templatePath('cpt.php'),
+      this.templatePath('options.php'),
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
@@ -146,21 +146,11 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     if ( this.composer ) {
-      this.spawnCommand('composer', ['require', 'webdevstudios/cpt-core']);
-
       if ( ! this.options['nocmb2'] ) {
         this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
       }
     } else {
       this.mkdir('vendor');
-      if ( ! this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
-        ghdownload({
-          user: 'WebDevStudios',
-          repo: 'CPT_Core',
-          ref: 'master'
-        }, this.destinationPath('vendor/cpt-core') );
-      }
-
       if ( ! this.fs.exists('vendor/cmb2/init.php') && ! this.options['nocmb2'] ) {
         ghdownload({
           user: 'WebDevStudios',
