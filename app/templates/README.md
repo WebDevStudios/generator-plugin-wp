@@ -6,6 +6,7 @@
 **Tested up to:**      3.6.0
 **Stable tag:**        <%= version %>
 **License:**           <%= license %>
+**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description ##
 
