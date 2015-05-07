@@ -142,7 +142,7 @@ class <%= classname %> {
 	 */
 	public function init() {
 		if ( $this->check_requirements() ) {
-			load_plugin_textdomain( '<%= slug %>', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+			load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
 		}
 	}
 
