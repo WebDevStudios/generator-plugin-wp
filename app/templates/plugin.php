@@ -211,6 +211,30 @@ class <%= classname %> {
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
+	}
+
+	/**
+	 * This plugin's directory
+	 * @since  0.1.0
+	 * @param  string $path (optional) appended path
+	 * @return string       Directory and path
+	 */
+	public static function dir( $path = '' ) {
+		static $dir;
+		$dir = $dir ? $dir : trailingslashit( dirname( __FILE__ ) );
+		return $dir . $path;
+	}
+
+	/**
+	 * This plugin's url
+	 * @since  0.1.0
+	 * @param  string $path (optional) appended path
+	 * @return string       URL and path
+	 */
+	public static function url( $path = '' ) {
+		static $url;
+		$url = $url ? $url : trailingslashit( plugin_dir_url( __FILE__ ) );
+		return $url . $path;
 	}<% } %>
 }
 
