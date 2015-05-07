@@ -1,5 +1,6 @@
 {
 	"name": "<%= slug %>",
+	"title": "<%= name %>",
 	"version": "<%= version %>",
 	"description": "<%= description %>",
 	"author": {
