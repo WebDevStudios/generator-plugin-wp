@@ -45,7 +45,10 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     this.gruntfile.insertConfig('cssmin', "{dist: {files: {'assets/css/" + this.rc.slug + ".min.css': 'assets/css/" + this.rc.slug + ".css'}}}");
+    this.gruntfile.insertConfig('usebanner', "{ taskName: { options: { position: 'top', banner: bannerTemplate, linebreak: true }, files: { src: [ 'assets/css/" + this.rc.slug + ".min.css' ] } } }");
+
     this.gruntfile.registerTask('styles', 'cssmin');
+    this.gruntfile.registerTask('styles', 'usebanner');
   },
 
   writing: function () {
@@ -70,6 +73,7 @@ module.exports = yeoman.generators.Base.extend({
         this.npmInstall(['grunt-contrib-sass'], { 'saveDev': true });
       }
       this.npmInstall(['grunt-contrib-cssmin'], { 'saveDev': true });
+      this.npmInstall(['grunt-banner'], { 'saveDev': true });
     }
   }
 });
