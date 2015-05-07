@@ -41,9 +41,10 @@
  * @param  string $class_name Name of the class being requested
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
-	if ( class_exists( $class_name, false ) || false === stripos( $class_name, '<%= classprefix %>' ) ) {
+	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
 		return;
 	}
+
 	$filename = strtolower( str_ireplace(
 		array( '<%= classprefix %>', '_' ),
 		array( '', '-' ),
