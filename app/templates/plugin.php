@@ -37,7 +37,7 @@
 <% if ( autoloader == 'Basic' ) { %>
 /**
  * Autoloads files with classes when needed
- * @since  0.1.0
+ * @since  <%= version %>
  * @param  string $class_name Name of the class being requested
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
@@ -76,7 +76,7 @@ class <%= classname %> {
 
 	/**
 	 * Creates or returns an instance of this class.
-	 * @since  0.1.0
+	 * @since  <%= version %>
 	 * @return <%= classname %> A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -216,7 +216,7 @@ class <%= classname %> {
 
 	/**
 	 * This plugin's directory
-	 * @since  0.1.0
+	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path
 	 * @return string       Directory and path
 	 */
@@ -228,7 +228,7 @@ class <%= classname %> {
 
 	/**
 	 * This plugin's url
-	 * @since  0.1.0
+	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path
 	 * @return string       URL and path
 	 */

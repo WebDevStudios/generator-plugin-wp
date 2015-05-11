@@ -26,31 +26,21 @@ yo plugin-wp
 ```
 You'll be prompted with steps for creating your plugin.
 
-## Additional Commands
+## Sub-generators
 
-Once your nifty new plugin has been generated, `cd` into your new plugin's directory. While in the plugin directory, you can run additional commands to automatically generate files.
+Once your nifty new plugin has been generated, `cd` into your new plugin's directory. While in the plugin directory, you can run additional commands called sub-generators to automatically generate files to enhance your plugin.
 
-To create a blank `frontend.php` class:
+* `yo plugin-wp:include include-name` [Basic Include](include/README.md)
+* `yo plugin-wp:cpt cpt-name` [Custom Post Type](cpt/README.md)
+* `yo plugin-wp:options options-name` [Option Page](options/README.md)
+* `yo plugin-wp:widget widget-name` [Widget](widget/README.md)
+* `yo plugin-wp:js` [Javascript](js/README.md)
+* `yo plugin-wp:css` [Styles](css/README.md)
 
-```bash
-yo plugin-wp:include Frontend
-```
-
-To add a Javascript boilerplate (with optional browserify or concatenation support)
-
-```bash
-yo plugin-wp:js
-```
-
-To add a CSS boilerplate (with optional SASS support)
-
-```bash
-yo plugin-wp:css
-```
 
 ### Adding Packages with Composer
 
-If you chose composer as the autoloder option during the plugin's initiation, you can use composer to add additional dependencies.
+If you chose composer as the autoloader option during the plugin's initiation, you can use composer to add additional dependencies.
 
 Let's `cd` into our new plugin's directory and add [CMB2](https://github.com/WebDevStudios/CMB2):
 
@@ -67,4 +57,5 @@ CMB2 will now appear under `vendor`
       -webdevstudios
         -cmb2
 ```
+
 See the complete list of WebDevStudios packages: https://packagist.org/packages/webdevstudios/
