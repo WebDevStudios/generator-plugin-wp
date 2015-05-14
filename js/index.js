@@ -53,11 +53,11 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     if ( this.type === 'Browserify' ) {
-      this.gruntfile.insertConfig('browserify', "{ { options: { stripBanners: true, banner: bannerTemplate }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
-
+      this.gruntfile.insertConfig('browserify', "{all: { options: { stripBanners: true, banner: bannerTemplate }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } } }");
       this.gruntfile.registerTask('scripts', 'browserify');
     }
-    this.gruntfile.insertConfig('uglify', "uglify: { dist: { files: { 'assets/js/" + this.rc.slug + ".min.js': 'assets/js/" + this.rc.slug + ".js' }, options: { banner: compactBannerTemplate } } }");
+
+    this.gruntfile.insertConfig('uglify', "{dist: { files: { 'assets/js/" + this.rc.slug + ".min.js': 'assets/js/" + this.rc.slug + ".js' }, options: { banner: compactBannerTemplate } } }");
     this.gruntfile.registerTask('scripts', 'uglify');
   },
 
