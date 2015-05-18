@@ -1,8 +1,9 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var base = require('../plugin-wp-base');
 var updateNotifier = require('update-notifier');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
@@ -41,33 +42,8 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  _wpClassify: function( s ) {
-    var words  = this._.words( s ),
-        result = '';
-
-    for ( var i = 0; i < words.length; i += 1 ) {
-      result += this._.capitalize( words[i] );
-      if ( (i + 1) < words.length ) {
-        result += '_';
-      }
-    }
-
-    return result;
-  },
-
-  _wpClassPrefix: function( s ) {
-    var words = s.replace( /_/g, ' ' );
-    var letters = words.replace(/[a-z]/g, '');
-    var prefix = letters.replace(/\s/g, '');
-    return prefix + '_';
-  },
-
   prompting: function () {
     var done = this.async();
-
-    updateNotifier({
-      pkg: require('../package.json')
-    }).notify({defer: false});
 
     var prompts = [];
 

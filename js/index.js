@@ -1,8 +1,9 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var base = require('../plugin-wp-base');
 var updateNotifier = require('update-notifier');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.rc = this.config.getAll();
@@ -13,10 +14,6 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-
-    updateNotifier({
-      pkg: require('../package.json')
-    }).notify({defer: false});
 
     var prompts = [{
       type: 'list',

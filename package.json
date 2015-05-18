@@ -23,7 +23,8 @@
     "css",
     "widget",
     "cpt",
-    "options"
+    "options",
+    "plugin-wp-base.js"
   ],
   "keywords": [
     "yeoman-generator"
