@@ -12,31 +12,41 @@
 class <%= classname %> {
 	/**
 	 * Parent plugin class
+	 *
 	 * @var class
+	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
 
 	/**
- 	 * Option key, and option page slug
- 	 * @var string
- 	 */
+	 * Option key, and option page slug
+	 *
+	 * @var string
+	 * @since  <%= version %>
+	 */
 	private $key = '<%= optionsprefix %>';
 
 	/**
- 	 * Options page metabox id
- 	 * @var string
- 	 */
+	 * Options page metabox id
+	 *
+	 * @var string
+	 * @since  <%= version %>
+	 */
 	private $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
 	 * Options Page title
+	 *
 	 * @var string
+	 * @since  <%= version %>
 	 */
 	protected $title = '';
 
 	/**
 	 * Constructor
+	 *
 	 * @since <%= version %>
+	 * @return  null
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -47,7 +57,9 @@ class <%= classname %> {
 
 	/**
 	 * Initiate our hooks
+	 *
 	 * @since <%= version %>
+	 * @return  null
 	 */
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -57,7 +69,9 @@ class <%= classname %> {
 
 	/**
 	 * Register our setting to WP
+	 *
 	 * @since  <%= version %>
+	 * @return null
 	 */
 	public function admin_init() {
 		register_setting( $this->key, $this->key );
@@ -65,7 +79,9 @@ class <%= classname %> {
 
 	/**
 	 * Add menu options page
+	 *
 	 * @since <%= version %>
+	 * @return  null
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page(
@@ -78,7 +94,9 @@ class <%= classname %> {
 
 	/**
 	 * Admin page markup. Mostly handled by CMB2
+	 *
 	 * @since  <%= version %>
+	 * @return  null
 	 */
 	public function admin_page_display() {
 		?>
@@ -91,7 +109,9 @@ class <%= classname %> {
 
 	/**
 	 * Add custom fields to the options page.
+	 *
 	 * @since <%= version %>
+	 * @return  null
 	 */
 	public function fields() {
 		$box = new_cmb2_box( array(

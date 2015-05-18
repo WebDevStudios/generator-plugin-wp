@@ -37,8 +37,10 @@
 <% if ( autoloader == 'Basic' ) { %>
 /**
  * Autoloads files with classes when needed
+ *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested
+ * @return  null
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
 	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
@@ -64,18 +66,58 @@ require 'vendor/autoload_52.php';
 
 /**
  * Main initiation class
+ *
+ * @since  <%= version %>
+ * @var  string $version  Plugin version
+ * @var  string $basename Plugin basename
+ * @var  string $url      Plugin URL
+ * @var  string $path     Plugin Path
  */
 class <%= classname %> {
 
+	/**
+	 * Current version
+	 *
+	 * @var  string
+	 * @since  <%= version %>
+	 */
 	const VERSION = '<%= version %>';
 
+	/**
+	 * URL of plugin directory
+	 *
+	 * @var string
+	 * @since  <%= version %>
+	 */
 	protected $url      = '';
+
+	/**
+	 * Path of plugin directory
+	 *
+	 * @var string
+	 * @since  <%= version %>
+	 */
 	protected $path     = '';
+
+	/**
+	 * Plugin basename
+	 *
+	 * @var string
+	 * @since  <%= version %>
+	 */
 	protected $basename = '';
+
+	/**
+	 * Singleton instance of plugin
+	 *
+	 * @var <%= classname %>
+	 * @since  <%= version %>
+	 */
 	protected static $single_instance = null;
 
 	/**
 	 * Creates or returns an instance of this class.
+	 *
 	 * @since  <%= version %>
 	 * @return <%= classname %> A single instance of this class.
 	 */
@@ -89,7 +131,9 @@ class <%= classname %> {
 
 	/**
 	 * Sets up our plugin
+	 *
 	 * @since  <%= version %>
+	 * @return  null
 	 */
 	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
@@ -102,7 +146,9 @@ class <%= classname %> {
 
 	/**
 	 * Attach other plugin classes to the base plugin class.
+	 *
 	 * @since <%= version %>
+	 * @return  null
 	 */
 	function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
@@ -111,7 +157,9 @@ class <%= classname %> {
 
 	/**
 	 * Add hooks and filters
+	 *
 	 * @since <%= version %>
+	 * @return null
 	 */
 	public function hooks() {
 		register_activation_hook( __FILE__, array( $this, '_activate' ) );
@@ -122,7 +170,9 @@ class <%= classname %> {
 
 	/**
 	 * Activate the plugin
+	 *
 	 * @since  <%= version %>
+	 * @return null
 	 */
 	function _activate() {
 		// Make sure any rewrite functionality has been loaded
@@ -132,12 +182,15 @@ class <%= classname %> {
 	/**
 	 * Deactivate the plugin
 	 * Uninstall routines should be in uninstall.php
+	 *
 	 * @since  <%= version %>
+	 * @return null
 	 */
 	function _deactivate() {}
 
 	/**
 	 * Init hooks
+	 *
 	 * @since  <%= version %>
 	 * @return null
 	 */
@@ -149,6 +202,7 @@ class <%= classname %> {
 
 	/**
 	 * Check that all plugin requirements are met
+	 *
 	 * @since  <%= version %>
 	 * @return boolean
 	 */
@@ -163,6 +217,7 @@ class <%= classname %> {
 	/**
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
+	 *
 	 * @since  <%= version %>
 	 * @return boolean result of meets_requirements
 	 */
@@ -204,18 +259,22 @@ class <%= classname %> {
 
 	/**
 	 * Include a file from the includes directory
+	 *
 	 * @since  <%= version %>
-	 * @param  string $filename Name of the file to be included
+	 * @param  string  $filename Name of the file to be included
+	 * @return bool    Result of include call.
 	 */
 	public static function include_file( $filename ) {
 		$file = self::dir( 'includes/'. $filename .'.php' );
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
+		return false;
 	}
 
 	/**
 	 * This plugin's directory
+	 *
 	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path
 	 * @return string       Directory and path
@@ -228,6 +287,7 @@ class <%= classname %> {
 
 	/**
 	 * This plugin's url
+	 *
 	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path
 	 * @return string       URL and path
@@ -242,6 +302,9 @@ class <%= classname %> {
 /**
  * Grab the <%= classname %> object and return it.
  * Wrapper for <%= classname %>::get_instance()
+ *
+ * @since  <%= version %>
+ * @return <%= classname %>  Singleton instance of plugin class.
  */
 function <%= prefix %>() {
 	return <%= classname %>::get_instance();
