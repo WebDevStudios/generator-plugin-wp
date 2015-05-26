@@ -64,7 +64,7 @@ module.exports = base.extend({
     if ( this.type !== 'Basic' ) {
       mainfile += 'components/main.js';
     } else {
-      mainfile += this.slug + '.js';
+      mainfile += this.rc.slug + '.js';
     }
 
     this.fs.copyTpl(
