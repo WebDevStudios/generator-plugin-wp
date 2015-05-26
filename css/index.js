@@ -37,7 +37,7 @@ module.exports = base.extend({
     }
 
     if ( this.type === 'SASS' ) {
-      this.gruntfile.insertConfig('sass', "{dist: {options: {style: 'expanded', lineNumbers: true}, files: {'assets/css/" + this.rc.slug + ".css': 'assets/css/sass/styles.scss'}}}");;
+      this.gruntfile.insertConfig('sass', "{dist: {options: {sourceMap: true}, files: {'assets/css/" + this.rc.slug + ".css': 'assets/css/sass/styles.scss'}}}");;
       this.gruntfile.registerTask('styles', 'sass');
     }
 
@@ -67,7 +67,7 @@ module.exports = base.extend({
   install: function () {
     if ( ! this.options['skip-install'] ) {
       if ( this.type === 'SASS' ) {
-        this.npmInstall(['grunt-contrib-sass'], { 'saveDev': true });
+        this.npmInstall(['grunt-sass'], { 'saveDev': true });
       }
       this.npmInstall(['grunt-contrib-cssmin'], { 'saveDev': true });
       this.npmInstall(['grunt-banner'], { 'saveDev': true });
