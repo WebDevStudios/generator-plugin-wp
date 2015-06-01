@@ -86,7 +86,7 @@ module.exports = base.extend({
       type: 'list',
       name: 'autoloader',
       message: 'Use Autoloader',
-      choices: ['Composer', 'Basic', 'None']
+      choices: ['Basic', 'Composer', 'None']
     }];
 
     this.prompt(prompts, function (props) {
@@ -120,9 +120,10 @@ module.exports = base.extend({
         this.templatePath('_bowerrc'),
         this.destinationPath( '/.bowerrc' )
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_gitignore'),
-        this.destinationPath( '/.gitignore' )
+        this.destinationPath( '/.gitignore' ),
+        this
       );
     },
 
