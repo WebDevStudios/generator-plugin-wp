@@ -89,7 +89,7 @@ class <%= classname %> {
 	 * @var string
 	 * @since  <%= version %>
 	 */
-	protected $url      = '';
+	protected $url = '';
 
 	/**
 	 * Path of plugin directory
@@ -97,7 +97,7 @@ class <%= classname %> {
 	 * @var string
 	 * @since  <%= version %>
 	 */
-	protected $path     = '';
+	protected $path = '';
 
 	/**
 	 * Plugin basename
