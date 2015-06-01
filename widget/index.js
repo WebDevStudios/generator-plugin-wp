@@ -75,6 +75,7 @@ module.exports = base.extend({
     }
 
     if ( prompts.length > 0 ) {
+      this.log( 'Missing some info about the original plugin, help me out?' );
       this.prompt(prompts, function (props) {
         if ( props.version ) {
           this.version = props.version;
