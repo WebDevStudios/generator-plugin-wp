@@ -37,6 +37,7 @@ Once your nifty new plugin has been generated, `cd` into your new plugin's direc
 * `yo plugin-wp:js` [Javascript](js/README.md)
 * `yo plugin-wp:css` [Styles](css/README.md)
 
+For the names of the include, cpt, options, and widget subgenerators remember that the plugin prefix will be added to the class name so no need to include the original plugin name there! Think of it as the file name for each instead.
 
 ### Adding Packages with Composer
 
