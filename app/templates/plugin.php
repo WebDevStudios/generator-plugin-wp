@@ -133,7 +133,6 @@ class <%= classname %> {
 	 * Sets up our plugin
 	 *
 	 * @since  <%= version %>
-	 * @return  null
 	 */
 	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
