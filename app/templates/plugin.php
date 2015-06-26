@@ -1,14 +1,14 @@
 <?php
 /**
-* Plugin Name: <%= name %>
-* Plugin URI:  <%= homepage %>
-* Description: <%= description %>
-* Version:     <%= version %>
-* Author:      <%= author %>
-* Author URI:  <%= authorurl %>
-* Donate link: <%= homepage %>
-* License:     <%= license %>
-* Text Domain: <%= slug %>
+ * Plugin Name: <%= name %>
+ * Plugin URI:  <%= homepage %>
+ * Description: <%= description %>
+ * Version:     <%= version %>
+ * Author:      <%= author %>
+ * Author URI:  <%= authorurl %>
+ * Donate link: <%= homepage %>
+ * License:     <%= license %>
+ * Text Domain: <%= slug %>
  * Domain Path: /languages
  */
 
