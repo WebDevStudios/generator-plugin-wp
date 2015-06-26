@@ -1,7 +1,5 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 
 module.exports = base.extend({
   initializing: function () {
@@ -31,15 +29,15 @@ module.exports = base.extend({
   },
 
   configuring: function() {
-    if ( ! this.fs.exists( 'Gruntfile.js') ){
+    if ( !this.fs.exists( 'Gruntfile.js') ){
       this.log( 'No Gruntfile.js found, no Grunt tasks added.' );
       return;
     }
 
     if ( this.type === 'Basic' ) {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', '"+ this.classname +"' ] } }");
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', '" + this.classname + "' ] } }");
     } else {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', 'require', '"+ this.classname +"' ] } }");
+      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js'], options: { browser: true, esnext: true, predef: [ 'document', 'window', 'jQuery', 'require', '" + this.classname + "' ] } }");
     }
     this.gruntfile.registerTask('scripts', 'jshint');
 
@@ -50,7 +48,7 @@ module.exports = base.extend({
     }
 
     if ( this.type === 'Browserify' ) {
-      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
+      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate, transform: ['babelify', 'browserify-shim'] }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
       this.gruntfile.registerTask('scripts', 'browserify');
     }
 
@@ -75,7 +73,7 @@ module.exports = base.extend({
   },
 
   install: function () {
-    if ( ! this.options['skip-install'] ) {
+    if ( !this.options['skip-install'] ) {
       this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
       this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
 
@@ -85,6 +83,14 @@ module.exports = base.extend({
 
       if ( this.type === 'Browserify' ) {
         this.npmInstall(['grunt-browserify'], { 'saveDev': true });
+        this.npmInstall(['browserify-shim'], { 'saveDev': true });
+        this.npmInstall(['babelify'], { 'saveDev': true });
+
+        var pack = this.fs.readJSON( 'package.json' );
+        pack['browserify-shim'] = {
+          'jquery': 'global:jQuery'
+        };
+        this.fs.writeJSON( 'package.json', pack );
       }
     }
   }

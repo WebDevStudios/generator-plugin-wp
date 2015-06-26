@@ -7,10 +7,8 @@
 
 window.<%= rc.classname %> = window.<%= rc.classname %> || {};
 
-( function( window, document, $, that, undefined ) {
-	'use strict';
-
-	var $c   = {};
+( function( window, document, $, that ) {
+	var $c = {};
 
 	that.init = function() {
 		that.cache();
@@ -27,4 +25,4 @@ window.<%= rc.classname %> = window.<%= rc.classname %> || {};
 
 	$( that.init );
 
-} ) ( window, document, jQuery, <%= rc.classname %> );
+}( window, document, <% if ( type === 'Browserify' ) {%>require('jquery')<%} else {%>jQuery<%}%>, window.<%= rc.classname %> ) );
