@@ -89,7 +89,7 @@ class <%= classname %> {
 	 * @var string
 	 * @since  <%= version %>
 	 */
-	protected $url      = '';
+	protected $url = '';
 
 	/**
 	 * Path of plugin directory
@@ -97,7 +97,7 @@ class <%= classname %> {
 	 * @var string
 	 * @since  <%= version %>
 	 */
-	protected $path     = '';
+	protected $path = '';
 
 	/**
 	 * Plugin basename
@@ -133,7 +133,6 @@ class <%= classname %> {
 	 * Sets up our plugin
 	 *
 	 * @since  <%= version %>
-	 * @return  null
 	 */
 	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );

@@ -1,7 +1,7 @@
 # generator-plugin-wp CPT Subgenerator
 
 ```bash
-yo plugin-wp cpt cpt-name
+yo plugin-wp:cpt cpt-name
 ```
 
 Creates a skeleton custom post type using [CPT_Core](https://github.com/WebDevStudios/CPT_Core) and [CMB2](https://github.com/WebDevStudios/CMB2) for custom fields.
