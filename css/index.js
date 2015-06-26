@@ -1,7 +1,5 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 
 module.exports = base.extend({
   initializing: function () {
@@ -16,8 +14,8 @@ module.exports = base.extend({
     var done = this.async();
 
     var prompts = [{
-      type: 'list',
-      name: 'type',
+      type   : 'list',
+      name   : 'type',
       message: 'Style setup',
       choices: ['SASS', 'Basic']
     }];
@@ -31,13 +29,13 @@ module.exports = base.extend({
   },
 
   configuring: function() {
-    if ( ! this.fs.exists( 'Gruntfile.js') ){
+    if ( !this.fs.exists( 'Gruntfile.js') ){
       this.log( 'No Gruntfile.js found, no Grunt tasks added.' );
       return;
     }
 
     if ( this.type === 'SASS' ) {
-      this.gruntfile.insertConfig('sass', "{dist: {options: {sourceMap: true}, files: {'assets/css/" + this.rc.slug + ".css': 'assets/css/sass/styles.scss'}}}");;
+      this.gruntfile.insertConfig('sass', "{dist: {options: {sourceMap: true}, files: {'assets/css/" + this.rc.slug + ".css': 'assets/css/sass/styles.scss'}}}");
       this.gruntfile.registerTask('styles', 'sass');
     }
 
@@ -65,7 +63,7 @@ module.exports = base.extend({
   },
 
   install: function () {
-    if ( ! this.options['skip-install'] ) {
+    if ( !this.options['skip-install'] ) {
       if ( this.type === 'SASS' ) {
         this.npmInstall(['grunt-sass'], { 'saveDev': true });
       }

@@ -1,7 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 
 module.exports = base.extend({
   constructor: function () {
@@ -9,8 +8,8 @@ module.exports = base.extend({
 
     this.argument('name', {
       required: false,
-      type: String,
-      desc: 'The include name'
+      type    : String,
+      desc    : 'The include name'
     });
   },
 
@@ -44,28 +43,28 @@ module.exports = base.extend({
 
     var prompts = [];
 
-    if ( ! this.version ) {
+    if ( !this.version ) {
       prompts.push({
-        type: 'input',
-        name: 'version',
+        type   : 'input',
+        name   : 'version',
         message: 'Version',
         default: '0.1.0'
       });
     }
 
-    if ( ! this.name ) {
+    if ( !this.name ) {
       prompts.push({
-        type: 'input',
-        name: 'name',
+        type   : 'input',
+        name   : 'name',
         message: 'Include Name',
         default: 'frontend'
       });
     }
 
-    if ( ! this.pluginname ) {
+    if ( !this.pluginname ) {
       prompts.push({
-        type: 'input',
-        name: 'pluginname',
+        type   : 'input',
+        name   : 'pluginname',
         message: 'Plugin Name',
         default: 'WDS Client Plugin'
       });

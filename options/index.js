@@ -1,7 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 var ghdownload = require('github-download');
 
 module.exports = base.extend({
@@ -12,8 +11,8 @@ module.exports = base.extend({
 
     this.argument('name', {
       required: false,
-      type: String,
-      desc: 'The options page name'
+      type    : String,
+      desc    : 'The options page name'
     });
   },
 
@@ -32,18 +31,18 @@ module.exports = base.extend({
     },
 
     settingValues: function() {
-      this.version    = this.pkg.version;
+      this.version        = this.pkg.version;
       if ( this.name ) {
-        this.name        = this._.titleize( this.name.split('-').join(' ') );
+        this.name         = this._.titleize( this.name.split('-').join(' ') );
       }
-      this.pluginname = this.rc.name;
+      this.pluginname     = this.rc.name;
       this.optionsname    = this.pluginname + ' ' + this._.capitalize( this.name );
-      this.classname  = this.rc.classprefix + this._wpClassify( this.name );
-      this.slug       = this.rc.slug;
+      this.classname      = this.rc.classprefix + this._wpClassify( this.name );
+      this.slug           = this.rc.slug;
       this.optionsslug    = this.slug + '-' + this._.slugify( this.name );
       this.optionsprefix  = this._.underscored( this.slug + ' ' + this.name );
 
-      this.composer   = this.fs.exists('composer.json');
+      this.composer       = this.fs.exists('composer.json');
     }
   },
 
@@ -52,28 +51,28 @@ module.exports = base.extend({
 
     var prompts = [];
 
-    if ( ! this.version ) {
+    if ( !this.version ) {
       prompts.push({
-        type: 'input',
-        name: 'version',
+        type   : 'input',
+        name   : 'version',
         message: 'Version',
         default: '0.1.0'
       });
     }
 
-    if ( ! this.name ) {
+    if ( !this.name ) {
       prompts.push({
-        type: 'input',
-        name: 'name',
+        type   : 'input',
+        name   : 'name',
         message: 'Options Page Name',
         default: 'basic-options'
       });
     }
 
-    if ( ! this.pluginname ) {
+    if ( !this.pluginname ) {
       prompts.push({
-        type: 'input',
-        name: 'pluginname',
+        type   : 'input',
+        name   : 'pluginname',
         message: 'Plugin Name',
         default: 'WDS Client Plugin'
       });
@@ -123,16 +122,16 @@ module.exports = base.extend({
     }
 
     if ( this.composer ) {
-      if ( ! this.options['nocmb2'] ) {
+      if ( !this.options.nocmb2 ) {
         this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
       }
     } else {
       this.mkdir('vendor');
-      if ( ! this.fs.exists('vendor/cmb2/init.php') && ! this.options['nocmb2'] ) {
+      if ( !this.fs.exists('vendor/cmb2/init.php') && !this.options.nocmb2 ) {
         ghdownload({
           user: 'WebDevStudios',
           repo: 'CMB2',
-          ref: 'master'
+          ref : 'master'
         }, this.destinationPath('vendor/cmb2') );
       }
     }

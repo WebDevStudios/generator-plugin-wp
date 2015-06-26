@@ -1,7 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 
 module.exports = base.extend({
   constructor: function () {
@@ -9,8 +8,8 @@ module.exports = base.extend({
 
     this.argument('name', {
       required: false,
-      type: String,
-      desc: 'The widget name'
+      type    : String,
+      desc    : 'The widget name'
     });
   },
 
@@ -29,16 +28,16 @@ module.exports = base.extend({
     },
 
     settingValues: function() {
-      this.version     = this.pkg.version;
+      this.version      = this.pkg.version;
       if ( this.name ) {
-        this.name        = this._.titleize( this.name.split('-').join(' ') );
+        this.name       = this._.titleize( this.name.split('-').join(' ') );
       }
-      this.pluginname  = this.rc.name;
-      this.widgetname  = this.pluginname + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
-      this.slug        = this.rc.slug;
-      this.widgetslug  = this.slug + '-' + this._.slugify( this.name );
-      this.widgetprefix= this._.underscored( this.slug + ' ' + this.name );
+      this.pluginname   = this.rc.name;
+      this.widgetname   = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.classname    = this.rc.classprefix + this._wpClassify( this.name );
+      this.slug         = this.rc.slug;
+      this.widgetslug   = this.slug + '-' + this._.slugify( this.name );
+      this.widgetprefix = this._.underscored( this.slug + ' ' + this.name );
     }
   },
 
@@ -47,28 +46,28 @@ module.exports = base.extend({
 
     var prompts = [];
 
-    if ( ! this.version ) {
+    if ( !this.version ) {
       prompts.push({
-        type: 'input',
-        name: 'version',
+        type   : 'input',
+        name   : 'version',
         message: 'Version',
         default: '0.1.0'
       });
     }
 
-    if ( ! this.name ) {
+    if ( !this.name ) {
       prompts.push({
-        type: 'input',
-        name: 'name',
+        type   : 'input',
+        name   : 'name',
         message: 'Widget Name',
         default: 'basic-widget'
       });
     }
 
-    if ( ! this.pluginname ) {
+    if ( !this.pluginname ) {
       prompts.push({
-        type: 'input',
-        name: 'pluginname',
+        type   : 'input',
+        name   : 'pluginname',
         message: 'Plugin Name',
         default: 'WDS Client Plugin'
       });
@@ -87,7 +86,7 @@ module.exports = base.extend({
 
         if ( props.pluginname ) {
           this.pluginname  = props.pluginname;
-          this.slug = this._.slugify( props.pluginname );
+          this.slug        = this._.slugify( props.pluginname );
         }
 
         if ( props.name || props.pluginname ) {

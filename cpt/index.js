@@ -1,7 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
-var updateNotifier = require('update-notifier');
 var ghdownload = require('github-download');
 
 module.exports = base.extend({
@@ -12,8 +11,8 @@ module.exports = base.extend({
 
     this.argument('name', {
       required: false,
-      type: String,
-      desc: 'The CPT name'
+      type    : String,
+      desc    : 'The CPT name'
     });
   },
 
@@ -52,28 +51,28 @@ module.exports = base.extend({
 
     var prompts = [];
 
-    if ( ! this.version ) {
+    if ( !this.version ) {
       prompts.push({
-        type: 'input',
-        name: 'version',
+        type   : 'input',
+        name   : 'version',
         message: 'Version',
         default: '0.1.0'
       });
     }
 
-    if ( ! this.name ) {
+    if ( !this.name ) {
       prompts.push({
-        type: 'input',
-        name: 'name',
+        type   : 'input',
+        name   : 'name',
         message: 'CPT Name',
         default: 'basic-cpt'
       });
     }
 
-    if ( ! this.pluginname ) {
+    if ( !this.pluginname ) {
       prompts.push({
-        type: 'input',
-        name: 'pluginname',
+        type   : 'input',
+        name   : 'pluginname',
         message: 'Plugin Name',
         default: 'WDS Client Plugin'
       });
@@ -125,24 +124,24 @@ module.exports = base.extend({
     if ( this.composer ) {
       this.spawnCommand('composer', ['require', 'webdevstudios/cpt-core']);
 
-      if ( ! this.options['nocmb2'] ) {
+      if ( !this.options.nocmb2 ) {
         this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
       }
     } else {
       this.mkdir('vendor');
-      if ( ! this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
+      if ( !this.fs.exists('vendor/cpt-core/CPT_Core.php') ) {
         ghdownload({
           user: 'WebDevStudios',
           repo: 'CPT_Core',
-          ref: 'master'
+          ref : 'master'
         }, this.destinationPath('vendor/cpt-core') );
       }
 
-      if ( ! this.fs.exists('vendor/cmb2/init.php') && ! this.options['nocmb2'] ) {
+      if ( !this.fs.exists('vendor/cmb2/init.php') && !this.options.nocmb2 ) {
         ghdownload({
           user: 'WebDevStudios',
           repo: 'CMB2',
-          ref: 'master'
+          ref : 'master'
         }, this.destinationPath('vendor/cmb2') );
       }
     }

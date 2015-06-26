@@ -1,9 +1,7 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var updateNotifier = require('update-notifier');
 
 module.exports = base.extend({
   initializing: function () {
@@ -19,72 +17,72 @@ module.exports = base.extend({
     ));
 
     var prompts = [{
-      type: 'input',
-      name: 'name',
+      type   : 'input',
+      name   : 'name',
       message: 'Name',
       default: 'WDS Client Plugin Name'
     }, {
-      type: 'input',
-      name: 'homepage',
+      type   : 'input',
+      name   : 'homepage',
       message: 'Homepage',
       default: 'http://webdevstudios.com'
     }, {
-      type: 'input',
-      name: 'description',
+      type   : 'input',
+      name   : 'description',
       message: 'Description',
       default: 'A radical new plugin for WordPress!'
     }, {
-      type: 'input',
-      name: 'version',
+      type   : 'input',
+      name   : 'version',
       message: 'Version',
       default: '0.1.0'
     }, {
-      type: 'input',
-      name: 'author',
+      type   : 'input',
+      name   : 'author',
       message: 'Author',
       default: 'WebDevStudios',
-      save: true
+      save   : true
     }, {
-      type: 'input',
-      name: 'authoremail',
+      type   : 'input',
+      name   : 'authoremail',
       message: 'Author Email',
       default: 'contact@webdevstudios.com',
-      save: true
+      save   : true
     }, {
-      type: 'input',
-      name: 'authorurl',
+      type   : 'input',
+      name   : 'authorurl',
       message: 'Author URL',
       default: 'http://webdevstudios.com',
-      save: true
+      save   : true
     }, {
-      type: 'input',
-      name: 'license',
+      type   : 'input',
+      name   : 'license',
       message: 'License',
       default: 'GPLv2'
     }, {
-      type: 'input',
-      name: 'slug',
+      type   : 'input',
+      name   : 'slug',
       message: 'Plugin Slug',
-      default: function( prompts ) {
-        return this._.slugify( prompts.name );
+      default: function( p ) {
+        return this._.slugify( p.name );
       }.bind(this)
     }, {
-      type: 'input',
-      name: 'classname',
+      type   : 'input',
+      name   : 'classname',
       message: 'Plugin Class Name',
-      default: function( prompts ) {
-        return this._wpClassify( prompts.name );
+      default: function( p ) {
+        return this._wpClassify( p.name );
       }.bind(this)
     }, {
-      type: 'input',
-      name: 'prefix',
+      type   : 'input',
+      name   : 'prefix',
       message: 'Plugin Prefix',
-      default: function( prompts ) {
-        return this._.underscored( this._.slugify( prompts.slug ) );
+      default: function( p ) {
+        return this._.underscored( this._.slugify( p.slug ) );
       }.bind(this)
     }, {
-      type: 'list',
-      name: 'autoloader',
+      type   : 'list',
+      name   : 'autoloader',
       message: 'Use Autoloader',
       choices: ['Basic', 'Composer', 'None']
     }];
@@ -138,7 +136,7 @@ module.exports = base.extend({
         this.destinationPath('/package.json'),
         this
       );
-      if ( this.autoloader == 'Composer' ) {
+      if ( this.autoloader === 'Composer' ) {
         this.fs.copyTpl(
           this.templatePath('composer.json'),
           this.destinationPath('/composer.json'),
@@ -210,7 +208,7 @@ module.exports = base.extend({
       skipInstall: this.options['skip-install']
     });
 
-    if ( this.autoloader == 'Composer' && ! this.options['skip-install'] ) {
+    if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
     }
   }
