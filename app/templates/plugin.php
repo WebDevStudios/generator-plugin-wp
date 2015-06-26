@@ -222,10 +222,10 @@ class <%= classname %> {
 	 */
 	public function check_requirements() {
 		if ( ! $this->meets_requirements() ) {
-			// Display our error
-			echo '<div id="message" class="error">';
-			echo '<p>' . sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) ) . '</p>';
-			echo '</div>';
+
+			// Add a dashboard notice
+			add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
+
 			// Deactivate our plugin
 			deactivate_plugins( $this->basename );
 
@@ -233,6 +233,19 @@ class <%= classname %> {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Adds a notice to the dashboard if the plugin requirements are not met
+	 *
+	 * @since  <%= version %>
+	 * @return null
+	 */
+	public function requirements_not_met_notice() {
+		// Output our error
+		echo '<div id="message" class="error">';
+		echo '<p>' . sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) ) . '</p>';
+		echo '</div>';
 	}
 
 	/**
