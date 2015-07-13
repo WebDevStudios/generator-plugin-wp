@@ -1,12 +1,12 @@
 # <%= name %> #
-**Contributors:**      <%= author %>
-**Donate link:**       <%= homepage %>
-**Tags:**
-**Requires at least:** 3.6.0
-**Tested up to:**      3.6.0
-**Stable tag:**        <%= version %>
-**License:**           <%= license %>
-**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html
+**Contributors:**      <%= author %>  
+**Donate link:**       <%= homepage %>  
+**Tags:**  
+**Requires at least:** 4.3  
+**Tested up to:**      4.3  
+**Stable tag:**        <%= version %>  
+**License:**           <%= license %>  
+**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
 
 ## Description ##
 
