@@ -116,11 +116,11 @@ module.exports = base.extend({
     dotfiles: function() {
       this.fs.copy(
         this.templatePath('_bowerrc'),
-        this.destinationPath( '/.bowerrc' )
+        this.destinationPath('/.bowerrc')
       );
       this.fs.copyTpl(
         this.templatePath('_gitignore'),
-        this.destinationPath( '/.gitignore' ),
+        this.destinationPath('/.gitignore'),
         this
       );
     },
@@ -145,14 +145,14 @@ module.exports = base.extend({
       }
       this.fs.copy(
         this.templatePath('Gruntfile.js'),
-        this.destinationPath( '/Gruntfile.js')
+        this.destinationPath('/Gruntfile.js')
       );
     },
 
     php: function() {
       this.fs.copyTpl(
         this.templatePath('plugin.php'),
-        this.destinationPath( '/' + this.slug + '.php'),
+        this.destinationPath('/' + this.slug + '.php'),
         this
       );
     },
@@ -160,13 +160,45 @@ module.exports = base.extend({
     readmes: function() {
       this.fs.copyTpl(
         this.templatePath('README.md'),
-        this.destinationPath( '/README.md'),
+        this.destinationPath('/README.md'),
         this
       );
 
       this.fs.copyTpl(
         this.templatePath('readme.txt'),
-        this.destinationPath( '/readme.txt'),
+        this.destinationPath('/readme.txt'),
+        this
+      );
+    },
+
+    tests: function() {
+      this.fs.copy(
+        this.templatePath('phpunit.xml'),
+        this.destinationPath('/phpunit.xml'),
+        this
+      );
+
+      this.fs.copy(
+        this.templatePath('.travis.yml'),
+        this.destinationPath('/.travis.yml'),
+        this
+      );
+
+      this.fs.copy(
+        this.templatePath('bin/install-wp-tests.sh'),
+        this.destinationPath('bin/install-wp-tests.sh'),
+        this
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('tests/bootstrap.php'),
+        this.destinationPath('tests/bootstrap.php'),
+        this
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('tests/test-base.php'),
+        this.destinationPath('tests/test-base.php'),
         this
       );
     },
@@ -174,13 +206,13 @@ module.exports = base.extend({
     folders: function() {
       this.fs.copyTpl(
         this.templatePath('assets/README.md'),
-        this.destinationPath( 'assets/README.md'),
+        this.destinationPath('assets/README.md'),
         this
       );
 
       this.fs.copyTpl(
         this.templatePath('includes/README.md'),
-        this.destinationPath( 'includes/README.md'),
+        this.destinationPath('includes/README.md'),
         this
       );
     },
