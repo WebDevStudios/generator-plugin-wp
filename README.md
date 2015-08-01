@@ -5,7 +5,8 @@
 
 ## Getting Started
 
-Pre-requisites: You'll need [node](https://nodejs.org/download/) which comes with [npm](https://github.com/npm/npm#super-easy-install).
+Pre-requisites: You'll need [node](https://nodejs.org/download/) which comes
+with [npm](https://github.com/npm/npm#super-easy-install).
 
 If you don't have [Yeoman](http://yeoman.io/) installed:
 
@@ -28,7 +29,9 @@ You'll be prompted with steps for creating your plugin.
 
 ## Sub-generators
 
-Once your nifty new plugin has been generated, `cd` into your new plugin's directory. While in the plugin directory, you can run additional commands called sub-generators to automatically generate files to enhance your plugin.
+Once your nifty new plugin has been generated, `cd` into your new plugin's
+directory. While in the plugin directory, you can run additional commands
+called sub-generators to automatically generate files to enhance your plugin.
 
 * `yo plugin-wp:include include-name` [Basic Include](include/README.md)
 * `yo plugin-wp:cpt cpt-name` [Custom Post Type](cpt/README.md)
@@ -55,7 +58,8 @@ main generator with the `--notests` option.
 
 ### Adding Packages with Composer
 
-If you chose composer as the autoloader option during the plugin's initiation, you can use composer to add additional dependencies.
+If you chose composer as the autoloader option during the plugin's initiation,
+you can use composer to add additional dependencies.
 
 Let's `cd` into our new plugin's directory and add [CMB2](https://github.com/WebDevStudios/CMB2):
 
