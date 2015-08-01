@@ -2,7 +2,7 @@
 	"name": "<%= slug %>",
 	"title": "<%= name %>",
 	"version": "<%= version %>",
-	"description": "<%= description %>",
+	"description": "<%= descriptionEscaped %>",
 	"author": {
 		"name": "<%= author %>",
 		"url": "<%= authorurl %>"

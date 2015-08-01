@@ -99,6 +99,7 @@ module.exports = base.extend({
       this.name        = this._.clean( props.name );
       this.homepage    = this._.clean( props.homepage );
       this.description = this._.clean( props.description );
+      this.descriptionEscaped = this._escapeDoubleQuotes( this.description );
       this.version     = this._.clean( props.version );
       this.author      = this._.clean( props.author );
       this.authoremail = this._.clean( props.authoremail );

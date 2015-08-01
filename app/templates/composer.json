@@ -1,6 +1,6 @@
 {
 	"name": "<%= slug %>",
-	"description": "<%= description %>",
+	"description": "<%= descriptionEscaped %>",
 	"keywords": ["wordpress", "plugin", "generator-plugin-wp"],
 	"homepage": "<%= homepage %>",
 	"license": "<%= license %>",

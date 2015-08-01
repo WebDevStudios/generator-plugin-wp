@@ -1,6 +1,6 @@
 {
   "name": "<%= slug %>",
-  "description": "<%= description %>",
+  "description": "<%= descriptionEscaped %>",
   "license": "<%= license %>",
   "authors": [
     "<%= author %>"
