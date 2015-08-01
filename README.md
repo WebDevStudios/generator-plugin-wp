@@ -37,7 +37,21 @@ Once your nifty new plugin has been generated, `cd` into your new plugin's direc
 * `yo plugin-wp:js` [Javascript](js/README.md)
 * `yo plugin-wp:css` [Styles](css/README.md)
 
-For the names of the include, cpt, options, and widget subgenerators remember that the plugin prefix will be added to the class name so no need to include the original plugin name there! Think of it as the file name for each instead.
+For the names of the include, cpt, options, and widget subgenerators remember
+that the plugin prefix will be added to the class name so no need to include the
+original plugin name there! Think of it as the file name for each instead.
+
+## Tests
+
+By default the plugin generator adds some built in tests for you to add on to as
+you develop your plugin! To run these tests run the `install-wp-tests.sh` script
+in the bin folder with the proper database details for your local setup.
+
+Once you've run the `install-wp-tests.sh` script you can run just `phpunit` in
+the main folder of your plugin.
+
+If you don't want tests included in your plugin when it is generated run the
+main generator with the `--notests` option.
 
 ### Adding Packages with Composer
 

@@ -2,6 +2,7 @@
 var base = require('../plugin-wp-base');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var fs = require('fs');
 
 module.exports = base.extend({
   constructor: function () {
@@ -200,6 +201,7 @@ module.exports = base.extend({
         this
       );
 
+
       this.fs.copyTpl(
         this.templatePath('tests/bootstrap.php'),
         this.destinationPath('tests/bootstrap.php'),
@@ -252,6 +254,10 @@ module.exports = base.extend({
 
     if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
+    }
+
+    if ( !this.options.notests ) {
+      fs.chmodSync(this.destinationPath('bin/install-wp-tests.sh'), '700');
     }
   }
 });
