@@ -33,14 +33,14 @@ module.exports = base.extend({
     settingValues: function() {
       this.version    = this.pkg.version;
       if ( this.name ) {
-        this.name        = this._.titleize( this.name.split('-').join(' ') );
+        this.name     = this._.titleize( this.name.split('-').join(' ') );
       }
       this.pluginname = this.rc.name;
       this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.slug       = this.rc.slug;
-      this.cptslug    = this.slug + '-' + this._.slugify( this.name );
-      this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
+      this.cptslug    = this._.slugify( this.classname );
+      this.cptprefix  = this._.underscored( this.cptslug );
 
       this.composer   = this.fs.exists('composer.json');
     }
