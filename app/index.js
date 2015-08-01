@@ -119,6 +119,15 @@ module.exports = base.extend({
   writing: {
     folder: function() {
       this.destinationRoot( this.slug );
+
+      var done = this.async();
+      fs.lstat( this.destinationPath(), function(err, stats) {
+        if (!err && stats.isDirectory()) {
+          this.log( chalk.red( 'A plugin already exists with this folder name, exiting...' ) );
+          process.exit();
+        }
+        done();
+      }.bind(this));
     },
 
     dotfiles: function() {
@@ -252,6 +261,8 @@ module.exports = base.extend({
     this.installDependencies({
       skipInstall: this.options['skip-install']
     });
+
+
 
     if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
