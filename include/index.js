@@ -4,7 +4,7 @@ var base = require('../plugin-wp-base');
 
 module.exports = base.extend({
   constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
+    base.apply(this, arguments);
 
     this.argument('name', {
       required: false,

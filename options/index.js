@@ -5,7 +5,7 @@ var ghdownload = require('github-download');
 
 module.exports = base.extend({
   constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
+    base.apply(this, arguments);
 
     this.option('nocmb2');
 

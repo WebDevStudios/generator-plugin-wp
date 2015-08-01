@@ -4,6 +4,12 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 
 module.exports = base.extend({
+  constructor: function () {
+    base.apply(this, arguments);
+
+    this.option('notests');
+  },
+
   initializing: function () {
     this.pkg = require('../package.json');
   },
@@ -172,6 +178,10 @@ module.exports = base.extend({
     },
 
     tests: function() {
+      if ( this.options.notests ) {
+        return;
+      }
+
       this.fs.copy(
         this.templatePath('phpunit.xml'),
         this.destinationPath('/phpunit.xml'),
