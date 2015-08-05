@@ -49,7 +49,7 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 
   $filename = strtolower( str_ireplace(
 	  '_', '-',
-		preg_replace( '/^'.preg_quote('T_').'/', '', $class_name)
+		preg_replace( '/^'.preg_quote('<%= classprefix %>').'/', '', $class_name)
 	) );
 
 	<%= classname %>::include_file( $filename );
