@@ -47,7 +47,7 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 		return;
 	}
 
-	$filename = strtolower( str_ireplace(
+	$filename = strtolower( str_replace(
 		array( '<%= classprefix %>', '_' ),
 		array( '', '-' ),
 		$class_name
