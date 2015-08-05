@@ -119,7 +119,7 @@ module.exports = base.extend({
   writing: {
     folder: function() {
       var done = this.async();
-      fs.lstat( this.destinationPath(), function(err, stats) {
+      fs.lstat( this.destinationPath( this.slug ), function(err, stats) {
         if (!err && stats.isDirectory()) {
           this.log( chalk.red( 'A plugin already exists with this folder name, exiting...' ) );
           process.exit();
