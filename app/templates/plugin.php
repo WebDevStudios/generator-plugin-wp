@@ -47,10 +47,10 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 		return;
 	}
 
-  $filename = strtolower( str_ireplace(
-	  '_', '-',
-		preg_replace( '/^'.preg_quote('<%= classprefix %>').'/', '', $class_name)
-	) );
+	$filename = strtolower( str_ireplace(
+      '_', '-',
+      substr( $class_name, strlen('<%= classprefix %>') )
+  ) );
 
 	<%= classname %>::include_file( $filename );
 }
