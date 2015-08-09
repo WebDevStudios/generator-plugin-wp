@@ -49,7 +49,7 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 
 	$filename = strtolower( str_replace(
 		'_', '-',
-		substr( $class_name, strlen('<%= classprefix %>') )
+		substr( $class_name, strlen( '<%= classprefix %>' ) )
 	) );
 
 	<%= classname %>::include_file( $filename );
