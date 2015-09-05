@@ -103,5 +103,11 @@ module.exports = base.extend({
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
+
+    this.fs.copyTpl(
+      this.templatePath('include-test.php'),
+      this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+      this
+    );
   }
 });
