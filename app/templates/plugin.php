@@ -309,16 +309,5 @@ class <%= classname %> {
 	}<% } %>
 }
 
-/**
- * Grab the <%= classname %> object and return it.
- * Wrapper for <%= classname %>::get_instance()
- *
- * @since  <%= version %>
- * @return <%= classname %>  Singleton instance of plugin class.
- */
-function <%= prefix %>() {
-	return <%= classname %>::get_instance();
-}
-
 // Kick it off
-add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
+<%= classname %>::get_instance();
