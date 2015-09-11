@@ -139,7 +139,6 @@ class <%= classname %> {
 		$this->path     = plugin_dir_path( __FILE__ );
 
 		$this->plugin_classes();
-		$this->hooks();
 	}
 
 	/**
@@ -148,7 +147,7 @@ class <%= classname %> {
 	 * @since <%= version %>
 	 * @return  null
 	 */
-	function plugin_classes() {
+	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
 		// $this->admin = new <%= classprefix %>Admin( $this );
 	}
@@ -322,4 +321,4 @@ function <%= prefix %>() {
 }
 
 // Kick it off
-<%= prefix %>();
+add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
