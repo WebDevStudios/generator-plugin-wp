@@ -111,6 +111,7 @@ module.exports = base.extend({
       this.prefix      = this._.underscored( props.prefix );
       this.year        = new Date().getFullYear();
       this.autoloader  = props.autoloader;
+      this.notests     = ( this.options.notests ) ? true : false;
 
       done();
     }.bind(this));
@@ -253,6 +254,8 @@ module.exports = base.extend({
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
+      this.config.set( 'year', this.year );
+      this.config.set( 'notests', this.notests );
       this.config.save();
     }
   },

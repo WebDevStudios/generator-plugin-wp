@@ -35,6 +35,7 @@ module.exports = base.extend({
       this.pluginname  = this.rc.name;
       this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+      this.notests     = this.rc.notests;
     }
   },
 
@@ -103,5 +104,14 @@ module.exports = base.extend({
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
+
+    // write test file
+    if( !this.notests ) {
+        this.fs.copyTpl(
+        this.templatePath('include-test.php'),
+        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+        this
+      );
+    }
   }
 });
