@@ -31,7 +31,8 @@ describe('plugin-wp:include', function () {
 
   it('creates files', function () {
     assert.file([
-      'includes/new-include.php'
+      'includes/new-include.php',
+      'tests/test-new-include.php'
     ]);
   });
 });
