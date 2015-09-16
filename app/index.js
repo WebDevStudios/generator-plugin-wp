@@ -253,6 +253,7 @@ module.exports = base.extend({
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
+      this.config.set( 'notests', this.options.notests );
       this.config.save();
     }
   },

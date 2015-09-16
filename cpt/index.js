@@ -34,6 +34,7 @@ module.exports = base.extend({
       this.version    = this.pkg.version;
       if ( this.name ) {
         this.name     = this._.titleize( this.name.split('-').join(' ') );
+        this.nameslug     = this._.slugify( this.name );
       }
       this.pluginname = this.rc.name;
       this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
@@ -87,6 +88,7 @@ module.exports = base.extend({
 
         if ( props.name ) {
           this.name = this._.titleize( props.name.split('-').join(' ') );
+          this.nameslug = this._.slugify( this.name );
         }
 
         if ( props.pluginname ) {
@@ -114,6 +116,14 @@ module.exports = base.extend({
       this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
       this
     );
+
+    if ( !this.rc.notests ) {
+      this.fs.copyTpl(
+        this.templatePath('tests.php'),
+        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+        this
+      );
+    }
   },
 
   install: function () {
