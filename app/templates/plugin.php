@@ -310,4 +310,4 @@ class <%= classname %> {
 }
 
 // Kick it off
-<%= classname %>::get_instance();
+add_action( 'plugins_loaded', array( <%= classname %>::get_instance(), 'hooks' );
