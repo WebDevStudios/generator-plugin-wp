@@ -124,6 +124,8 @@ module.exports = base.extend({
         this
       );
     }
+
+    this._addIncludeClass( this._.slugify( this.name ), this.classname );
   },
 
   install: function () {

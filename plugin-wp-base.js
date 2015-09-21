@@ -38,5 +38,19 @@ module.exports = yeoman.generators.Base.extend({
 
   _escapeDoubleQuotes: function( s ) {
     return s.replace( /"/g, '\\"');
+  },
+
+  _addIncludeClass: function( slug, className ) {
+    if ( ! this.rc.slug ) {
+      return;
+    }
+
+    var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
+    var endComment = '	} // END OF PLUGIN CLASSES FUNCTION';
+    var newInclude = '		$this->' + slug + ' = new ' + className + '( this );\n' + endComment;
+
+    mainPluginFile = mainPluginFile.replace( endComment, newInclude );
+
+    this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
   }
 });

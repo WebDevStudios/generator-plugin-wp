@@ -150,7 +150,7 @@ class <%= classname %> {
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
 		// $this->admin = new <%= classprefix %>Admin( $this );
-	}
+	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
 	 * Add hooks and filters
