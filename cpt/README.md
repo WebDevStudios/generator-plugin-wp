@@ -9,5 +9,3 @@ Creates a skeleton custom post type using [CPT_Core](https://github.com/WebDevSt
 You can optionally not include CMB2 by using the `--nocmb2` option when running the subgenerator.
 
 Refer to [CPT_Core](https://github.com/WebDevStudios/CPT_Core) for more details on extending the CPT_Core class.
-
-Remember to create an instance of the new class in the main plugin file's `plugin_classes` function.

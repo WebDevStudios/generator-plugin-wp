@@ -40,17 +40,21 @@ module.exports = yeoman.generators.Base.extend({
     return s.replace( /"/g, '\\"');
   },
 
-  _addIncludeClass: function( slug, className ) {
+  _addStringToPluginClasses: function( toAdd ) {
     if ( ! this.rc.slug ) {
       return;
     }
 
     var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
     var endComment = '	} // END OF PLUGIN CLASSES FUNCTION';
-    var newInclude = '		$this->' + slug + ' = new ' + className + '( this );\n' + endComment;
+    var newInclude = '		' + toAdd + '\n' + endComment;
 
     mainPluginFile = mainPluginFile.replace( endComment, newInclude );
 
     this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
+  },
+
+  _addIncludeClass: function( slug, className ) {
+    this._addStringToPluginClasses( '$this->' + this._.underscored( slug ) + ' = new ' + className + '( $this );' );
   }
 });

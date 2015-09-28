@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 'iojs'
+  - 'stable'
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-plugin-wp' ]; then cd .. && eval "mv $currentfolder generator-plugin-wp" && cd generator-plugin-wp; fi
