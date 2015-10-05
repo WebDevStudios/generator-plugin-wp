@@ -18,7 +18,7 @@ class <%= classname %> {
 	 * Constructor
 	 *
 	 * @since <%= version %>
-	 * @return  null
+	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -28,8 +28,8 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function hooks() {
 	}
