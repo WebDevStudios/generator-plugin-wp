@@ -40,7 +40,7 @@
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested
- * @return  null
+ * @return void
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
 	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
@@ -144,8 +144,8 @@ class <%= classname %> {
 	/**
 	 * Attach other plugin classes to the base plugin class.
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
@@ -155,8 +155,8 @@ class <%= classname %> {
 	/**
 	 * Add hooks and filters
 	 *
-	 * @since <%= version %>
-	 * @return null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function hooks() {
 		register_activation_hook( __FILE__, array( $this, '_activate' ) );
@@ -169,7 +169,7 @@ class <%= classname %> {
 	 * Activate the plugin
 	 *
 	 * @since  <%= version %>
-	 * @return null
+	 * @return void
 	 */
 	function _activate() {
 		// Make sure any rewrite functionality has been loaded
@@ -181,7 +181,7 @@ class <%= classname %> {
 	 * Uninstall routines should be in uninstall.php
 	 *
 	 * @since  <%= version %>
-	 * @return null
+	 * @return void
 	 */
 	function _deactivate() {}
 
@@ -189,7 +189,7 @@ class <%= classname %> {
 	 * Init hooks
 	 *
 	 * @since  <%= version %>
-	 * @return null
+	 * @return void
 	 */
 	public function init() {
 		if ( $this->check_requirements() ) {
@@ -237,7 +237,7 @@ class <%= classname %> {
 	 * Adds a notice to the dashboard if the plugin requirements are not met
 	 *
 	 * @since  <%= version %>
-	 * @return null
+	 * @return void
 	 */
 	public function requirements_not_met_notice() {
 		// Output our error
