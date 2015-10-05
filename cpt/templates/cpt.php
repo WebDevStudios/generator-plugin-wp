@@ -26,8 +26,8 @@ class <%= classname %> extends CPT_Core {
 	 * Constructor
 	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -44,8 +44,8 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function hooks() {<% if ( ! options.nocmb2 ) { %>
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
@@ -55,7 +55,7 @@ class <%= classname %> extends CPT_Core {
 	 * Add custom fields to the CPT
 	 *
 	 * @since  <%= version %>
-	 * @return  null
+	 * @return void
 	 */
 	public function fields() {
 		$prefix = '_<%= cptprefix %>_';
