@@ -13,7 +13,7 @@ class <%= classname %> {
 	/**
 	 * Parent plugin class
 	 *
-	 * @var class
+	 * @var    class
 	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
@@ -21,7 +21,7 @@ class <%= classname %> {
 	/**
 	 * Option key, and option page slug
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	private $key = '<%= optionsprefix %>';
@@ -29,7 +29,7 @@ class <%= classname %> {
 	/**
 	 * Options page metabox id
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	private $metabox_id = '<%= optionsprefix %>_metabox';
@@ -37,7 +37,7 @@ class <%= classname %> {
 	/**
 	 * Options Page title
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $title = '';
@@ -45,8 +45,8 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -58,8 +58,8 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -71,7 +71,7 @@ class <%= classname %> {
 	 * Register our setting to WP
 	 *
 	 * @since  <%= version %>
-	 * @return null
+	 * @return void
 	 */
 	public function admin_init() {
 		register_setting( $this->key, $this->key );
@@ -80,8 +80,8 @@ class <%= classname %> {
 	/**
 	 * Add menu options page
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page(
@@ -96,7 +96,7 @@ class <%= classname %> {
 	 * Admin page markup. Mostly handled by CMB2
 	 *
 	 * @since  <%= version %>
-	 * @return  null
+	 * @return void
 	 */
 	public function admin_page_display() {
 		?>
@@ -110,8 +110,8 @@ class <%= classname %> {
 	/**
 	 * Add custom fields to the options page.
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function fields() {
 		$box = new_cmb2_box( array(

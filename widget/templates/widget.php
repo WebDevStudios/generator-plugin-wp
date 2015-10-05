@@ -50,8 +50,8 @@ class <%= classname %> extends WP_Widget {
 	/**
 	 * Construct widget class.
 	 *
-	 * @since <%= version %>
-	 * @return  null
+	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function __construct() {
 
@@ -81,7 +81,7 @@ class <%= classname %> extends WP_Widget {
 	 * delete_transient( 'some-transient-generated-by-this-widget' );
 	 *
 	 * @since  <%= version %>
-	 * @return  null
+	 * @return void
 	 */
 	public function flush_widget_cache() {
 		wp_cache_delete( $this->widget_slug, 'widget' );
@@ -94,7 +94,7 @@ class <%= classname %> extends WP_Widget {
 	 * @since  <%= version %>
 	 * @param  array  $args      The widget arguments set up when a sidebar is registered.
 	 * @param  array  $instance  The widget settings as set by user.
-	 * @return  null
+	 * @return void
 	 */
 	public function widget( $args, $instance ) {
 
@@ -185,7 +185,7 @@ class <%= classname %> extends WP_Widget {
 	 *
 	 * @since  <%= version %>
 	 * @param  array  $instance  Current settings.
-	 * @return  null
+	 * @return void
 	 */
 	public function form( $instance ) {
 
@@ -215,7 +215,7 @@ class <%= classname %> extends WP_Widget {
  * Register this widget with WordPress. Can also move this function to the parent plugin.
  *
  * @since  <%= version %>
- * @return  null
+ * @return void
  */
 function register_<%= widgetprefix %>() {
 	register_widget( '<%= classname %>' );
