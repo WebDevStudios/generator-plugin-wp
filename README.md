@@ -2,6 +2,7 @@
 
 > [Yeoman](http://yeoman.io) generator for WordPress plugins.
 
+Check out an [example of a generated plugin](https://github.com/WebDevStudios/generator-plugin-wp-example).
 
 ## Getting Started
 
