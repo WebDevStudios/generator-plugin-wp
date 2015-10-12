@@ -30,16 +30,9 @@ module.exports = base.extend({
 
     settingValues: function() {
       this.version    = this.pkg.version;
-      if ( this.name ) {
-        this.name     = this._.titleize( this.name.split('-').join(' ') );
-        this.nameslug     = this._.slugify( this.name );
-      }
+
       this.pluginname = this.rc.name;
-      this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
-      this.slug       = this.rc.slug;
-      this.cptslug    = this._.slugify( this.classname ).substr( 0, 20 );
-      this.cptprefix  = this._.underscored( this.cptslug );
 
       this.composer   = this.fs.exists('composer.json');
     }
@@ -92,13 +85,6 @@ module.exports = base.extend({
         if ( props.pluginname ) {
           this.pluginname  = props.pluginname;
           this.slug = this._.slugify( props.pluginname );
-        }
-
-        if ( props.name || props.pluginname ) {
-          this.cptname   = this.pluginname + ' ' + this._.capitalize( this.name );
-          this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
-          this.cptslug   = this.slug + '-' + this._.slugify( this.name );
-          this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
         }
 
         done();
