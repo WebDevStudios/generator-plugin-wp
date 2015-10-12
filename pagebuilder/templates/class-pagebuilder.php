@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= includename %>
+ * <%= pluginname %> Page Builder
  * @version <%= version %>
  * @package <%= pluginname %>
  */
