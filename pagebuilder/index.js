@@ -102,13 +102,13 @@ module.exports = base.extend({
       this
     );
 
-    if ( !this.rc.notests ) {
-      this.fs.copyTpl(
-        this.templatePath('tests.php'),
-        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
-        this
-      );
-    }
+    // if ( !this.rc.notests ) {
+    //   this.fs.copyTpl(
+    //     this.templatePath('tests.php'),
+    //     this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+    //     this
+    //   );
+    // }
 
     this._addIncludeClass( this._.slugify( this.name ), this.classname );
   },
