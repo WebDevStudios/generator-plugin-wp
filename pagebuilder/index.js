@@ -33,6 +33,7 @@ module.exports = base.extend({
 
       this.pluginname = this.rc.name;
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
+      this.prefix     = this.rc.prefix;
 
       this.composer   = this.fs.exists('composer.json');
     }
