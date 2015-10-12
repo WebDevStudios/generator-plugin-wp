@@ -53,7 +53,7 @@ module.exports = base.extend({
       });
     }
 
-    if ( !this.name ) {
+    if ( !this.partsdir ) {
       prompts.push({
         type   : 'input',
         name   : 'partsdir',
@@ -78,9 +78,9 @@ module.exports = base.extend({
           this.version = props.version;
         }
 
-        if ( props.name ) {
-          this.name = this._.titleize( props.name.split('-').join(' ') );
-          this.nameslug = this._.slugify( this.name );
+        if ( props.partsdir ) {
+          this.partsdir = this._.titleize( props.partsdir.split('-').join(' ') );
+          this.dirslug = this._.slugify( this.partsdir );
         }
 
         if ( props.pluginname ) {
