@@ -52,6 +52,7 @@ class <%= classname %> {
 
 /**
  * Register our plugin's template parts directory.
+ * This function needs to be in the global scope to work properly.
  *
  * @since  <% version %>
  * @return string Absolute path to template parts directory.
