@@ -32,6 +32,8 @@ class <%= classname %> extends Taxonomy_Core {
 
 		// Register this taxonomy
 		// First parameter should be an array with Singular, Plural, and Registered name
+		// Second parameter is the register taxonomy arguments
+		// Third parameter is post types to attach to.
 		parent::__construct(
 			array( __( '<%= taxonomyname %>', '<%= slug %>' ), __( '<%= taxonomyname %>s', '<%= slug %>' ), '<%= taxonomyslug %>' ),
 			array( 'hierarchical' => false ),
