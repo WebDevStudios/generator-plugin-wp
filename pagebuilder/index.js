@@ -15,7 +15,6 @@ module.exports = base.extend({
 
     this.option('partsdir', {
       desc    : 'Directory to place parts in',
-      alias   : 'd',
       type    : String,
       defaults: 'includes/parts'
     });
@@ -51,7 +50,7 @@ module.exports = base.extend({
 
       this.composer   = this.fs.exists('composer.json');
 
-      this.partsdir = this._.slugify( this.options.partsdir );
+      this.partsdir = this.options.partsdir;
     }
   },
 
