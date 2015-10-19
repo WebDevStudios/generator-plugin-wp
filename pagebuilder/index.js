@@ -7,10 +7,17 @@ module.exports = base.extend({
   constructor: function () {
     base.apply(this, arguments);
 
-    this.argument('pagebuilder', {
+    this.argument('name', {
       required: false,
       type    : String,
-      desc    : 'Adds Page Builder support'
+      desc    : 'The page builder include class name'
+    });
+
+    this.option('partsdir', {
+      desc    : 'Directory to place parts in',
+      alias   : 'd',
+      type    : String,
+      defaults: 'parts'
     });
   },
 
@@ -29,13 +36,22 @@ module.exports = base.extend({
     },
 
     settingValues: function() {
+      this.composer   = this.fs.exists('composer.json');
       this.version    = this.pkg.version;
+
+      if ( this.name ) {
+        this.name     = this._.titleize( this.name.split('-').join(' ') );
+        this.nameslug     = this._.slugify( this.name );
+      }
+      this.slug       = this.rc.slug;
 
       this.pluginname = this.rc.name;
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.prefix     = this.rc.prefix;
 
       this.composer   = this.fs.exists('composer.json');
+
+      this.partsdir = this._.slugify( this.options.partsdir );
     }
   },
 
@@ -53,12 +69,12 @@ module.exports = base.extend({
       });
     }
 
-    if ( !this.partsdir ) {
+    if ( !this.name ) {
       prompts.push({
         type   : 'input',
-        name   : 'partsdir',
-        message: 'Template Parts Directory',
-        default: 'parts'
+        name   : 'name',
+        message: 'Include Name',
+        default: 'pagebuilder'
       });
     }
 
@@ -78,9 +94,9 @@ module.exports = base.extend({
           this.version = props.version;
         }
 
-        if ( props.partsdir ) {
-          this.partsdir = this._.titleize( props.partsdir.split('-').join(' ') );
-          this.dirslug = this._.slugify( this.partsdir );
+        if ( props.name ) {
+          this.name     = this._.titleize( props.name );
+          this.nameslug     = this._.slugify( this.name );
         }
 
         if ( props.pluginname ) {
@@ -102,13 +118,13 @@ module.exports = base.extend({
       this
     );
 
-    // if ( !this.rc.notests ) {
-    //   this.fs.copyTpl(
-    //     this.templatePath('tests.php'),
-    //     this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
-    //     this
-    //   );
-    // }
+    if ( !this.rc.notests ) {
+      this.fs.copyTpl(
+        this.templatePath('tests.php'),
+        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+        this
+      );
+    }
 
     this._addIncludeClass( this._.slugify( this.name ), this.classname );
   },

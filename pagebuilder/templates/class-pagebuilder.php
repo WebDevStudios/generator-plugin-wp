@@ -42,26 +42,26 @@ class <%= classname %> {
 	/**
 	 * Registers our parts directory in the Page Builder template stack.
 	 *
-	 * @since  <% version %>
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function load_pagebuilder_parts() {
-		spb_register_template_stack( '<%= prefix %>_get_template_part_dir', 10 );
+		spb_register_template_stack( array( $this, 'get_template_part_dir' ), 10 );
 	}
-}
 
-/**
- * Register our plugin's template parts directory.
- * This function needs to be in the global scope to work properly.
- *
- * @since  <% version %>
- * @return string Absolute path to template parts directory.
- */
-function <% prefix %>_get_template_part_dir() {
 	/**
-	 * Filters the absolute path of the template location.
+	 * Register our plugin's template parts directory.
+	 * This function needs to be in the global scope to work properly.
 	 *
-	 * @param string The absolute path of the template package in use.
+	 * @since  <%= version %>
+	 * @return string Absolute path to template parts directory.
 	 */
-	return apply_fitlers( '<% prefix %>_get_template_part_dir', <% prefix %>()->path . '<% partsdir %>/' );
+	public function get_template_part_dir() {
+		/**
+		 * Filters the absolute path of the template location.
+		 *
+		 * @param string The absolute path of the template package in use.
+		 */
+		return apply_filters( '<%= prefix %>_get_template_part_dir', $this->plugin->path . 'includes/<%= partsdir %>/' );
+	}
 }
