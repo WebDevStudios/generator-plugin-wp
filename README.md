@@ -39,6 +39,7 @@ called sub-generators to automatically generate files to enhance your plugin.
 * `yo plugin-wp:taxonomy taxonomy-name` [Taxonomy](taxonomy/README.md)
 * `yo plugin-wp:options options-name` [Option Page](options/README.md)
 * `yo plugin-wp:widget widget-name` [Widget](widget/README.md)
+* `yo plugin-wp:pagebuilder class-name` [Simple Page Builder](pagebuilder/README.md)
 * `yo plugin-wp:js` [Javascript](js/README.md)
 * `yo plugin-wp:css` [Styles](css/README.md)
 

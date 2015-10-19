@@ -62,6 +62,6 @@ class <%= classname %> {
 		 *
 		 * @param string The absolute path of the template package in use.
 		 */
-		return apply_filters( '<%= prefix %>_get_template_part_dir', $this->plugin->path . 'includes/<%= partsdir %>/' );
+		return apply_filters( '<%= prefix %>_get_template_part_dir', $this->plugin->path . '<%= partsdir %>/' );
 	}
 }

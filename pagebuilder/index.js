@@ -17,7 +17,7 @@ module.exports = base.extend({
       desc    : 'Directory to place parts in',
       alias   : 'd',
       type    : String,
-      defaults: 'parts'
+      defaults: 'includes/parts'
     });
   },
 
