@@ -24,7 +24,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	private $key = '<%= optionsprefix %>';
+	protected $key = '<%= optionsprefix %>';
 
 	/**
 	 * Options page metabox id
@@ -32,7 +32,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	private $metabox_id = '<%= optionsprefix %>_metabox';
+	protected $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
 	 * Options Page title
