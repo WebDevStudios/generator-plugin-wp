@@ -58,7 +58,7 @@ class <%= classname %> extends CPT_Core {
 	 * @return void
 	 */
 	public function fields() {
-		$prefix = '_<%= cptprefix %>_';
+		$prefix = '<%= cptprefix %>_';
 
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
