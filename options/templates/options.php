@@ -24,7 +24,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	private $key = '<%= optionsprefix %>';
+	protected $key = '<%= optionsprefix %>';
 
 	/**
 	 * Options page metabox id
@@ -32,7 +32,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	private $metabox_id = '<%= optionsprefix %>_metabox';
+	protected $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
 	 * Options Page title
@@ -41,6 +41,12 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	protected $title = '';
+
+	/**
+	 * Options Page hook
+	 * @var string
+	 */
+	protected $options_page = '';
 
 	/**
 	 * Constructor
@@ -52,7 +58,7 @@ class <%= classname %> {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		$this->title = __('<%= optionsname %>','<%= slug %>');
+		$this->title = __( '<%= optionsname %>', '<%= slug %>' );
 	}
 
 	/**
@@ -64,7 +70,7 @@ class <%= classname %> {
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );<% if ( ! options.nocmb2 ) { %>
-		add_action( 'cmb2_init', array( $this, 'fields' ) );<% } %>
+		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );<% } %>
 	}
 
 	/**
@@ -89,7 +95,11 @@ class <%= classname %> {
 			$this->title,
 			'manage_options',
 			$this->key,
-			array( $this, 'admin_page_display' ) );
+			array( $this, 'admin_page_display' )
+		);
+
+		// Include CMB CSS in the head to avoid FOUC
+		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 	}
 
 	/**
@@ -113,15 +123,27 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 * @return void
 	 */
-	public function fields() {
-		$box = new_cmb2_box( array(
-			'id'      => $this->metabox_id,
-			'hookup'  => false,
-			'show_on' => array(
+	public function add_options_page_metabox() {
+
+		$cmb = new_cmb2_box( array(
+			'id'         => $this->metabox_id,
+			'hookup'     => false,
+			'cmb_styles' => false,
+			'show_on'    => array(
 				// These are important, don't remove
 				'key'   => 'options-page',
 				'value' => array( $this->key, )
 			),
 		) );
+
+		// Add your fields here
+		// $cmb->add_field( array(
+		// 	'name'    => __( 'Test Text', 'myprefix' ),
+		// 	'desc'    => __( 'field description (optional)', 'myprefix' ),
+		// 	'id'      => 'test_text', // no prefix needed
+		// 	'type'    => 'text',
+		// 	'default' => __( 'Default Text', 'myprefix' ),
+		// ) );
+
 	}<% } %>
 }

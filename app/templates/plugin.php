@@ -198,20 +198,6 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Check that all plugin requirements are met
-	 *
-	 * @since  <%= version %>
-	 * @return boolean
-	 */
-	public static function meets_requirements() {
-		// Do checks for required classes / functions
-		// function_exists('') & class_exists('')
-
-		// We have met all requirements
-		return true;
-	}
-
-	/**
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
 	 *
@@ -230,6 +216,20 @@ class <%= classname %> {
 			return false;
 		}
 
+		return true;
+	}
+
+	/**
+	 * Check that all plugin requirements are met
+	 *
+	 * @since  <%= version %>
+	 * @return boolean
+	 */
+	public static function meets_requirements() {
+		// Do checks for required classes / functions
+		// function_exists('') & class_exists('')
+
+		// We have met all requirements
 		return true;
 	}
 
