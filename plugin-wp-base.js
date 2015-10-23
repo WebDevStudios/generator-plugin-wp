@@ -39,21 +39,65 @@ module.exports = yeoman.generators.Base.extend({
 		return s.replace( /"/g, '\\"');
 	},
 
+	__addStringToPluginClasses: function( mainPluginFile, toAdd ) {
+		var endComment = '\t} // END OF PLUGIN CLASSES FUNCTION';
+		var newInclude = '\t\t' + toAdd + '\n' + endComment;
+
+		return mainPluginFile.replace( endComment, newInclude );
+	},
+
 	_addStringToPluginClasses: function( toAdd ) {
 		if ( ! this.rc.slug ) {
 			return;
 		}
 
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
-		var endComment = '	} // END OF PLUGIN CLASSES FUNCTION';
-		var newInclude = '		' + toAdd + '\n' + endComment;
-
-		mainPluginFile = mainPluginFile.replace( endComment, newInclude );
+		mainPluginFile = this.__addStringToPluginClasses( mainPluginFile, toAdd );
 
 		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
 	},
 
+	_addPluginProperty: function( file, slug, className ) {
+
+		var toAdd = '\t/**';
+		toAdd += '\n\t * Instance of ' + className;
+		toAdd += '\n\t *';
+		toAdd += '\n\t * @var ' + className;
+		toAdd += '\n\t */';
+		toAdd += '\n\tprotected $' + slug + ';';
+
+		var endComment = '\t/**\n\t * Creates or returns an instance of this class.';
+
+		return file.replace( endComment, toAdd + '\n\n' + endComment );
+	},
+
+	_addPluginClass: function( file, slug, className ) {
+		var toAdd = '$this->' + slug + ' = new ' + className + '( $this );';
+		var toRemove = '\n\t\t// $this->plugin_class = new ' + this.rc.classprefix + 'Plugin_Class( $this );';
+		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
+	},
+
+	_addPropertyMagicGetter: function( file, slug ) {
+
+		var toAdd = '\t\t\tcase \'' + slug + '\':';
+		var endComment = '\t\t\t\treturn $this->$field;';
+		var newInclude = toAdd + '\n' + endComment;
+
+		return file.replace( endComment, newInclude );
+	},
+
 	_addIncludeClass: function( slug, className ) {
-		this._addStringToPluginClasses( '$this->' + this._.underscored( slug ) + ' = new ' + className + '( $this );' );
+		if ( ! this.rc.slug ) {
+			return;
+		}
+
+		slug = this._.underscored( slug );
+		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
+
+		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className );
+		mainPluginFile = this._addPluginClass( mainPluginFile, slug, className );
+		mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
+
+		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
 	}
 });
