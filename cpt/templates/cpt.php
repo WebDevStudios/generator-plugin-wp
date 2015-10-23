@@ -60,13 +60,10 @@ class <%= classname %> extends CPT_Core {
 	public function fields() {
 		$prefix = '_<%= cptprefix %>_';
 
-		$box = new_cmb2_box( array(
+		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
 			'title'         => __( '<%= cptname %> Meta Box', '<%= slug %>' ),
 			'object_types'  => array( '<%= cptslug %>', ),
-			'context'       => 'normal',
-			'priority'      => 'high',
-			'show_names'    => true, // Show field names on the left
 		) );<% } %>
 	}
 

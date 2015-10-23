@@ -125,7 +125,7 @@ class <%= classname %> {
 	 */
 	public function add_options_page_metabox() {
 
-		$box = new_cmb2_box( array(
+		$cmb = new_cmb2_box( array(
 			'id'         => $this->metabox_id,
 			'hookup'     => false,
 			'cmb_styles' => false,
