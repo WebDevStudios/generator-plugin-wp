@@ -58,7 +58,7 @@ class <%= classname %> {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		$this->title = __('<%= optionsname %>','<%= slug %>');
+		$this->title = __( '<%= optionsname %>', '<%= slug %>' );
 	}
 
 	/**
