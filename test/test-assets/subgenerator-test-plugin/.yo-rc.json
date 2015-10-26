@@ -10,6 +10,7 @@
     "license": "GPLv2",
     "slug": "subgenerator-test-plugin",
     "classname": "Subgenerator_Test_Plugin",
+    "classprefix": "STP_",
     "prefix": "subgenerator_test_plugin",
     "year": 2015
   }

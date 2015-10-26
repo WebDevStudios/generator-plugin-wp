@@ -11,8 +11,8 @@ describe('plugin-wp:options', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withOptions({ 'skip-install': true })
-      .withArguments('new-options', '--force')
+      .withOptions({ skipInstall: true, force: true })
+      .withArguments('new-options')
       .withLocalConfig({
         "name": "Subgenerator Test",
         "homepage": "http://webdevstudios.com",

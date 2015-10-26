@@ -5,16 +5,16 @@ module.exports = function( grunt ) {
 	var pkg = grunt.file.readJSON( 'package.json' );
 
 	var bannerTemplate = '/**\n' +
-		' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-		' * <%= pkg.homepage %>\n' +
+		' * <%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+		' * <%= pkg.author.url %>\n' +
 		' *\n' +
 		' * Copyright (c) <%= grunt.template.today("yyyy") %>;\n' +
 		' * Licensed GPLv2+\n' +
 		' */\n';
 
-	var compactBannerTemplate = '/**\n' +
-		' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> | <%= pkg.homepage %> | Copyright (c) <%= grunt.template.today("yyyy") %>; | Licensed GPLv2+\n' +
-		' */\n';
+	var compactBannerTemplate = '/** ' +
+		'<%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> | <%= pkg.author.url %> | Copyright (c) <%= grunt.template.today("yyyy") %>; | Licensed GPLv2+' +
+		' **/\n';
 
 	// Project configuration
 	grunt.initConfig( {

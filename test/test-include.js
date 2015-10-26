@@ -11,7 +11,8 @@ describe('plugin-wp:include', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withArguments('new-include', '--force')
+      .withOptions({ skipInstall: true, force: true })
+      .withArguments('new-include')
       .withLocalConfig({
         "name": "Subgenerator Test",
         "homepage": "http://webdevstudios.com",
