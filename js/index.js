@@ -48,7 +48,7 @@ module.exports = base.extend({
     }
 
     if ( this.type === 'Browserify' ) {
-      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate, transform: ['babelify', 'browserify-shim'] }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
+      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate, transform: [['babelify', { presets: ['es2015'] }], 'browserify-shim'] }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
       this.gruntfile.registerTask('scripts', 'browserify');
     }
 
@@ -85,6 +85,7 @@ module.exports = base.extend({
         this.npmInstall(['grunt-browserify'], { 'saveDev': true });
         this.npmInstall(['browserify-shim'], { 'saveDev': true });
         this.npmInstall(['babelify'], { 'saveDev': true });
+        this.npmInstall(['babel-preset-es2015'], { 'saveDev': true });
 
         var pack = this.fs.readJSON( 'package.json' );
         pack['browserify-shim'] = {

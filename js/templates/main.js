@@ -8,7 +8,7 @@
 window.<%= rc.classname %> = window.<%= rc.classname %> || {};
 
 ( function( window, document, $, that ) {
-	var $c = {};
+	let $c = {};
 
 	that.init = function() {
 		that.cache();
