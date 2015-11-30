@@ -39,8 +39,5 @@
   "devDependencies": {
     "fs-extra": "^0.16.5",
     "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
   }
 }
