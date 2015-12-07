@@ -206,6 +206,12 @@ module.exports = base.extend({
       );
 
       this.fs.copy(
+        this.templatePath('Dockunit.json'),
+        this.destinationPath('/Dockunit.json'),
+        this
+      );
+
+      this.fs.copy(
         this.templatePath('bin/install-wp-tests.sh'),
         this.destinationPath('bin/install-wp-tests.sh'),
         this
