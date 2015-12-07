@@ -1,7 +1,7 @@
-# generator-plugin-wp Include Subgenerator
+# generator-plugin-wp Endpoint Subgenerator
 
 ```bash
-yo plugin-wp include include-name
+yo plugin-wp endpoint include-name
 ```
 
-Creates a skeleton include file for your plugin.
+Creates a skeleton WP-API endpoint class for your plugin, (refer here)[http://v2.wp-api.org/extending/adding/#the-controller-pattern] for more info on how to build out your endpoint.

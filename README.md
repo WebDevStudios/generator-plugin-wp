@@ -40,6 +40,7 @@ called sub-generators to automatically generate files to enhance your plugin.
 * `yo plugin-wp:options options-name` [Option Page](options/README.md)
 * `yo plugin-wp:widget widget-name` [Widget](widget/README.md)
 * `yo plugin-wp:pagebuilder class-name` [Simple Page Builder](pagebuilder/README.md)
+* `yo plugin-wp:endpoint class-name` [WP-API Endpoint](endpoint/README.md)
 * `yo plugin-wp:js` [Javascript](js/README.md)
 * `yo plugin-wp:css` [Styles](css/README.md)
 
