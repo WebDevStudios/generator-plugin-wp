@@ -275,7 +275,7 @@ class <%= classname %> {
 	 * @return bool    Result of include call.
 	 */
 	public static function include_file( $filename ) {
-		$file = self::dir( 'includes/'. $filename .'.php' );
+		$file = self::dir( 'includes/class-'. $filename .'.php' );
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
