@@ -108,7 +108,7 @@ module.exports = base.extend({
   writing: function () {
     this.fs.copyTpl(
       this.templatePath('widget.php'),
-      this.destinationPath('includes/' + this._.slugify( this.name ) + '.php'),
+      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '.php'),
       this
     );
 
