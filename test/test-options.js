@@ -32,7 +32,7 @@ describe('plugin-wp:options', function () {
 
   it('creates files', function () {
     assert.file([
-      'includes/new-options.php',
+      'includes/class-new-options.php',
       'tests/test-new-options.php'
     ]);
   });

@@ -32,7 +32,7 @@ describe('plugin-wp:widget', function () {
 
   it('creates files', function () {
     assert.file([
-      'includes/new-widget.php',
+      'includes/class-new-widget.php',
       'tests/test-new-widget.php'
     ]);
   });

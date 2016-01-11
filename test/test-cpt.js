@@ -32,7 +32,7 @@ describe('plugin-wp:cpt', function () {
 
   it('creates files', function () {
     assert.file([
-      'includes/new-cpt.php',
+      'includes/class-new-cpt.php',
       'tests/test-new-cpt.php'
     ]);
   });

@@ -32,7 +32,7 @@ describe('plugin-wp:taxonomy', function () {
 
   it('creates files', function () {
     assert.file([
-      'includes/new-tax.php',
+      'includes/class-new-tax.php',
       'tests/test-new-tax.php'
     ]);
   });
