@@ -211,12 +211,22 @@ class <%= classname %> {
 			add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
 
 			// Deactivate our plugin
-			deactivate_plugins( $this->basename );
+			add_action( 'admin_init', array( $this, 'deactivate_me' ) );
 
 			return false;
 		}
 
 		return true;
+	}
+
+	/**
+	 * Deactivates this plugin, hook this function on admin_init.
+	 *
+	 * @since  <%= version %>
+	 * @return void
+	 */
+	public function deactivate_me() {
+		deactivate_plugins( $this->basename );
 	}
 
 	/**
