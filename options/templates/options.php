@@ -52,6 +52,7 @@ class <%= classname %> {
 	 * Constructor
 	 *
 	 * @since  <%= version %>
+	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {
@@ -98,7 +99,7 @@ class <%= classname %> {
 			array( $this, 'admin_page_display' )
 		);
 
-		// Include CMB CSS in the head to avoid FOUC
+		// Include CMB CSS in the head to avoid FOUC.
 		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 	}
 
@@ -110,7 +111,7 @@ class <%= classname %> {
 	 */
 	public function admin_page_display() {
 		?>
-		<div class="wrap cmb2-options-page <?php echo $this->key; ?>">
+		<div class="wrap cmb2-options-page <?php echo esc_attr( $this->key ); ?>">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2><% if ( ! options.nocmb2 ) { %>
 			<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?><% } %>
 		</div>
@@ -130,20 +131,23 @@ class <%= classname %> {
 			'hookup'     => false,
 			'cmb_styles' => false,
 			'show_on'    => array(
-				// These are important, don't remove
+				// These are important, don't remove.
 				'key'   => 'options-page',
-				'value' => array( $this->key, )
+				'value' => array( $this->key ),
 			),
 		) );
 
-		// Add your fields here
-		// $cmb->add_field( array(
-		// 	'name'    => __( 'Test Text', 'myprefix' ),
-		// 	'desc'    => __( 'field description (optional)', 'myprefix' ),
-		// 	'id'      => 'test_text', // no prefix needed
-		// 	'type'    => 'text',
-		// 	'default' => __( 'Default Text', 'myprefix' ),
-		// ) );
+		/*
+		Add your fields here
+
+		$cmb->add_field( array(
+			'name'    => __( 'Test Text', 'myprefix' ),
+			'desc'    => __( 'field description (optional)', 'myprefix' ),
+			'id'      => 'test_text', // no prefix needed
+			'type'    => 'text',
+			'default' => __( 'Default Text', 'myprefix' ),
+		) );
+		*/
 
 	}<% } %>
 }

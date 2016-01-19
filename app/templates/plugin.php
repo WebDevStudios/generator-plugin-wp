@@ -39,7 +39,7 @@
  * Autoloads files with classes when needed
  *
  * @since  <%= version %>
- * @param  string $class_name Name of the class being requested
+ * @param  string $class_name Name of the class being requested.
  * @return void
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
@@ -59,7 +59,7 @@ spl_autoload_register( '<%= prefix %>_autoload_classes' );
 // User composer autoload.
 require 'vendor/autoload_52.php';
 <% } else { %>
-	// Include additional php files here
+	// Include additional php files here.
 	// require 'includes/admin.php';
 <% } %>
 
@@ -172,7 +172,7 @@ class <%= classname %> {
 	 * @return void
 	 */
 	function _activate() {
-		// Make sure any rewrite functionality has been loaded
+		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();
 	}
 
@@ -207,10 +207,10 @@ class <%= classname %> {
 	public function check_requirements() {
 		if ( ! $this->meets_requirements() ) {
 
-			// Add a dashboard notice
+			// Add a dashboard notice.
 			add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
 
-			// Deactivate our plugin
+			// Deactivate our plugin.
 			add_action( 'admin_init', array( $this, 'deactivate_me' ) );
 
 			return false;
@@ -233,13 +233,12 @@ class <%= classname %> {
 	 * Check that all plugin requirements are met
 	 *
 	 * @since  <%= version %>
-	 * @return boolean
+	 * @return boolean True if requirements are met.
 	 */
 	public static function meets_requirements() {
 		// Do checks for required classes / functions
-		// function_exists('') & class_exists('')
-
-		// We have met all requirements
+		// function_exists('') & class_exists('').
+		// We have met all requirements.
 		return true;
 	}
 
@@ -250,7 +249,7 @@ class <%= classname %> {
 	 * @return void
 	 */
 	public function requirements_not_met_notice() {
-		// Output our error
+		// Output our error.
 		echo '<div id="message" class="error">';
 		echo '<p>' . sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) ) . '</p>';
 		echo '</div>';
@@ -260,7 +259,7 @@ class <%= classname %> {
 	 * Magic getter for our object.
 	 *
 	 * @since  <%= version %>
-	 * @param string $field
+	 * @param string $field Field to get.
 	 * @throws Exception Throws an exception if the field is invalid.
 	 * @return mixed
 	 */
@@ -281,8 +280,8 @@ class <%= classname %> {
 	 * Include a file from the includes directory
 	 *
 	 * @since  <%= version %>
-	 * @param  string  $filename Name of the file to be included
-	 * @return bool    Result of include call.
+	 * @param  string $filename Name of the file to be included.
+	 * @return bool   Result of include call.
 	 */
 	public static function include_file( $filename ) {
 		$file = self::dir( 'includes/class-'. $filename .'.php' );
@@ -296,7 +295,7 @@ class <%= classname %> {
 	 * This plugin's directory
 	 *
 	 * @since  <%= version %>
-	 * @param  string $path (optional) appended path
+	 * @param  string $path (optional) appended path.
 	 * @return string       Directory and path
 	 */
 	public static function dir( $path = '' ) {
@@ -309,7 +308,7 @@ class <%= classname %> {
 	 * This plugin's url
 	 *
 	 * @since  <%= version %>
-	 * @param  string $path (optional) appended path
+	 * @param  string $path (optional) appended path.
 	 * @return string       URL and path
 	 */
 	public static function url( $path = '' ) {
@@ -330,5 +329,5 @@ function <%= prefix %>() {
 	return <%= classname %>::get_instance();
 }
 
-// Kick it off
+// Kick it off.
 add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );

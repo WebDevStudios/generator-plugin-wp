@@ -18,6 +18,7 @@ class <%= classname %> {
 	 * Constructor
 	 *
 	 * @since  <%= version %>
+	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {

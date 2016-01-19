@@ -27,6 +27,7 @@ class <%= classname %> extends CPT_Core {
 	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
 	 *
 	 * @since  <%= version %>
+	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {
@@ -34,10 +35,10 @@ class <%= classname %> extends CPT_Core {
 		$this->hooks();
 
 		// Register this cpt
-		// First parameter should be an array with Singular, Plural, and Registered name
+		// First parameter should be an array with Singular, Plural, and Registered name.
 		parent::__construct(
 			array( __( '<%= cptname %>', '<%= slug %>' ), __( '<%= cptname %>s', '<%= slug %>' ), '<%= cptslug %>' ),
-			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), )
+			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ) )
 		);
 	}
 
@@ -63,7 +64,7 @@ class <%= classname %> extends CPT_Core {
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
 			'title'         => __( '<%= cptname %> Meta Box', '<%= slug %>' ),
-			'object_types'  => array( '<%= cptslug %>', ),
+			'object_types'  => array( '<%= cptslug %>' ),
 		) );<% } %>
 	}
 
@@ -71,12 +72,11 @@ class <%= classname %> extends CPT_Core {
 	 * Registers admin columns to display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
-	 * @param  array  $columns Array of registered column names/labels
-	 * @return array           Modified array
+	 * @param  array $columns Array of registered column names/labels.
+	 * @return array          Modified array
 	 */
 	public function columns( $columns ) {
-		$new_column = array(
-		);
+		$new_column = array();
 		return array_merge( $new_column, $columns );
 	}
 
@@ -84,7 +84,8 @@ class <%= classname %> extends CPT_Core {
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
-	 * @param  array  $column Array of registered column names
+	 * @param array $column  Column currently being rendered.
+	 * @param int   $post_id ID of post to display column for.
 	 */
 	public function columns_display( $column, $post_id ) {
 		switch ( $column ) {

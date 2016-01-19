@@ -24,7 +24,8 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Register Taxonomy. See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php
 	 *
 	 * @since <%= version %>
-	 * @return  null
+	 * @param  object $plugin Main plugin object.
+	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -45,7 +46,7 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Initiate our hooks
 	 *
 	 * @since <%= version %>
-	 * @return  null
+	 * @return void
 	 */
 	public function hooks() {
 	}

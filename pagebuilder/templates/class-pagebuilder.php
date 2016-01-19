@@ -20,8 +20,8 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @param string $plugin The parent class.
 	 * @since  <%= version %>
+	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {
