@@ -24,6 +24,8 @@ module.exports = base.extend({
       // Sanitize inputs
       this.type = props.type;
 
+      this.jsclassname = this.rc.classname.replace( /\_/gi, '' );
+
       done();
     }.bind(this));
   },
@@ -35,11 +37,12 @@ module.exports = base.extend({
     }
 
     if ( this.type === 'Basic' ) {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/**/*.js','!**/*.min.js'], options: { browser: true, predef: [ 'document', 'window', 'jQuery', '" + this.classname + "' ] } }");
+      this.gruntfile.insertConfig('eslint', "{src: ['assets/js/**/*.js','!**/*.min.js'] }");
     } else {
-      this.gruntfile.insertConfig('jshint', "{all: ['assets/js/components/**/*.js','!**/*.min.js'], options: { browser: true, esnext: true, predef: [ 'document', 'window', 'jQuery', 'require', '" + this.classname + "' ] } }");
+      this.gruntfile.insertConfig('eslint', "{src: ['assets/js/components/**/*.js','!**/*.min.js'] }");
     }
-    this.gruntfile.registerTask('scripts', 'jshint');
+    this.gruntfile.loadNpmTasks('gruntify-eslint');
+    this.gruntfile.registerTask('scripts', 'eslint');
 
     if ( this.type === 'Concat' ) {
       this.gruntfile.insertConfig('concat', "{options: { stripBanners: true, banner: bannerTemplate }, dist: {files: {'assets/js/" + this.rc.slug + ".js': 'assets/js/components/**/*.js'}}}");
@@ -70,12 +73,17 @@ module.exports = base.extend({
       this.destinationPath(mainfile),
       this
     );
+
+    this.fs.copy(
+      this.templatePath('_eslintrc.json'),
+      this.destinationPath('.eslintrc.json')
+    );
   },
 
   install: function () {
     if ( !this.options['skip-install'] ) {
       this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
-      this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
+      this.npmInstall(['gruntify-eslint'], { 'saveDev': true });
 
       if ( this.type === 'Concat' ) {
         this.npmInstall(['grunt-contrib-concat'], { 'saveDev': true });

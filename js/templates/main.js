@@ -5,24 +5,23 @@
  * Licensed under the GPLv2+ license.
  */
 
-window.<%= rc.classname %> = window.<%= rc.classname %> || {};
+window.<%= jsclassname %> = window.<%= jsclassname %> || {};
 
-( function( window, document, $, that ) {
+( function( window, document, $, plugin ) {
 	let $c = {};
 
-	that.init = function() {
-		that.cache();
-		that.bindEvents();
+	plugin.init = function() {
+		plugin.cache();
+		plugin.bindEvents();
 	};
 
-	that.cache = function() {
+	plugin.cache = function() {
 		$c.window = $( window );
-		$c.body   = $( document.body );
+		$c.body = $( document.body );
 	};
 
-	that.bindEvents = function() {
+	plugin.bindEvents = function() {
 	};
 
-	$( that.init );
-
-}( window, document, <% if ( type === 'Browserify' ) {%>require('jquery')<%} else {%>jQuery<%}%>, window.<%= rc.classname %> ) );
+	$( plugin.init );
+}( window, document, <% if ( type === 'Browserify' ) {%>require( 'jquery' )<%} else {%>jQuery<%}%>, window.<%= jsclassname %> ) );
