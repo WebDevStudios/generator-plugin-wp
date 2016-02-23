@@ -7,8 +7,12 @@
 
 window.<%= jsclassname %> = window.<%= jsclassname %> || {};
 
-( function( window, document, $, plugin ) {
-	let $c = {};
+( function( window, document, plugin ) {
+	<% if ( type === 'Browserify' ) {
+		%>let $c = {};<%
+	} else {
+		%>var $c = {};<%
+	}%>
 
 	plugin.init = function() {
 		plugin.cache();
