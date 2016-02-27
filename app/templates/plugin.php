@@ -159,8 +159,6 @@ class <%= classname %> {
 	 * @return void
 	 */
 	public function hooks() {
-		register_activation_hook( __FILE__, array( $this, '_activate' ) );
-		register_deactivation_hook( __FILE__, array( $this, '_deactivate' ) );
 
 		add_action( 'init', array( $this, 'init' ) );
 	}
@@ -331,3 +329,6 @@ function <%= prefix %>() {
 
 // Kick it off.
 add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
+
+register_activation_hook( __FILE__, array( <%= classname %>::get_instance(), '_activate' ) );
+register_deactivation_hook( __FILE__, array( <%= classname %>::get_instance(), '_deactivate' ) );
