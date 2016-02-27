@@ -169,7 +169,7 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 * @return void
 	 */
-	function _activate() {
+	public static function _activate() {
 		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();
 	}
@@ -181,7 +181,7 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 * @return void
 	 */
-	function _deactivate() {}
+	public static function _deactivate() {}
 
 	/**
 	 * Init hooks
@@ -330,5 +330,5 @@ function <%= prefix %>() {
 // Kick it off.
 add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
 
-register_activation_hook( __FILE__, array( <%= classname %>::get_instance(), '_activate' ) );
-register_deactivation_hook( __FILE__, array( <%= classname %>::get_instance(), '_deactivate' ) );
+register_activation_hook( __FILE__, array( '<%= classname %>', '_activate' ) );
+register_deactivation_hook( __FILE__, array( '<%= classname %>', '_deactivate' ) );
