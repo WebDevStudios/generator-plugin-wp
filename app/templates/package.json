@@ -9,9 +9,16 @@
 	},
 	"license": "<%= license %>",
 	"devDependencies": {
-	    "grunt": "latest",
-	    "grunt-contrib-watch": "latest",
-	    "grunt-wp-i18n": "latest",
-	    "load-grunt-tasks": "latest"
+		"grunt": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-wp-i18n": "latest",
+		"grunt-contrib-copy": "latest",
+		"grunt-text-replace": "latest",
+		"load-grunt-tasks": "latest"
+	},
+	"scripts": {
+		"test": "dockunit",
+		"preversion": "npm test",
+		"version": "grunt version && git add ."
 	}
 }

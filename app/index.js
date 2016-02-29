@@ -174,16 +174,10 @@ module.exports = base.extend({
       );
     },
 
-    readmes: function() {
+    readme: function() {
       this.fs.copyTpl(
         this.templatePath('README.md'),
         this.destinationPath('/README.md'),
-        this
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('readme.txt'),
-        this.destinationPath('/readme.txt'),
         this
       );
     },

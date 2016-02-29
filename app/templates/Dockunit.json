@@ -1,29 +1,29 @@
 {
   "containers": [
     {
-      "prettyName": "PHP 5.2 FPM WordPress 4.1",
+      "prettyName": "PHP 5.2 FPM WordPress 4.4",
       "image": "dockunit/prebuilt-images:php-mysql-phpunit-5.2-fpm",
       "beforeScripts": [
         "service mysql start",
-        "bash bin/install-wp-tests.sh wordpress_test root '' localhost 4.1"
+        "bash bin/install-wp-tests.sh wordpress_test root '' localhost 4.4"
       ],
       "testCommand": "phpunit"
     },
     {
-      "prettyName": "PHP 5.6 FPM WordPress 4.0",
+      "prettyName": "PHP 5.6 FPM WordPress 4.3",
       "image": "dockunit/prebuilt-images:php-mysql-phpunit-5.6-fpm",
       "beforeScripts": [
         "service mysql start",
-        "bash bin/install-wp-tests.sh wordpress_test2 root '' localhost 4.0"
+        "bash bin/install-wp-tests.sh wordpress_test2 root '' localhost 4.3"
       ],
       "testCommand": "phpunit"
     },
     {
-      "prettyName": "PHP 7.0 RC-1",
-      "image": "dockunit/prebuilt-images:php-mysql-phpunit-7.0-rc-1-fpm",
+      "prettyName": "PHP 7.0 FPM WordPress 4.2",
+      "image": "dockunit/prebuilt-images:php-mysql-phpunit-7.0-fpm",
       "beforeScripts": [
         "service mysql start",
-        "bash bin/install-wp-tests.sh wordpress_test3 root '' localhost 3.9"
+        "bash bin/install-wp-tests.sh wordpress_test3 root '' localhost 4.2"
       ],
       "testCommand": "phpunit"
     }

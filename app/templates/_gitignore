@@ -71,3 +71,5 @@ vendor/
 ### Sass ###
 .sass-cache
 
+release
+

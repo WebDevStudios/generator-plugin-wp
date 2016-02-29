@@ -72,15 +72,80 @@ module.exports = function( grunt ) {
 					}
 				}
 			}
+		},
+
+		replace: {
+			version_php: {
+				src: '**/*.php',
+				overwrite: true,
+				replacements: [ {
+						from: /Version:(\s*?)[a-zA-Z0-9.-]+$/m,
+						to: 'Version:$1' + pkg.version
+					}, {
+						from: /@version(\s*?)[a-zA-Z0-9.-]+$/m,
+						to: '@version$1' + pkg.version
+				} ]
+			},
+			version_readme: {
+				src: 'README.md',
+				overwrite: true,
+				replacements: [ {
+						from: /^\*\*Stable tag:\*\*(\s*?)[a-zA-Z0-9.-]+(\s*?)$/mi,
+						to: '**Stable tag:**$1<%= pkg.version %>$2'
+				} ]
+			},
+			readme_txt: {
+				src: 'README.md',
+				dest: 'release/' + pkg.version + '/readme.txt',
+				replacements: [ {
+						from: /^# (.*?)( #+)?$/mg,
+						to: '=== $1 ==='
+					}, {
+						from: /^## (.*?)( #+)?$/mg,
+						to: '== $1 =='
+					}, {
+						from: /^### (.*?)( #+)?$/mg,
+						to: '= $1 ='
+					}, {
+						from: /^\*\*(.*?):\*\*/mg,
+						to: '$1:'
+				} ]
+			}
+		},
+
+		copy: {
+			release: {
+				src: [
+					'**',
+					'!assets/js/components/**',
+					'!assets/css/sass/**',
+					'!bin/**',
+					'!release/**',
+					'!tests/**',
+					'!node_modules/**',
+					'!**/*.md',
+					'!.travis.yml',
+					'!.bowerrc',
+					'!.gitignore',
+					'!bower.json',
+					'!Dockunit.json',
+					'!Gruntfile.js',
+					'!package.json',
+					'!phpunit.xml',
+				],
+				dest: 'release/' + pkg.version + '/'
+			}
 		}
 
 	} );
 
-	// Default task.
 	grunt.registerTask( 'scripts', [] );
 	grunt.registerTask( 'styles', [] );
 	grunt.registerTask( 'php', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'default', ['styles', 'scripts', 'php'] );
+
+	grunt.registerTask( 'version', [ 'default', 'replace:version_php', 'replace:version_readme' ] );
+	grunt.registerTask( 'release', [ 'default', 'replace', 'copy' ] );
 
 	grunt.util.linefeed = '\n';
 };
