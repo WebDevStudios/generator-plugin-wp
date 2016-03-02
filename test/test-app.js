@@ -24,7 +24,6 @@ describe('plugin-wp:app', function () {
       '.gitignore',
       'Gruntfile.js',
       'README.md',
-      'readme.txt',
       'test-plugin-name.php',
       'assets/README.md',
       'includes/README.md'
