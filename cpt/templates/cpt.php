@@ -18,7 +18,7 @@ class <%= classname %> extends CPT_Core {
 	 * Parent plugin class
 	 *
 	 * @var class
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 */
 	protected $plugin = null;
 
@@ -26,7 +26,7 @@ class <%= classname %> extends CPT_Core {
 	 * Constructor
 	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
@@ -45,7 +45,7 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @return void
 	 */
 	public function hooks() {<% if ( ! options.nocmb2 ) { %>
@@ -55,7 +55,7 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Add custom fields to the CPT
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @return void
 	 */
 	public function fields() {
@@ -71,7 +71,7 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Registers admin columns to display. Hooked in via CPT_Core.
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @param  array $columns Array of registered column names/labels.
 	 * @return array          Modified array
 	 */
@@ -83,7 +83,7 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @param array $column  Column currently being rendered.
 	 * @param int   $post_id ID of post to display column for.
 	 */

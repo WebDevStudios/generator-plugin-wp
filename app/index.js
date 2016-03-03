@@ -42,7 +42,7 @@ module.exports = base.extend({
       type   : 'input',
       name   : 'version',
       message: 'Version',
-      default: '0.1.0'
+      default: '0.0.0'
     }, {
       type   : 'input',
       name   : 'author',

@@ -15,7 +15,7 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Parent plugin class
 	 *
 	 * @var class
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 */
 	protected $plugin = null;
 
@@ -23,7 +23,7 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Constructor
 	 * Register Taxonomy. See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php
 	 *
-	 * @since <%= version %>
+	 * @since NEXT
 	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
@@ -45,7 +45,7 @@ class <%= classname %> extends Taxonomy_Core {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since <%= version %>
+	 * @since NEXT
 	 * @return void
 	 */
 	public function hooks() {

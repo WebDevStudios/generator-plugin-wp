@@ -10,14 +10,14 @@ class <%= classname %> {
 	 * Parent plugin class
 	 *
 	 * @var   class
-	 * @since <%= version %>
+	 * @since NEXT
 	 */
 	protected $plugin = null;
 
 	/**
 	 * Constructor
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @param  object $plugin Main plugin object.
 	 * @return void
 	 */
@@ -29,7 +29,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  <%= version %>
+	 * @since  NEXT
 	 * @return void
 	 */
 	public function hooks() {

@@ -76,14 +76,23 @@ module.exports = function( grunt ) {
 
 		replace: {
 			version_php: {
-				src: '**/*.php',
+				src: [
+					'**/*.php',
+					'!vendor/**',
+				],
 				overwrite: true,
 				replacements: [ {
-						from: /Version:(\s*?)[a-zA-Z0-9.-]+$/m,
+						from: /Version:(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
 						to: 'Version:$1' + pkg.version
-					}, {
-						from: /@version(\s*?)[a-zA-Z0-9.-]+$/m,
+				}, {
+						from: /@version(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
 						to: '@version$1' + pkg.version
+				}, {
+						from: /@since(.*?)NEXT/mg,
+						to: '@since$1' + pkg.version
+				}, {
+						from: /VERSION(\s*?)=(\s*?['"])[a-zA-Z0-9\.\-\+]+/mg,
+						to: 'VERSION$1=$2' + pkg.version
 				} ]
 			},
 			version_readme: {

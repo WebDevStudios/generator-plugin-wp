@@ -62,6 +62,7 @@ module.exports = yeoman.generators.Base.extend({
 		var toAdd = '\t/**';
 		toAdd += '\n\t * Instance of ' + className;
 		toAdd += '\n\t *';
+		toAdd += '\n\t * @since NEXT';
 		toAdd += '\n\t * @var ' + className;
 		toAdd += '\n\t */';
 		toAdd += '\n\tprotected $' + slug + ';';

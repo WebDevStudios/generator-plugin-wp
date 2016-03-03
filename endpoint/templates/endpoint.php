@@ -11,14 +11,14 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * Parent plugin class
 		 *
 		 * @var   class
-		 * @since <%= version %>
+		 * @since NEXT
 		 */
 		protected $plugin = null;
 
 		/**
 		 * Constructor
 		 *
-		 * @since  <%= version %>
+		 * @since  NEXT
 		 * @param  object $plugin Main plugin object.
 		 * @return void
 		 */
@@ -30,7 +30,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		/**
 	     * Register the routes for the objects of the controller.
 	     *
-	     * @since  <%= version %>
+	     * @since  NEXT
 		 * @return void
 	     */
 		public function register_routes() {
