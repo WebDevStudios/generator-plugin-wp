@@ -51,7 +51,7 @@ module.exports = base.extend({
     }
 
     if ( this.type === 'Browserify' ) {
-      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate, transform: [['babelify', { presets: ['es2015'] }], 'browserify-shim'] }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
+      this.gruntfile.insertConfig('browserify', "{options: { stripBanners: true, banner: bannerTemplate, transform: [['babelify', { presets: ['es2015'] }], ['browserify-shim', { global: true }]] }, dist: { files: { 'assets/js/" + this.rc.slug + ".js': 'assets/js/components/main.js' } } }");
       this.gruntfile.registerTask('scripts', 'browserify');
     }
 
