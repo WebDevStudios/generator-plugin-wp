@@ -14,6 +14,9 @@
 		"grunt-wp-i18n": "latest",
 		"grunt-contrib-copy": "latest",
 		"grunt-text-replace": "latest",
+		"grunt-contrib-clean": "latest",
+		"grunt-contrib-compress": "latest",
+		"grunt-wp-deploy": "latest",
 		"load-grunt-tasks": "latest"
 	},
 	"scripts": {

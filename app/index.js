@@ -233,6 +233,12 @@ module.exports = base.extend({
       );
 
       this.fs.copyTpl(
+        this.templatePath('assets/repo/README.md'),
+        this.destinationPath('assets/repo/README.md'),
+        this
+      );
+
+      this.fs.copyTpl(
         this.templatePath('includes/README.md'),
         this.destinationPath('includes/README.md'),
         this
