@@ -72,7 +72,7 @@ require 'vendor/autoload_52.php';
  *
  * @since  NEXT
  */
-class <%= classname %> {
+final class <%= classname %> {
 
 	/**
 	 * Current version
