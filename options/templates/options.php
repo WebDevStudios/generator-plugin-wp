@@ -1,7 +1,8 @@
 <?php
 /**
  * <%= optionsname %>
- * @version <%= version %>
+ *
+ * @since NEXT
  * @package <%= pluginname %>
  */
 
@@ -9,6 +10,11 @@
 	%>require_once dirname(__FILE__) . '/../vendor/cmb2/init.php';<%
 } %>
 
+/**
+ * <%= optionsname %> class.
+ *
+ * @since NEXT
+ */
 class <%= classname %> {
 	/**
 	 * Parent plugin class

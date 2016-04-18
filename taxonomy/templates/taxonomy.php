@@ -2,7 +2,7 @@
 /**
  * <%= taxonomyname %>
  *
- * @version <%= version %>
+ * @since NEXT
  * @package <%= pluginname %>
  */
 
@@ -10,6 +10,12 @@
 	%>require_once dirname(__FILE__) . '/../vendor/taxonomy-core/Taxonomy_Core.php';<%
 } %>
 
+/**
+ * <%= taxonomyname %> class.
+ *
+ * @see https://github.com/WebDevStudios/Taxonomy_Core
+ * @since NEXT
+ */
 class <%= classname %> extends Taxonomy_Core {
 	/**
 	 * Parent plugin class

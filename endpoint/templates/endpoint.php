@@ -1,7 +1,8 @@
 <?php
 /**
  * <%= includename %>
- * @version <%= version %>
+ *
+ * @since NEXT
  * @package <%= pluginname %>
  */
 

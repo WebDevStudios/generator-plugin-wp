@@ -1,10 +1,16 @@
 <?php
 /**
  * <%= includename %>
- * @version <%= version %>
+ *
+ * @since NEXT
  * @package <%= pluginname %>
  */
 
+/**
+ * <%= includename %>.
+ *
+ * @since NEXT
+ */
 class <%= classname %> {
 	/**
 	 * Parent plugin class

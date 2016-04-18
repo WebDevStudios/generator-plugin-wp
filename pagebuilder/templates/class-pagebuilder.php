@@ -1,7 +1,8 @@
 <?php
 /**
  * <%= pluginname %> Page Builder
- * @version <%= version %>
+ *
+ * @since NEXT
  * @package <%= pluginname %>
  */
 

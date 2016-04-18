@@ -1,10 +1,16 @@
 <?php
 /**
  * <%= widgetname %>
- * @version <%= version %>
+ *
+ * @since NEXT
  * @package <%= pluginname %>
  */
 
+/**
+ * <%= widgetname %> class.
+ *
+ * @since NEXT
+ */
 class <%= classname %> extends WP_Widget {
 
 	/**

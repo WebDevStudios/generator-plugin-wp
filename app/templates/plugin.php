@@ -10,6 +10,11 @@
  * License:     <%= license %>
  * Text Domain: <%= slug %>
  * Domain Path: /languages
+ *
+ * @link <%= homepage %>
+ *
+ * @package <%= name %>
+ * @version <%= version %>
  */
 
 /**
@@ -59,18 +64,13 @@ spl_autoload_register( '<%= prefix %>_autoload_classes' );
 // User composer autoload.
 require 'vendor/autoload_52.php';
 <% } else { %>
-	// Include additional php files here.
-	// require 'includes/admin.php';
+// Include additional php files here.
+// require 'includes/admin.php';
 <% } %>
-
 /**
  * Main initiation class
  *
  * @since  NEXT
- * @var  string $version  Plugin version
- * @var  string $basename Plugin basename
- * @var  string $url      Plugin URL
- * @var  string $path     Plugin Path
  */
 class <%= classname %> {
 
