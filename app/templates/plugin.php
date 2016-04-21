@@ -269,7 +269,7 @@ final class <%= classname %> {
 			case 'path':
 				return $this->$field;
 			default:
-				throw new Exception( 'Invalid '. __CLASS__ .' property: ' . $field );
+				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
 	}<% if ( autoloader == 'Basic' ) { %>
 
