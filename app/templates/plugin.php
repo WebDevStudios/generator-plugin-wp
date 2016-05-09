@@ -232,7 +232,7 @@ final class <%= classname %> {
 	 * @since  NEXT
 	 * @return boolean True if requirements are met.
 	 */
-	public static function meets_requirements() {
+	public function meets_requirements() {
 		// Do checks for required classes / functions
 		// function_exists('') & class_exists('').
 		// We have met all requirements.
