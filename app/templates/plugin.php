@@ -57,7 +57,7 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 		substr( $class_name, strlen( '<%= classprefix %>' ) )
 	) );
 
-	<%= classname %>::include_file( $filename );
+	<%= classname %>::include_file( 'includes/class-' . $filename );
 }
 spl_autoload_register( '<%= prefix %>_autoload_classes' );
 <% } else if ( autoloader == 'Composer' ) { %>
@@ -281,7 +281,7 @@ final class <%= classname %> {
 	 * @return bool   Result of include call.
 	 */
 	public static function include_file( $filename ) {
-		$file = self::dir( 'includes/class-'. $filename .'.php' );
+		$file = self::dir( $filename .'.php' );
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
