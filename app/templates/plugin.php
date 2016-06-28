@@ -158,7 +158,7 @@ final class <%= classname %> {
 	 */
 	public function hooks() {
 
-		add_action( 'init', array( $this, 'init' ) );
+		add_action('init', array($this, 'init'), 0);
 	}
 
 	/**
