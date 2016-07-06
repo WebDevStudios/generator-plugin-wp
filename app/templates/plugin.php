@@ -223,7 +223,12 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function deactivate_me() {
-		deactivate_plugins( $this->basename );
+	  
+		// We do a check for deactivate_plugins before calling it, to protect
+		// any developers from accidentally calling it too early and breaking things.
+		if ( function_exists( 'deactivate_plugins' ) ) {
+			deactivate_plugins( $this->basename );
+		}
 	}
 
 	/**
@@ -281,7 +286,7 @@ final class <%= classname %> {
 	 * @return bool   Result of include call.
 	 */
 	public static function include_file( $filename ) {
-		$file = self::dir( $filename .'.php' );
+		$file = self::dir( $filename . '.php' );
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
