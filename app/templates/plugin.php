@@ -157,8 +157,8 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function hooks() {
-
-		add_action( 'init', array( $this, 'init' ) );
+		//Priority needs to be < 10 for CPT and < 5 for taxonomy.
+		add_action( 'init', array( $this, 'init', 1 ) );
 	}
 
 	/**
