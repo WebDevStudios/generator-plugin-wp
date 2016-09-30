@@ -3,6 +3,8 @@ var base = require('../plugin-wp-base');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs');
+var request = require( 'request' );
+var async = require( 'async' );
 
 module.exports = base.extend({
   constructor: function () {
@@ -13,6 +15,9 @@ module.exports = base.extend({
 
   initializing: function () {
     this.pkg = require('../package.json');
+
+    // get the latest WP version
+    this.getLatestWPVersion();
   },
 
   prompting: function () {
@@ -260,16 +265,35 @@ module.exports = base.extend({
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
       this.config.set( 'notests', this.options.notests );
+
+      this.config.set( 'currentVersionWP', this.currentVersionWP );
+
       this.config.save();
     }
+  },
+
+  getLatestWPVersion: function() {
+    request.get({
+      url: 'https://api.wordpress.org/core/version-check/1.7/',
+      json: true,
+      headers: { 'User-Agent': 'request' }
+    }, (err, res, data) => {
+      // check for status code
+      if ( ! err && ( 200 === res.statusCode ) ) {
+        // loop through results to find only the "upgrade" version
+        for ( var i in data.offers ) {
+          if ( 'upgrade' === data.offers[i].response ) {
+            this.currentVersionWP = data.offers[i].current;
+          }
+        }
+      }
+    });
   },
 
   install: function () {
     this.installDependencies({
       skipInstall: this.options['skip-install']
     });
-
-
 
     if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
       this.spawnCommand('composer', ['install']);
