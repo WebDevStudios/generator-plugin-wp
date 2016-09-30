@@ -29,7 +29,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		}
 
     public function hooks() {
-      add_action('rest_api_init', [$this, 'register_routes']);
+      add_action( 'rest_api_init', array( $this, 'register_routes' ) );
     }
 
 		/**
