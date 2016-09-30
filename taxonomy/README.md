@@ -1,7 +1,7 @@
-# generator-plugin-wp Taxonomy Subgenerator
+# generator-plugin-wp Taxonomy Sub-generator
 
 ```bash
-yo plugin-wp:taxonomy taxonomy-name
+yo plugin-wp:taxonomy <taxonomy-name>
 ```
 
 Creates a skeleton taxonomy using [Taxonomy_Core](https://github.com/WebDevStudios/Taxonomy_Core).
