@@ -157,8 +157,11 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function hooks() {
-		// Priority needs to be < 10 for CPT and < 5 for taxonomy.
-		add_action( 'init', array( $this, 'init' ), 1 );
+		// Priority needs to be:
+		// < 10 for CPT_Core,
+		// < 5 for Taxonomy_Core,
+		// 0 Widgets because widgets_init runs at init priority 1.
+		add_action( 'init', array( $this, 'init' ), 0 );
 	}
 
 	/**
