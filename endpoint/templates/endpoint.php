@@ -11,7 +11,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		/**
 		 * Parent plugin class
 		 *
-		 * @var   class
+		 * @var   <%= mainclassname %>
 		 * @since NEXT
 		 */
 		protected $plugin = null;
@@ -20,7 +20,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * Constructor
 		 *
 		 * @since  NEXT
-		 * @param  object $plugin Main plugin object.
+		 * @param  <%= mainclassname %> $plugin Main plugin object.
 		 * @return void
 		 */
 		public function __construct( $plugin ) {

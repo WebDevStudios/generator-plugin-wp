@@ -41,6 +41,9 @@ module.exports = base.extend({
       this.taxonomyslug    = this._.slugify( this.classname ).substr( 0, 20 );
       this.taxonomyprefix  = this._.underscored( this.taxonomyslug );
 
+      // get the main classname
+      this.mainclassname = this._wpClassify( this.pluginname );
+
       this.composer   = this.fs.exists('composer.json');
     }
   },

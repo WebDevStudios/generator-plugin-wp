@@ -48,6 +48,9 @@ module.exports = base.extend({
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.prefix     = this.rc.prefix;
 
+      // get the main classname
+      this.mainclassname = this._wpClassify( this.pluginname );
+
       this.composer   = this.fs.exists('composer.json');
 
       this.partsdir = this.options.partsdir;

@@ -23,7 +23,7 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Parent plugin class
 	 *
-	 * @var class
+	 * @var <%= mainclassname %>
 	 * @since  NEXT
 	 */
 	protected $plugin = null;
@@ -33,7 +33,7 @@ class <%= classname %> extends CPT_Core {
 	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
 	 *
 	 * @since  NEXT
-	 * @param  object $plugin Main plugin object.
+	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {
