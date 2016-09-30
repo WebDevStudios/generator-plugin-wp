@@ -157,8 +157,8 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function hooks() {
-
-		add_action( 'init', array( $this, 'init' ) );
+		// Priority needs to be < 10 for CPT and < 5 for taxonomy.
+		add_action( 'init', array( $this, 'init' ), 1 );
 	}
 
 	/**
@@ -223,7 +223,7 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function deactivate_me() {
-	  
+
 		// We do a check for deactivate_plugins before calling it, to protect
 		// any developers from accidentally calling it too early and breaking things.
 		if ( function_exists( 'deactivate_plugins' ) ) {
