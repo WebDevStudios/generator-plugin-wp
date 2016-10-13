@@ -33,6 +33,7 @@ module.exports = base.extend({
       if ( this.name ) {
         this.name     = this._.titleize( this.name.split('-').join(' ') );
         this.nameslug     = this._.slugify( this.name );
+        this.functionname = this.nameslug.replace( /-/g, '_' );
       }
       this.pluginname = this.rc.name;
       this.taxonomyname    = this.pluginname + ' ' + this._.capitalize( this.name );
