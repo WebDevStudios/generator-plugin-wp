@@ -8,6 +8,10 @@ if ( ! $_tests_dir ) {
 require_once $_tests_dir . '/includes/functions.php';
 
 function _manually_load_plugin() {
+	// Include the REST API main plugin file if we're using it so we can run endpoint tests.
+	if ( class_exists( 'WP_REST_Controller' ) ) {
+		require WP_PLUGIN_DIR . '/rest-api/plugin.php';
+	}
 	require dirname( dirname( __FILE__ ) ) . '/<%= slug %>.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
