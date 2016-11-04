@@ -34,7 +34,7 @@ module.exports = base.extend({
         this.nameslug      = this._.slugify( this.name );
       }
       this.pluginname  = this.rc.name;
-      this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.cliname = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname   = this.rc.classprefix + this._wpClassify( this.name );
 
       // get the main classname
@@ -91,7 +91,7 @@ module.exports = base.extend({
         }
 
         if ( props.name || props.pluginname ) {
-          this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.cliname = this.pluginname + ' ' + this._.capitalize( this.name );
           this.classname   = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
         }
 
