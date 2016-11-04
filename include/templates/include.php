@@ -15,7 +15,7 @@ class <%= classname %> {
 	/**
 	 * Parent plugin class
 	 *
-	 * @var   <%= mainclassname %>
+	 * @var   <%= pluginname %>
 	 * @since NEXT
 	 */
 	protected $plugin = null;
@@ -24,7 +24,7 @@ class <%= classname %> {
 	 * Constructor
 	 *
 	 * @since  NEXT
-	 * @param  <%= mainclassname %> $plugin Main plugin object.
+	 * @param  <%= pluginname %> $plugin Main plugin object.
 	 * @return void
 	 */
 	public function __construct( $plugin ) {
