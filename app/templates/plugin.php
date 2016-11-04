@@ -191,10 +191,16 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function init() {
-		if ( $this->check_requirements() ) {
-			load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
-			$this->plugin_classes();
+		// bail early if requirements aren't met
+		if ( ! $this->check_requirements() ) {
+			return;
 		}
+		
+		// load translated strings for plugin
+		load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
+
+		// initialize plugin classes
+		$this->plugin_classes();
 	}
 
 	/**
@@ -205,18 +211,18 @@ final class <%= classname %> {
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
-		if ( ! $this->meets_requirements() ) {
-
-			// Add a dashboard notice.
-			add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
-
-			// Deactivate our plugin.
-			add_action( 'admin_init', array( $this, 'deactivate_me' ) );
-
-			return false;
+		// bail early if pluginmeets requirements
+		if ( $this->meets_requirements() ) {
+			return true;
 		}
 
-		return true;
+		// Add a dashboard notice.
+		add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
+
+		// Deactivate our plugin.
+		add_action( 'admin_init', array( $this, 'deactivate_me' ) );
+
+		return false;
 	}
 
 	/**
@@ -226,7 +232,6 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function deactivate_me() {
-
 		// We do a check for deactivate_plugins before calling it, to protect
 		// any developers from accidentally calling it too early and breaking things.
 		if ( function_exists( 'deactivate_plugins' ) ) {
