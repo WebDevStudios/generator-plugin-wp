@@ -5,6 +5,7 @@ var yosay = require('yosay');
 var fs = require('fs');
 var request = require( 'request' );
 var async = require( 'async' );
+var child_process = require('child_process');
 
 module.exports = base.extend({
   constructor: function () {
@@ -21,6 +22,12 @@ module.exports = base.extend({
 
     // get the latest WP version
     this.getLatestWPVersion();
+
+    // Set Composer to false.
+    this.autoloaderList = ['Basic', 'None'];
+
+    // Check and see if Composer is available.
+    this.checkComposerStatus();
   },
 
   prompting: function () {
@@ -99,7 +106,7 @@ module.exports = base.extend({
       type   : 'list',
       name   : 'autoloader',
       message: 'Use Autoloader',
-      choices: ['Basic', 'Composer', 'None']
+      choices: this.autoloaderList
     }];
 
     this.prompt(prompts, function (props) {
@@ -273,6 +280,15 @@ module.exports = base.extend({
 
       this.config.save();
     }
+  },
+
+  checkComposerStatus: function() {
+    var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
+
+    if ( 0 == composerResult.status) {
+      this.autoloaderList = ['Basic', 'Composer', 'None'];
+    }
+
   },
 
   getLatestWPVersion: function() {
