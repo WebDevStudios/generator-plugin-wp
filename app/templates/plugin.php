@@ -107,6 +107,14 @@ final class <%= classname %> {
 	protected $basename = '';
 
 	/**
+	 * Detailed activation error messages
+	 *
+	 * @var array
+	 * @since  NEXT
+	 */
+	protected $activation_errors = array();
+
+	/**
 	 * Singleton instance of plugin
 	 *
 	 * @var <%= classname %>
@@ -251,10 +259,27 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function requirements_not_met_notice() {
-		// Output our error.
-		echo '<div id="message" class="error">';
-		echo '<p>' . sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) ) . '</p>';
-		echo '</div>';
+		// compile default message
+		$default_message = sprintf( 
+			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), 
+			admin_url( 'plugins.php' ) 
+		);
+		
+		// default details to null
+		$details = null;
+
+		// add details if any exist
+		if ( ! empty( $this->activation_errors ) ) {
+			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
+		}
+
+		// output errors
+		?>
+		<div id="message" class="error">
+			<p><?php echo $default_message; ?></p>
+			<?php echo $details; ?>
+		</div>
+		<?php
 	}
 
 	/**
