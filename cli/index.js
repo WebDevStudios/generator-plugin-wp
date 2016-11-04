@@ -3,120 +3,123 @@ var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
 
 module.exports = base.extend({
-  constructor: function () {
-    base.apply(this, arguments);
+    constructor: function () {
+        base.apply(this, arguments);
 
-    this.argument('name', {
-      required: false,
-      type    : String,
-      desc    : 'The cli name'
-    });
-  },
-
-  initializing: {
-    intro: function () {
-      // Have Yeoman greet the user.
-      this.log('Welcome to the neat Plugin WP CLI subgenerator!');
+        this.argument('name', {
+            required: false,
+            type: String,
+            desc: 'The cli name'
+        });
     },
 
-    readingYORC: function() {
-      this.rc = this.config.getAll() || {};
+    initializing: {
+        intro: function () {
+            // Have Yeoman greet the user.
+            this.log('Welcome to the neat Plugin WP CLI subgenerator!');
+        },
+
+        readingYORC: function () {
+            this.rc = this.config.getAll() || {};
+        },
+
+        readingPackage: function () {
+            this.pkg = this.fs.readJSON(this.destinationPath('package.json')) || {};
+        },
+
+        settingValues: function () {
+            this.version = this.pkg.version;
+            if (this.name) {
+                this.name = this._.titleize(this.name.split('-').join(' '));
+                this.nameslug = this._.slugify(this.name);
+            }
+            this.pluginname = this.rc.name;
+            this.cliname = this.pluginname + ' ' + this._.capitalize(this.name);
+            this.slug = this.rc.slug;
+            this.clislug = this.slug + '-cli-' + this._.slugify(this.name);
+
+            this.classname = this.rc.classprefix + this._wpClassify(this.name);
+
+            // get the main classname
+            this.mainclassname = this._wpClassify(this.pluginname);
+        }
     },
 
-    readingPackage: function() {
-      this.pkg = this.fs.readJSON( this.destinationPath('package.json')) || {};
+    prompting: function () {
+        var done = this.async();
+
+        var prompts = [];
+
+        if (!this.version) {
+            prompts.push({
+                type: 'input',
+                name: 'version',
+                message: 'Version',
+                default: '0.1.0'
+            });
+        }
+
+        if (!this.name) {
+            prompts.push({
+                type: 'input',
+                name: 'name',
+                message: 'CLI Name',
+                default: 'frontend'
+            });
+        }
+
+        if (!this.pluginname) {
+            prompts.push({
+                type: 'input',
+                name: 'pluginname',
+                message: 'Plugin Name',
+                default: 'WDS Client Plugin'
+            });
+        }
+
+        if (prompts.length > 0) {
+            this.log('Missing some info about the original plugin, help me out?');
+            this.prompt(prompts, function (props) {
+                if (props.version) {
+                    this.version = props.version;
+                }
+
+                if (props.name) {
+                    this.name = this._.titleize(props.name.split('-').join(' '));
+                    this.nameslug = this._.slugify(this.name);
+                }
+
+                if (props.pluginname) {
+                    this.pluginname = props.pluginname;
+                }
+
+                if (props.name || props.pluginname) {
+                    this.cliname = this.pluginname + ' ' + this._.capitalize(this.name);
+                    this.classname = this._wpClassPrefix(this.pluginname) + this._wpClassify(this.name);
+                }
+
+                done();
+            }.bind(this));
+        } else {
+            done();
+        }
     },
 
-    settingValues: function() {
-      this.version     = this.pkg.version;
-      if ( this.name ) {
-        this.name      = this._.titleize( this.name.split('-').join(' ') );
-        this.nameslug      = this._.slugify( this.name );
-      }
-      this.pluginname  = this.rc.name;
-      this.cliname = this.pluginname + ' ' + this._.capitalize( this.name );
-      this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+    writing: function () {
+        this.fs.copyTpl(
+            this.templatePath('cli.php'),
+            this.destinationPath('includes/class-' + this._.slugify(this.name) + '.php'),
+            this
+        );
 
-      // get the main classname
-      this.mainclassname = this._wpClassify( this.pluginname );
-    }
-  },
-
-  prompting: function () {
-    var done = this.async();
-
-    var prompts = [];
-
-    if ( !this.version ) {
-      prompts.push({
-        type   : 'input',
-        name   : 'version',
-        message: 'Version',
-        default: '0.1.0'
-      });
-    }
-
-    if ( !this.name ) {
-      prompts.push({
-        type   : 'input',
-        name   : 'name',
-        message: 'CLI Name',
-        default: 'frontend'
-      });
-    }
-
-    if ( !this.pluginname ) {
-      prompts.push({
-        type   : 'input',
-        name   : 'pluginname',
-        message: 'Plugin Name',
-        default: 'WDS Client Plugin'
-      });
-    }
-
-    if ( prompts.length > 0 ) {
-      this.log( 'Missing some info about the original plugin, help me out?' );
-      this.prompt(prompts, function (props) {
-        if ( props.version ) {
-          this.version = props.version;
+        if (!this.rc.notests) {
+            this.fs.copyTpl(
+                this.templatePath('tests.php'),
+                this.destinationPath('tests/test-' + this._.slugify(this.name) + '.php'),
+                this
+            );
         }
 
-        if ( props.name ) {
-          this.name = this._.titleize( props.name.split('-').join(' ') );
-          this.nameslug = this._.slugify( this.name );
-        }
-
-        if ( props.pluginname ) {
-          this.pluginname  = props.pluginname;
-        }
-
-        if ( props.name || props.pluginname ) {
-          this.cliname = this.pluginname + ' ' + this._.capitalize( this.name );
-          this.classname   = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
-        }
-
-        done();
-      }.bind(this));
-    } else {
-      done();
+        this._addIncludeClass(this._.slugify(this.name), this.classname);
     }
-  },
-
-  writing: function () {
-    this.fs.copyTpl(
-      this.templatePath('cli.php'),
-      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '-cli.php'),
-      this
-    );
-
-    if ( !this.rc.notests ) {
-      this.fs.copyTpl(
-        this.templatePath('tests.php'),
-        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '-cli.php'),
-        this
-      );
-    }
-
-    this._addIncludeClass( this._.slugify( this.name ), this.classname );
-  }
 });
