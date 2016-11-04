@@ -270,7 +270,7 @@ final class <%= classname %> {
 		$details = null;
 
 		// add details if any exist
-		if ( ! empty( $this->activation_errors ) ) {
+		if ( ! empty( $this->activation_errors ) && is_array( $this->activation_errors ) ) {
 			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
 		}
 
