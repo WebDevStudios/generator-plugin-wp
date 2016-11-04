@@ -249,6 +249,7 @@ final class <%= classname %> {
 		// Do checks for required classes / functions
 		// function_exists('') & class_exists('').
 		// We have met all requirements.
+		// Add detailed messages to $this->activation_messages
 		return true;
 	}
 
