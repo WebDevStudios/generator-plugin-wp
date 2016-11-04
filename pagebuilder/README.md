@@ -1,7 +1,7 @@
-# generator-plugin-wp WDS Simple Page Builder Subgenerator
+# generator-plugin-wp WDS Simple Page Builder Sub-generator
 
 ```bash
-yo plugin-wp:pagebuilder file-name --partsdir 'part/directory'
+yo plugin-wp:pagebuilder <file-name> --partsdir 'part/directory'
 ```
 
 Adds [WDS Simple Page Builder](https://github.com/WebDevStudios/WDS-Simple-Page-Builder) support to your plugin.

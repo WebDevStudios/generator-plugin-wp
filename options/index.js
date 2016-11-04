@@ -43,6 +43,9 @@ module.exports = base.extend({
       this.optionsslug    = this.slug + '-' + this._.slugify( this.name );
       this.optionsprefix  = this._.underscored( this.slug + ' ' + this.name );
 
+      // get the main classname
+      this.mainclassname = this._wpClassify( this.pluginname );
+
       this.composer       = this.fs.exists('composer.json');
     }
   },

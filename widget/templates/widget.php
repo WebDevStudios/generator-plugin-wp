@@ -216,7 +216,7 @@ class <%= classname %> extends WP_Widget {
  * @since  NEXT
  * @return void
  */
-function register_<%= widgetprefix %>() {
+function <%= widgetregister %>() {
 	register_widget( '<%= classname %>' );
 }
-add_action( 'widgets_init', 'register_<%= widgetprefix %>' );
+add_action( 'widgets_init', '<%= widgetregister %>' );

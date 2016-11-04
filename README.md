@@ -34,13 +34,13 @@ Once your nifty new plugin has been generated, `cd` into your new plugin's
 directory. While in the plugin directory, you can run additional commands
 called sub-generators to automatically generate files to enhance your plugin.
 
-* `yo plugin-wp:include include-name` [Basic Include](include/README.md)
-* `yo plugin-wp:cpt cpt-name` [Custom Post Type](cpt/README.md)
-* `yo plugin-wp:taxonomy taxonomy-name` [Taxonomy](taxonomy/README.md)
-* `yo plugin-wp:options options-name` [Option Page](options/README.md)
-* `yo plugin-wp:widget widget-name` [Widget](widget/README.md)
-* `yo plugin-wp:pagebuilder class-name` [Simple Page Builder](pagebuilder/README.md)
-* `yo plugin-wp:endpoint class-name` [WP-API Endpoint](endpoint/README.md)
+* `yo plugin-wp:include <include-name>` [Basic Include](include/README.md)
+* `yo plugin-wp:cpt <cpt-name>` [Custom Post Type](cpt/README.md)
+* `yo plugin-wp:taxonomy <taxonomy-name>` [Taxonomy](taxonomy/README.md)
+* `yo plugin-wp:options <options-name>` [Option Page](options/README.md)
+* `yo plugin-wp:widget <widget-name>` [Widget](widget/README.md)
+* `yo plugin-wp:pagebuilder <class-name>` [Simple Page Builder](pagebuilder/README.md)
+* `yo plugin-wp:endpoint <class-name>` [WP-API Endpoint](endpoint/README.md)
 * `yo plugin-wp:js` [Javascript](js/README.md)
 * `yo plugin-wp:css` [Styles](css/README.md)
 

@@ -31,14 +31,14 @@ module.exports = base.extend({
       this.version      = this.pkg.version;
       if ( this.name ) {
         this.name       = this._.titleize( this.name.split('-').join(' ') );
-        this.nameslug = this._.slugify( this.name );
+        this.nameslug   = this._.slugify( this.name );
       }
-      this.pluginname   = this.rc.name;
-      this.widgetname   = this.pluginname + ' ' + this._.capitalize( this.name );
-      this.classname    = this.rc.classprefix + this._wpClassify( this.name );
-      this.slug         = this.rc.slug;
-      this.widgetslug   = this.slug + '-' + this._.slugify( this.name );
-      this.widgetprefix = this._.underscored( this.slug + ' ' + this.name );
+      this.pluginname     = this.rc.name;
+      this.widgetname     = this.pluginname + ' ' + this._.capitalize( this.name );
+      this.classname      = this.rc.classprefix + this._wpClassify( this.name );
+      this.slug           = this.rc.slug;
+      this.widgetslug     = this.slug + '-' + this._.slugify( this.name );
+      this.widgetregister = this._.underscored( this.slug + ' register ' + this.name );
     }
   },
 
