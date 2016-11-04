@@ -33,6 +33,7 @@ module.exports = base.extend({
       if ( this.name ) {
         this.name     = this._.titleize( this.name.split('-').join(' ') );
         this.nameslug     = this._.slugify( this.name );
+        this.functionname = this.nameslug.replace( /-/g, '_' );
       }
       this.pluginname = this.rc.name;
       this.taxonomyname    = this.pluginname + ' ' + this._.capitalize( this.name );
@@ -40,6 +41,9 @@ module.exports = base.extend({
       this.slug       = this.rc.slug;
       this.taxonomyslug    = this._.slugify( this.classname ).substr( 0, 20 );
       this.taxonomyprefix  = this._.underscored( this.taxonomyslug );
+
+      // get the main classname
+      this.mainclassname = this._wpClassify( this.pluginname );
 
       this.composer   = this.fs.exists('composer.json');
     }

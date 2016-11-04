@@ -37,6 +37,9 @@ module.exports = base.extend({
       this.pluginslug  = this.rc.slug;
       this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname   = this.rc.classprefix + this._wpClassify( this.name );
+
+      // get the main classname
+      this.mainclassname = this._wpClassify( this.pluginname );
     }
   },
 

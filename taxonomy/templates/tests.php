@@ -12,7 +12,7 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	}
 
 	function test_class_access() {
-		$this->assertTrue( <%= rc.prefix %>()-><%= nameslug %> instanceof <%= classname %> );
+		$this->assertTrue( <%= rc.prefix %>()-><%= functionname %> instanceof <%= classname %> );
 	}
 
   function test_taxonomy_exists() {
