@@ -1,7 +1,7 @@
-# generator-plugin-wp Include Sub-generator
+# generator-plugin-wp CLI Sub-generator
 
 ```bash
-yo plugin-wp:include <include-name>
+yo plugin-wp:cli <cli-name>
 ```
 
-Creates a skeleton include file for your plugin.
+Creates a skeleton cli file for your plugin.

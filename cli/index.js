@@ -9,14 +9,14 @@ module.exports = base.extend({
     this.argument('name', {
       required: false,
       type    : String,
-      desc    : 'The include name'
+      desc    : 'The cli name'
     });
   },
 
   initializing: {
     intro: function () {
       // Have Yeoman greet the user.
-      this.log('Welcome to the neat Plugin WP Include subgenerator!');
+      this.log('Welcome to the neat Plugin WP CLI subgenerator!');
     },
 
     readingYORC: function() {
@@ -60,7 +60,7 @@ module.exports = base.extend({
       prompts.push({
         type   : 'input',
         name   : 'name',
-        message: 'Include Name',
+        message: 'CLI Name',
         default: 'frontend'
       });
     }
@@ -104,15 +104,15 @@ module.exports = base.extend({
 
   writing: function () {
     this.fs.copyTpl(
-      this.templatePath('include.php'),
-      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '.php'),
+      this.templatePath('cli.php'),
+      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '-cli.php'),
       this
     );
 
     if ( !this.rc.notests ) {
       this.fs.copyTpl(
         this.templatePath('tests.php'),
-        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '.php'),
+        this.destinationPath('tests/test-' + this._.slugify( this.name ) + '-cli.php'),
         this
       );
     }
