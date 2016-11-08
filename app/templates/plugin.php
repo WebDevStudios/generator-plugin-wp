@@ -107,6 +107,14 @@ final class <%= classname %> {
 	protected $basename = '';
 
 	/**
+	 * Detailed activation error messages
+	 *
+	 * @var array
+	 * @since  NEXT
+	 */
+	protected $activation_errors = array();
+
+	/**
 	 * Singleton instance of plugin
 	 *
 	 * @var <%= classname %>
@@ -191,10 +199,16 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function init() {
-		if ( $this->check_requirements() ) {
-			load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
-			$this->plugin_classes();
+		// bail early if requirements aren't met
+		if ( ! $this->check_requirements() ) {
+			return;
 		}
+		
+		// load translated strings for plugin
+		load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
+
+		// initialize plugin classes
+		$this->plugin_classes();
 	}
 
 	/**
@@ -205,18 +219,18 @@ final class <%= classname %> {
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
-		if ( ! $this->meets_requirements() ) {
-
-			// Add a dashboard notice.
-			add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
-
-			// Deactivate our plugin.
-			add_action( 'admin_init', array( $this, 'deactivate_me' ) );
-
-			return false;
+		// bail early if pluginmeets requirements
+		if ( $this->meets_requirements() ) {
+			return true;
 		}
 
-		return true;
+		// Add a dashboard notice.
+		add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
+
+		// Deactivate our plugin.
+		add_action( 'admin_init', array( $this, 'deactivate_me' ) );
+
+		return false;
 	}
 
 	/**
@@ -226,7 +240,6 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function deactivate_me() {
-
 		// We do a check for deactivate_plugins before calling it, to protect
 		// any developers from accidentally calling it too early and breaking things.
 		if ( function_exists( 'deactivate_plugins' ) ) {
@@ -244,6 +257,7 @@ final class <%= classname %> {
 		// Do checks for required classes / functions
 		// function_exists('') & class_exists('').
 		// We have met all requirements.
+		// Add detailed messages to $this->activation_errors array
 		return true;
 	}
 
@@ -254,10 +268,27 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function requirements_not_met_notice() {
-		// Output our error.
-		echo '<div id="message" class="error">';
-		echo '<p>' . sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) ) . '</p>';
-		echo '</div>';
+		// compile default message
+		$default_message = sprintf( 
+			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), 
+			admin_url( 'plugins.php' ) 
+		);
+		
+		// default details to null
+		$details = null;
+
+		// add details if any exist
+		if ( ! empty( $this->activation_errors ) && is_array( $this->activation_errors ) ) {
+			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
+		}
+
+		// output errors
+		?>
+		<div id="message" class="error">
+			<p><?php echo $default_message; ?></p>
+			<?php echo $details; ?>
+		</div>
+		<?php
 	}
 
 	/**
