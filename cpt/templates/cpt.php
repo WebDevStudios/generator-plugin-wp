@@ -2,7 +2,7 @@
 /**
  * <%= cptname %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -17,7 +17,7 @@
  * <%= cptname %> post type class.
  *
  * @see https://github.com/WebDevStudios/CPT_Core
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> extends CPT_Core {
 	/**

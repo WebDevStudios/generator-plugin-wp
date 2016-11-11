@@ -2,21 +2,21 @@
 /**
  * <%= includename %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
 /**
  * <%= includename %>.
  *
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> {
 	/**
 	 * Parent plugin class
 	 *
 	 * @var   <%= mainclassname %>
-	 * @since NEXT
+	 * @since <%= version %>
 	 */
 	protected $plugin = null;
 

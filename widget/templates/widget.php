@@ -2,14 +2,14 @@
 /**
  * <%= widgetname %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
 /**
  * <%= widgetname %> class.
  *
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> extends WP_Widget {
 

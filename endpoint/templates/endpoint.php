@@ -2,7 +2,7 @@
 /**
  * <%= includename %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -12,7 +12,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * Parent plugin class
 		 *
 		 * @var   <%= mainclassname %>
-		 * @since NEXT
+		 * @since <%= version %>
 		 */
 		protected $plugin = null;
 

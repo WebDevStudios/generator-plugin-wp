@@ -2,7 +2,7 @@
 /**
  * <%= optionsname %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -13,7 +13,7 @@
 /**
  * <%= optionsname %> class.
  *
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> {
 	/**

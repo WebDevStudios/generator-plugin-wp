@@ -2,7 +2,7 @@
 /**
  * <%= pluginname %> Page Builder
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -14,7 +14,7 @@ class <%= classname %> {
 	 * Parent plugin class
 	 *
 	 * @var   <%= mainclassname %>
-	 * @since NEXT
+	 * @since <%= version %>
 	 */
 	protected $plugin = null;
 
