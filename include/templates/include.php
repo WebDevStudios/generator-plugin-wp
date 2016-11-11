@@ -23,7 +23,7 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function hooks() {

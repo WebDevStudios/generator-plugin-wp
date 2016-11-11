@@ -21,7 +21,7 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */
@@ -33,7 +33,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function hooks() {
@@ -43,7 +43,7 @@ class <%= classname %> {
 	/**
 	 * Registers our parts directory in the Page Builder template stack.
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function load_pagebuilder_parts() {
@@ -54,7 +54,7 @@ class <%= classname %> {
 	 * Register our plugin's template parts directory.
 	 * This function needs to be in the global scope to work properly.
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return string Absolute path to template parts directory.
 	 */
 	public function get_template_part_dir() {

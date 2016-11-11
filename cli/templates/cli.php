@@ -2,7 +2,7 @@
 /**
  * <%= cliname %>
  *
- * @since   NEXT
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -24,7 +24,7 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 *
@@ -51,7 +51,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public

@@ -24,7 +24,7 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Parent plugin class
 	 *
 	 * @var <%= mainclassname %>
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
 
