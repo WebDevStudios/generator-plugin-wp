@@ -31,7 +31,7 @@ module.exports = base.extend({
     },
 
     settingValues: function() {
-      this.version    = this.pkg.version;
+      this.version = this.rc.version;
       if ( this.name ) {
         this.name     = this._.titleize( this.name.split('-').join(' ') );
         this.nameslug     = this._.slugify( this.name );
@@ -114,6 +114,7 @@ module.exports = base.extend({
   },
 
   writing: function () {
+
     this.fs.copyTpl(
       this.templatePath('cpt.php'),
       this.destinationPath('includes/class-' + this._.slugify( this.name ) + '.php'),
@@ -128,7 +129,7 @@ module.exports = base.extend({
       );
     }
 
-    this._addIncludeClass( this._.slugify( this.name ), this.classname );
+    this._addIncludeClass( this._.slugify( this.name ), this.classname, this.version );
   },
 
   install: function () {

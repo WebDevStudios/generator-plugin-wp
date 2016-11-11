@@ -87,13 +87,13 @@ module.exports = yeoman.generators.Base.extend({
 		return file.replace( endComment, newInclude );
 	},
 
-	_addIncludeClass: function( slug, className ) {
+	_addIncludeClass: function( slug, className, version ) {
+
 		if ( ! this.rc.slug ) {
 			return;
 		}
 
 		slug    = this._.underscored( slug );
-		version = this.rc.version;
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 
 		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
@@ -102,4 +102,5 @@ module.exports = yeoman.generators.Base.extend({
 
 		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
 	}
+
 });
