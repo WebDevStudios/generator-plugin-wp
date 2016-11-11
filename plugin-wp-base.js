@@ -57,7 +57,7 @@ module.exports = yeoman.generators.Base.extend({
 		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
 	},
 
-	_addPluginProperty: function( file, slug, className ) {
+	_addPluginProperty: function( file, slug, className, version ) {
 
 		var toAdd = '\t/**';
 		toAdd += '\n\t * Instance of ' + className;
@@ -92,10 +92,11 @@ module.exports = yeoman.generators.Base.extend({
 			return;
 		}
 
-		slug = this._.underscored( slug );
+		slug    = this._.underscored( slug );
+		version = this.version;
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 
-		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className );
+		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
 		mainPluginFile = this._addPluginClass( mainPluginFile, slug, className );
 		mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
 
