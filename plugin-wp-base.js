@@ -93,7 +93,7 @@ module.exports = yeoman.generators.Base.extend({
 		}
 
 		slug    = this._.underscored( slug );
-		version = this.version;
+		version = this.rc.version;
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 
 		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
