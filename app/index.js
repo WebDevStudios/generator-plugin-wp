@@ -204,8 +204,8 @@ module.exports = base.extend({
           this.destinationPath('/Gulpfile.js')
       );
       this.fs.copy(
-          this.templatePath('codesniffer.ruleset.xml'),
-          this.destinationPath('/codesniffer.ruleset.xml')
+          this.templatePath('phpcs.xml'),
+          this.destinationPath('/phpcs.xml')
       );
     },
 
