@@ -161,8 +161,8 @@ module.exports = base.extend({
           this
       );
       this.fs.copyTpl(
-          this.templatePath('_eslintrc.js'),
-          this.destinationPath('/.eslintrc.js'),
+          this.templatePath('_eslintrc'),
+          this.destinationPath('/.eslintrc'),
           this
       );
       this.fs.copyTpl(
