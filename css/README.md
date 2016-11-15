@@ -1,7 +1,7 @@
 # generator-plugin-wp CSS Subgenerator
 
 ```bash
-yo plugin-wp css
+yo plugin-wp:css
 ```
 
 Initializes styles for your plugin, including configuring the Gruntfile.js with the proper tasks.
