@@ -170,6 +170,11 @@ module.exports = base.extend({
           this.destinationPath('/.eslintrc.js'),
           this
       );
+      this.fs.copyTpl(
+          this.templatePath('_editorconfig'),
+          this.destinationPath('/.editorconfig'),
+          this
+      );
     },
 
     configs: function() {
