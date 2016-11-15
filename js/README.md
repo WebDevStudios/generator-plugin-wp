@@ -1,7 +1,7 @@
 # generator-plugin-wp JS Subgenerator
 
 ```bash
-yo plugin-wp js
+yo plugin-wp:js
 ```
 
 Initializes javascript for your plugin, including configuring the Gruntfile.js with the proper tasks.
