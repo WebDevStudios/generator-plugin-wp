@@ -100,9 +100,10 @@ module.exports = base.extend({
         }
 
         if ( props.name || props.pluginname ) {
-          this.cptname   = this.pluginname + ' ' + this._.capitalize( this.name );
-          this.classname    = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
-          this.cptslug   = this.slug + '-' + this._.slugify( this.name );
+          this.cptname    = this.pluginname + ' ' + this._.capitalize( this.name );
+          this.classname  = this._wpClassPrefix( this.pluginname ) + this._wpClassify( this.name );
+          this.cptslug    = this.slug + '-' + this._.slugify( this.name );
+          this.cptslug    = this.cptslug.substr(0,20);
           this.cptprefix  = this._.underscored( this.slug + ' ' + this.name );
         }
 
