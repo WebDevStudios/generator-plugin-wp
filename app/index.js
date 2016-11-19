@@ -155,6 +155,21 @@ module.exports = base.extend({
         this.destinationPath('/.gitignore'),
         this
       );
+      this.fs.copyTpl(
+          this.templatePath('_sass-lint.yml'),
+          this.destinationPath('/.sass-lint.yml'),
+          this
+      );
+      this.fs.copyTpl(
+          this.templatePath('_eslintrc'),
+          this.destinationPath('/.eslintrc'),
+          this
+      );
+      this.fs.copyTpl(
+          this.templatePath('_editorconfig'),
+          this.destinationPath('/.editorconfig'),
+          this
+      );
     },
 
     configs: function() {
@@ -178,6 +193,14 @@ module.exports = base.extend({
       this.fs.copy(
         this.templatePath('Gruntfile.js'),
         this.destinationPath('/Gruntfile.js')
+      );
+      this.fs.copy(
+          this.templatePath('Gulpfile.js'),
+          this.destinationPath('/Gulpfile.js')
+      );
+      this.fs.copy(
+          this.templatePath('phpcs.xml'),
+          this.destinationPath('/phpcs.xml')
       );
     },
 
