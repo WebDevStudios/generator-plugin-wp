@@ -34,9 +34,9 @@ const paths = {
 	'icons': 'assets/images/svg-icons/*.svg',
 	'images': [ 'assets/images/*', '!assets/images/*.svg' ],
 	'php': [ './*.php', './**/*.php' ],
-	'sass': 'assets/sass/**/*.scss',
+	'sass': 'assets/css/sass/*.scss',
 	'concat_scripts': 'assets/scripts/concat/*.js',
-	'scripts': [ 'assets/scripts/*.js', '!assets/scripts/*.min.js' ],
+	'scripts': [ 'assets/scripts/*.js', 'assets/js/*.js', '!assets/scripts/*.min.js' ],
 	'sprites': 'assets/images/sprites/*.png'
 };
 
@@ -250,6 +250,7 @@ gulp.task( 'concat', () =>
 gulp.task( 'uglify', [ 'concat' ], () =>
 	gulp.src( paths.scripts )
 		.pipe( rename( {'suffix': '.min'} ) )
+		.pipe( plumber( {'errorHandler': handleErrors} ) )
 		.pipe( uglify( {
 			'mangle': false
 		} ) )
