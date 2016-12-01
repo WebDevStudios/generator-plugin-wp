@@ -2,21 +2,21 @@
 /**
  * <%= cliname %>
  *
- * @since   NEXT
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
 /**
  * <%= cliname %>.
  *
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> {
 	/**
 	 * Parent plugin class
 	 *
 	 * @var   <%= mainclassname %>
-	 * @since NEXT
+	 * @since <%= version %>
 	 */
 	protected
 	$plugin = null;
@@ -24,7 +24,7 @@ class <%= classname %> {
 	/**
 	 * Constructor
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 *
@@ -51,7 +51,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public
@@ -62,7 +62,7 @@ class <%= classname %> {
 	/**
 	 * Create a method stub for our first CLI command.
 	 *
-	 * @since NEXT
+	 * @since <%= version %>
 	 * @return void
 	 */
 	public

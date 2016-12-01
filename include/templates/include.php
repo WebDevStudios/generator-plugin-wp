@@ -2,28 +2,28 @@
 /**
  * <%= includename %>
  *
- * @since NEXT
+ * @since <%= version %>
  * @package <%= pluginname %>
  */
 
 /**
  * <%= includename %>.
  *
- * @since NEXT
+ * @since <%= version %>
  */
 class <%= classname %> {
 	/**
 	 * Parent plugin class
 	 *
 	 * @var   <%= mainclassname %>
-	 * @since NEXT
+	 * @since <%= version %>
 	 */
 	protected $plugin = null;
 
 	/**
 	 * Constructor
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ class <%= classname %> {
 	/**
 	 * Initiate our hooks
 	 *
-	 * @since  NEXT
+	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function hooks() {
