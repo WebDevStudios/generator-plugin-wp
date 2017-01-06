@@ -28,9 +28,9 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 			$this->hooks();
 		}
 
-    public function hooks() {
-      add_action( 'rest_api_init', array( $this, 'register_routes' ) );
-    }
+	public function hooks() {
+		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+	}
 
 		/**
 	     * Register the routes for the objects of the controller.
