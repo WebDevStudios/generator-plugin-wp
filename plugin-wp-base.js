@@ -31,7 +31,8 @@ module.exports = yeoman.generators.Base.extend({
 	_wpClassPrefix: function( s ) {
 		var words = s.replace( /_/g, ' ' );
 		var letters = words.replace(/[a-z]/g, '');
-		var prefix = letters.replace(/\s/g, '');
+		var hyphens = letters.replace(/\s/g, '');
+		var prefix  = hyphens.replace(/-/g,'');
 		return prefix + '_';
 	},
 
