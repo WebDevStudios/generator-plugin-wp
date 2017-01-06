@@ -7,9 +7,9 @@
  */
 
 <% if ( ! composer ) {
-	%>require_once dirname(__FILE__) . '/../vendor/cpt-core/CPT_Core.php';<%
+	%>require_once dirname( __FILE__ ) . '/../vendor/cpt-core/CPT_Core.php';<%
 	if ( ! options.nocmb2 ) { %>
-<%		%>require_once dirname(__FILE__) . '/../vendor/cmb2/init.php';<%
+<%		%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
 	}
 } %>
 
