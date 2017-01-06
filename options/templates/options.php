@@ -7,7 +7,7 @@
  */
 
 <% if ( ! composer && ! options.nocmb2 ) {
-	%>require_once dirname(__FILE__) . '/../vendor/cmb2/init.php';<%
+	%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
 } %>
 
 /**
