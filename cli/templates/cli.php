@@ -66,7 +66,7 @@ class <%= classname %> {
 	 * @return void
 	 */
 	public
-	function <%= nameslug %>_command(){
+	function <%= nameslug %>_command() {
 
 	}
 }
