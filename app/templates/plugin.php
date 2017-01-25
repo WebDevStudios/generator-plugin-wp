@@ -219,7 +219,7 @@ final class <%= classname %> {
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
-		// bail early if pluginmeets requirements
+		// bail early if plugin meets requirements
 		if ( $this->meets_requirements() ) {
 			return true;
 		}
