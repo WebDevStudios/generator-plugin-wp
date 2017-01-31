@@ -8,8 +8,8 @@ module.exports = yeoman.generators.Base.extend({
 		yeoman.generators.Base.apply(this, arguments);
 
 		updateNotifier({
-				pkg: require('./package.json')
-			}).notify({defer: false});
+			pkg: require('./package.json')
+		}).notify({defer: false});
 	},
 
 	_wpClassify: function( s ) {
@@ -25,7 +25,9 @@ module.exports = yeoman.generators.Base.extend({
 			}
 		}
 
+		result = result.replace('-', '_');
 		return result;
+
 	},
 
 	_wpClassPrefix: function( s ) {
