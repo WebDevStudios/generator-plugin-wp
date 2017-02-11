@@ -199,15 +199,15 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function init() {
-		// bail early if requirements aren't met
+		// Bail early if requirements aren't met.
 		if ( ! $this->check_requirements() ) {
 			return;
 		}
-		
-		// load translated strings for plugin
+
+		// Load translated strings for plugin.
 		load_plugin_textdomain( '<%= slug %>', false, dirname( $this->basename ) . '/languages/' );
 
-		// initialize plugin classes
+		// Initialize plugin classes.
 		$this->plugin_classes();
 	}
 
@@ -219,7 +219,7 @@ final class <%= classname %> {
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
-		// bail early if plugin meets requirements
+		// Bail early if plugin meets requirements.
 		if ( $this->meets_requirements() ) {
 			return true;
 		}
@@ -268,21 +268,21 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function requirements_not_met_notice() {
-		// compile default message
-		$default_message = sprintf( 
-			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), 
-			admin_url( 'plugins.php' ) 
+		// Compile default message.
+		$default_message = sprintf(
+			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ),
+			admin_url( 'plugins.php' )
 		);
-		
-		// default details to null
+
+		// Default details to null.
 		$details = null;
 
-		// add details if any exist
+		// Add details if any exist.
 		if ( ! empty( $this->activation_errors ) && is_array( $this->activation_errors ) ) {
 			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
 		}
 
-		// output errors
+		// Output errors.
 		?>
 		<div id="message" class="error">
 			<p><?php echo $default_message; ?></p>
