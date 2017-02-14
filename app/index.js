@@ -191,10 +191,6 @@ module.exports = base.extend({
         );
       }
       this.fs.copy(
-        this.templatePath('Gruntfile.js'),
-        this.destinationPath('/Gruntfile.js')
-      );
-      this.fs.copy(
           this.templatePath('Gulpfile.js'),
           this.destinationPath('/Gulpfile.js')
       );
