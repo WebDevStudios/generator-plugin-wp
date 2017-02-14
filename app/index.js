@@ -47,7 +47,7 @@ module.exports = base.extend({
       type   : 'input',
       name   : 'homepage',
       message: 'Homepage',
-      default: 'http://webdevstudios.com'
+      default: 'https://webdevstudios.com'
     }, {
       type   : 'input',
       name   : 'description',
@@ -74,7 +74,7 @@ module.exports = base.extend({
       type   : 'input',
       name   : 'authorurl',
       message: 'Author URL',
-      default: 'http://webdevstudios.com',
+      default: 'https://webdevstudios.com',
       save   : true
     }, {
       type   : 'input',
