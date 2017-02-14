@@ -1,7 +1,5 @@
 // Require our dependencies
 const autoprefixer = require( 'autoprefixer' );
-const babel = require( 'gulp-babel' );
-const bourbon = require( 'bourbon' ).includePaths;
 const cheerio = require( 'gulp-cheerio' );
 const concat = require( 'gulp-concat' );
 const cssnano = require( 'gulp-cssnano' );
@@ -9,29 +7,21 @@ const del = require( 'del' );
 const eslint = require( 'gulp-eslint' );
 const gulp = require( 'gulp' );
 const gutil = require( 'gulp-util' );
-const mqpacker = require( 'css-mqpacker' );
-const neat = require( 'bourbon-neat' ).includePaths;
 const notify = require( 'gulp-notify' );
 const plumber = require( 'gulp-plumber' );
 const postcss = require( 'gulp-postcss' );
 const rename = require( 'gulp-rename' );
-const sass = require( 'gulp-sass' );
-const sassLint = require( 'gulp-sass-lint' );
 const sort = require( 'gulp-sort' );
-const sourcemaps = require( 'gulp-sourcemaps' );
 const uglify = require( 'gulp-uglify' );
 const wpPot = require( 'gulp-wp-pot' );
 
 // Set assets paths.
 const paths = {
 	'css': [ './*.css', '!*.min.css' ],
-	'icons': 'assets/images/svg-icons/*.svg',
 	'images': [ 'assets/images/*', '!assets/images/*.svg' ],
 	'php': [ './*.php', './**/*.php' ],
-	'sass': 'assets/css/sass/*.scss',
 	'concat_scripts': 'assets/scripts/concat/*.js',
-	'scripts': [ 'assets/scripts/*.js', 'assets/js/*.js', '!assets/scripts/*.min.js' ],
-	'sprites': 'assets/images/sprites/*.png'
+	'scripts': [ 'assets/scripts/*.js', 'assets/js/*.js', '!assets/scripts/*.min.js' ]
 };
 
 /**
@@ -57,48 +47,6 @@ function handleErrors () {
  */
 gulp.task( 'clean:styles', () =>
 	del( [ 'style.css', 'style.min.css' ] )
-);
-
-/**
- * Compile Sass and run stylesheet through PostCSS.
- *
- * https://www.npmjs.com/package/gulp-sass
- * https://www.npmjs.com/package/gulp-postcss
- * https://www.npmjs.com/package/gulp-autoprefixer
- * https://www.npmjs.com/package/css-mqpacker
- */
-gulp.task( 'postcss', [ 'clean:styles' ], () =>
-	gulp.src( 'assets/sass/*.scss', paths.css )
-
-		// Deal with errors.
-		.pipe( plumber( {'errorHandler': handleErrors} ) )
-
-		// Wrap tasks in a sourcemap.
-		.pipe( sourcemaps.init() )
-
-			// Compile Sass using LibSass.
-			.pipe( sass( {
-				'includePaths': [].concat( bourbon, neat ),
-				'errLogToConsole': true,
-				'outputStyle': 'expanded' // Options: nested, expanded, compact, compressed
-			} ) )
-
-			// Parse with PostCSS plugins.
-			.pipe( postcss( [
-				autoprefixer( {
-					'browsers': [ 'last 2 version' ]
-				} ),
-				mqpacker( {
-					'sort': true
-				} )
-			] ) )
-
-		// Create sourcemap.
-		.pipe( sourcemaps.write() )
-
-		// Create style.css.
-		.pipe( gulp.dest( './' ) )
-		.pipe( browserSync.stream() )
 );
 
 /**
