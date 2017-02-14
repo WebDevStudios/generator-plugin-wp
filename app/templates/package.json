@@ -22,7 +22,6 @@
 		"babel-preset-es2015": "latest",
 		"bourbon": "latest",
 		"bourbon-neat": "latest",
-		"browser-sync": "latest",
 		"css-mqpacker": "latest",
 		"del": "latest",
 		"eslint-config-wordpress": "latest",
@@ -41,13 +40,9 @@
 		"gulp-sass": "latest",
 		"gulp-sass-lint": "latest",
 		"gulp-sort": "latest",
-		"gulp-sourcemaps": "latest",
-		"gulp-svgmin": "latest",
-		"gulp-svgstore": "latest",
 		"gulp-uglify": "latest",
 		"gulp-util": "latest",
-		"gulp-wp-pot": "latest",
-		"gulp.spritesmith": "latest"
+		"gulp-wp-pot": "latest"
 	},
 	"scripts": {
 		"test": "dockunit",
