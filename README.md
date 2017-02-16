@@ -60,6 +60,11 @@ the main folder of your plugin.
 If you don't want tests included in your plugin when it is generated run the
 main generator with the `--notests` option.
 
+## PHP 5.2
+
+By default PHP 5.2 is not supported in the generated plugin. To generate a plugin
+with PHP 5.2 support, run the main generator with the `--php52` option.
+
 ### Adding Packages with Composer
 
 If you chose composer as the autoloader option during the plugin's initiation,

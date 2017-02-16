@@ -14,20 +14,21 @@
 	"type": "wordpress-plugin",
 	"autoload": {
 		"classmap": ["<%= slug %>.php", "includes/"]
-	},
+	}<%if (php52) { %>,
 	"require": {
 		"php": ">=5.2",
 		"xrstf/composer-php52": "1.*"
 	},
 	"scripts": {
-        "post-install-cmd": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ],
-        "post-update-cmd": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ],
-        "post-autoload-dump": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ]
-    }
+    "post-install-cmd": [
+        "xrstf\\Composer52\\Generator::onPostInstallCmd"
+    ],
+    "post-update-cmd": [
+        "xrstf\\Composer52\\Generator::onPostInstallCmd"
+    ],
+    "post-autoload-dump": [
+        "xrstf\\Composer52\\Generator::onPostInstallCmd"
+    ]
+  }
+  <% } %>
 }
