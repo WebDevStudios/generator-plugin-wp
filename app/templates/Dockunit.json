@@ -10,7 +10,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 7.0 FPM WordPress 4.3",
+         "prettyName":"PHP 7.0 FPM WordPress 4.7",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-7.0-rc-4-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -19,7 +19,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 7.0 FPM WordPress 4.3",
+         "prettyName":"PHP 7.0 FPM WordPress 4.6",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-7.0-rc-4-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -28,7 +28,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 7.0 FPM WordPress 4.3",
+         "prettyName":"PHP 7.0 FPM WordPress 4.5",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-7.0-rc-4-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -37,7 +37,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 7.0 FPM WordPress 4.3",
+         "prettyName":"PHP 7.0 FPM WordPress 4.4",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-7.0-rc-4-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -64,7 +64,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 5.6 FPM WordPress 4.3",
+         "prettyName":"PHP 5.6 FPM WordPress 4.7",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-5.6-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -73,7 +73,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 5.6 FPM WordPress 4.3",
+         "prettyName":"PHP 5.6 FPM WordPress 4.6",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-5.6-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -82,7 +82,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 5.6 FPM WordPress 4.3",
+         "prettyName":"PHP 5.6 FPM WordPress 4.5",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-5.6-fpm",
          "beforeScripts":[
             "service mysql start",
@@ -91,7 +91,7 @@
          "testCommand":"phpunit"
       },
       {
-         "prettyName":"PHP 5.6 FPM WordPress 4.3",
+         "prettyName":"PHP 5.6 FPM WordPress 4.4",
          "image":"dockunit/prebuilt-images:php-mysql-phpunit-wordpress-5.6-fpm",
          "beforeScripts":[
             "service mysql start",
