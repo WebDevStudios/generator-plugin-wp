@@ -22,7 +22,7 @@ describe('plugin-wp:app', function () {
       'package.json',
       '.bowerrc',
       '.gitignore',
-      'Gruntfile.js',
+      'Gulpfile.js',
       'README.md',
       'test-plugin-name.php',
       'assets/README.md',
