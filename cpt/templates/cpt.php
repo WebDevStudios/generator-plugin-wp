@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= cptname %>
+ * <%= cptname %>.
  *
  * @since <%= version %>
  * @package <%= pluginname %>

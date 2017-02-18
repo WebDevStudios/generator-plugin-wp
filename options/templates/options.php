@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= optionsname %>
+ * <%= optionsname %>.
  *
  * @since <%= version %>
  * @package <%= pluginname %>
@@ -16,8 +16,9 @@
  * @since <%= version %>
  */
 class <%= classname %> {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var    <%= mainclassname %>
 	 * @since  <%= version %>
@@ -25,7 +26,7 @@ class <%= classname %> {
 	protected $plugin = null;
 
 	/**
-	 * Option key, and option page slug
+	 * Option key, and option page slug.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -33,7 +34,7 @@ class <%= classname %> {
 	protected $key = '<%= optionsprefix %>';
 
 	/**
-	 * Options page metabox id
+	 * Options page metabox id.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -41,7 +42,7 @@ class <%= classname %> {
 	protected $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
-	 * Options Page title
+	 * Options Page title.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -49,17 +50,17 @@ class <%= classname %> {
 	protected $title = '';
 
 	/**
-	 * Options Page hook
+	 * Options Page hook.
+	 *
 	 * @var string
 	 */
 	protected $options_page = '';
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -69,10 +70,9 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -81,20 +81,18 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Register our setting to WP
+	 * Register our setting to WP.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function admin_init() {
 		register_setting( $this->key, $this->key );
 	}
 
 	/**
-	 * Add menu options page
+	 * Add menu options page.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page(
@@ -110,17 +108,18 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Admin page markup. Mostly handled by CMB2
+	 * Admin page markup. Mostly handled by CMB2.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function admin_page_display() {
 		?>
+
 		<div class="wrap cmb2-options-page <?php echo esc_attr( $this->key ); ?>">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2><% if ( ! options.nocmb2 ) { %>
 			<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?><% } %>
 		</div>
+
 		<?php
 	}<% if ( ! options.nocmb2 ) { %>
 
@@ -128,23 +127,21 @@ class <%= classname %> {
 	 * Add custom fields to the options page.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function add_options_page_metabox() {
-
 		$cmb = new_cmb2_box( array(
 			'id'         => $this->metabox_id,
 			'hookup'     => false,
 			'cmb_styles' => false,
 			'show_on'    => array(
+
 				// These are important, don't remove.
 				'key'   => 'options-page',
 				'value' => array( $this->key ),
 			),
 		) );
 
-		/*
-		Add your fields here
+		/* Add your fields here:
 
 		$cmb->add_field( array(
 			'name'    => __( 'Test Text', 'myprefix' ),
@@ -153,7 +150,7 @@ class <%= classname %> {
 			'type'    => 'text',
 			'default' => __( 'Default Text', 'myprefix' ),
 		) );
-		*/
 
+		*/
 	}<% } %>
 }
