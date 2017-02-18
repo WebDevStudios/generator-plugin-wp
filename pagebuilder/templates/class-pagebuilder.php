@@ -72,7 +72,7 @@ class <%= classname %> {
 		 */
 		$filtered = apply_filters( '<%= prefix %>_get_template_part_dir', $default );
 
-		if ( is_string ( $filtered ) ) {
+		if ( is_string( $filtered ) ) {
 			return $filtered;
 		}
 

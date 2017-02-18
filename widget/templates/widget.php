@@ -75,7 +75,6 @@ class <%= classname %> extends WP_Widget {
 		add_shortcode( self::$shortcode, array( __CLASS__, 'get_widget' ) );
 	}
 
-
 	/**
 	 * Delete this widget's cache.
 	 *
@@ -107,7 +106,6 @@ class <%= classname %> extends WP_Widget {
 			'text'          => $instance['text'],
 		) );
 	}
-
 
 	/**
 	 * Return the widget/shortcode output.
