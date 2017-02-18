@@ -12,6 +12,11 @@ module.exports = base.extend({
     base.apply(this, arguments);
 
     this.option('notests');
+    this.option('php52', {
+      type: Boolean,
+      required: false,
+      desc: 'Include PHP 5.2 support'
+    });
   },
 
   initializing: function () {
@@ -126,6 +131,7 @@ module.exports = base.extend({
       this.prefix      = this._.underscored( props.prefix );
       this.year        = new Date().getFullYear();
       this.autoloader  = props.autoloader;
+      this.php52       = this.options.php52;
 
       done();
     }.bind(this));
