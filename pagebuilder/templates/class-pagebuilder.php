@@ -25,6 +25,7 @@ class <%= classname %> {
 	 * Constructor.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 */
 	public function __construct( $plugin ) {
@@ -56,6 +57,7 @@ class <%= classname %> {
 	 * This function needs to be in the global scope to work properly.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @return string Absolute path to template parts directory.
 	 */
 	public function get_template_part_dir() {

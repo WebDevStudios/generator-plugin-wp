@@ -2,7 +2,7 @@
 /**
  * <%= cptname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -16,16 +16,16 @@
 /**
  * <%= cptname %> post type class.
  *
- * @see https://github.com/WebDevStudios/CPT_Core
  * @since <%= version %>
+ * @see   https://github.com/WebDevStudios/CPT_Core
  */
 class <%= classname %> extends CPT_Core {
 
 	/**
 	 * Parent plugin class.
 	 *
-	 * @var <%= mainclassname %>
 	 * @since  <%= version %>
+	 * @var    <%= mainclassname %>
 	 */
 	protected $plugin = null;
 
@@ -37,6 +37,7 @@ class <%= classname %> extends CPT_Core {
 	 * See documentation in `CPT_Core`, and in `wp-includes/post.php`.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 */
 	public function __construct( $plugin ) {
@@ -82,6 +83,7 @@ class <%= classname %> extends CPT_Core {
 	 * Registers admin columns to display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $columns Array of registered column names/labels.
 	 * @return array          Modified array.
 	 */
@@ -93,7 +95,8 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
-	 * @since  <%= version %>
+	 * @since <%= version %>
+	 *
 	 * @param array $column  Column currently being rendered.
 	 * @param int   $post_id ID of post to display column for.
 	 */

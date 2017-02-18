@@ -11,10 +11,10 @@
  * Text Domain: <%= slug %>
  * Domain Path: /languages
  *
- * @link    <%= homepage %>
+ * @link        <%= homepage %>
  *
- * @package <%= name %>
- * @version <%= version %>
+ * @package     <%= name %>
+ * @version     <%= version %>
  */
 
 /**
@@ -36,37 +36,41 @@
  */
 
 /**
- * Built using generator-plugin-wp
+ * Built using generator-plugin-wp.
  */
 
 <% if ( autoloader == 'Basic' ) { %>
 /**
- * Autoloads files with classes when needed
+ * Autoloads files with classes when needed.
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested.
- * @return void
+ * @return void               Early exit if class name does not follow standards.
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
 	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
+
+		// Your class must contain the right prefix, but it must not.
 		return;
 	}
 
-	$filename = strtolower( str_replace(
-		'_', '-',
-		substr( $class_name, strlen( '<%= classprefix %>' ) )
-	) );
+	// Generate a filename.
+	$filename = strtolower( str_replace( '_', '-', substr( $class_name, strlen( '<%= classprefix %>' ) ) ) );
 
+	// Include the filename.
 	<%= classname %>::include_file( 'includes/class-' . $filename );
 }
 spl_autoload_register( '<%= prefix %>_autoload_classes' );
 <% } else if ( autoloader == 'Composer' ) { %>
+
 // User composer autoload.
 require 'vendor/autoload_52.php';
 <% } else { %>
+
 // Include additional php files here.
 // require 'includes/admin.php';
 <% } %>
+
 /**
  * Main initiation class.
  *
@@ -77,47 +81,48 @@ final class <%= classname %> {
 	/**
 	 * Current version.
 	 *
-	 * @var  string
 	 * @since  <%= version %>
+	 * @var    string
 	 */
 	const VERSION = '<%= version %>';
 
 	/**
 	 * URL of plugin directory.
 	 *
-	 * @var string
 	 * @since  <%= version %>
+	 * @var    string
 	 */
 	protected $url = '';
 
 	/**
 	 * Path of plugin directory.
 	 *
-	 * @var string
 	 * @since  <%= version %>
+	 * @var    string
 	 */
 	protected $path = '';
 
 	/**
 	 * Plugin basename.
 	 *
-	 * @var string
 	 * @since  <%= version %>
+	 * @var    string
 	 */
 	protected $basename = '';
 
 	/**
 	 * Detailed activation error messages.
 	 *
-	 * @var array
 	 * @since  <%= version %>
+	 *
+	 * @var    array
 	 */
 	protected $activation_errors = array();
 
 	/**
 	 * Singleton instance of plugin.
 	 *
-	 * @var <%= classname %>
+	 * @var    <%= classname %>
 	 * @since  <%= version %>
 	 */
 	protected static $single_instance = null;
@@ -126,6 +131,7 @@ final class <%= classname %> {
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @return <%= classname %> A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -224,7 +230,8 @@ final class <%= classname %> {
 	 * Disables the plugin if requirements are not met.
 	 *
 	 * @since  <%= version %>
-	 * @return boolean result of `meets_requirements()`.
+	 *
+	 * @return boolean Result of `meets_requirements()`.
 	 */
 	public function check_requirements() {
 
@@ -262,6 +269,7 @@ final class <%= classname %> {
 	 * Check that all plugin requirements are met.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @return boolean True if requirements are met.
 	 */
 	public function meets_requirements() {
@@ -310,9 +318,11 @@ final class <%= classname %> {
 	 * Magic getter for our object.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $field Field to get.
+	 *
 	 * @throws Exception Throws an exception if the field is invalid.
-	 * @return mixed
+	 * @return mixed     Value of the field.
 	 */
 	public function __get( $field ) {
 		switch ( $field ) {
@@ -331,8 +341,9 @@ final class <%= classname %> {
 	 * Include a file from the includes directory.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $filename Name of the file to be included.
-	 * @return bool   Result of include call.
+	 * @return bool             Result of include call.
 	 */
 	public static function include_file( $filename ) {
 		$file = self::dir( $filename . '.php' );
@@ -348,6 +359,7 @@ final class <%= classname %> {
 	 * This plugin's directory.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $path (Optional) Appended path.
 	 * @return string       Directory and path.
 	 */
@@ -361,6 +373,7 @@ final class <%= classname %> {
 	 * This plugin's URL.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $path (Optional) Appended path.
 	 * @return string       URL and path.
 	 */
@@ -377,6 +390,7 @@ final class <%= classname %> {
  * Wrapper for `<%= classname %>::get_instance()`.
  *
  * @since  <%= version %>
+ *
  * @return <%= classname %>  Singleton instance of plugin class.
  */
 function <%= prefix %>() {

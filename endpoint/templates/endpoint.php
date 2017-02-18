@@ -2,7 +2,7 @@
 /**
  * <%= includename %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -18,8 +18,8 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		/**
 		 * Parent plugin class.
 		 *
-		 * @var   <%= mainclassname %>
 		 * @since <%= version %>
+		 * @var   <%= mainclassname %>
 		 */
 		protected $plugin = null;
 
@@ -27,6 +27,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * Constructor.
 		 *
 		 * @since  <%= version %>
+		 *
 		 * @param  <%= mainclassname %> $plugin Main plugin object.
 		 */
 		public function __construct( $plugin ) {

@@ -2,7 +2,7 @@
 /**
  * <%= includename %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -16,8 +16,8 @@ class <%= classname %> {
 	/**
 	 * Parent plugin class.
 	 *
-	 * @var   <%= mainclassname %>
 	 * @since <%= version %>
+	 * @var   <%= mainclassname %>
 	 */
 	protected $plugin = null;
 
@@ -25,6 +25,7 @@ class <%= classname %> {
 	 * Constructor.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 */
 	public function __construct( $plugin ) {
