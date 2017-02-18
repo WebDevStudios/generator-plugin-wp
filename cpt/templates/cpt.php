@@ -20,8 +20,9 @@
  * @since <%= version %>
  */
 class <%= classname %> extends CPT_Core {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var <%= mainclassname %>
 	 * @since  <%= version %>
@@ -29,19 +30,24 @@ class <%= classname %> extends CPT_Core {
 	protected $plugin = null;
 
 	/**
-	 * Constructor
-	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+	 * Constructor.
+	 *
+	 * Register Custom Post Types.
+	 *
+	 * See documentation in `CPT_Core`, and in `wp-includes/post.php`.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		// Register this cpt
-		// First parameter should be an array with Singular, Plural, and Registered name.
+		/*
+		 * Register this CPT.
+		 *
+		 * First parameter should be an array with Singular, Plural, and Registered name.
+		 */
 		parent::__construct(
 			array( __( '<%= cptname %>', '<%= slug %>' ), __( '<%= cptname %>s', '<%= slug %>' ), '<%= cptslug %>' ),
 			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ) )
@@ -49,20 +55,18 @@ class <%= classname %> extends CPT_Core {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {<% if ( ! options.nocmb2 ) { %>
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
 	}
 
 	/**
-	 * Add custom fields to the CPT
+	 * Add custom fields to the CPT.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function fields() {
 		$prefix = '<%= cptprefix %>_';
@@ -79,7 +83,7 @@ class <%= classname %> extends CPT_Core {
 	 *
 	 * @since  <%= version %>
 	 * @param  array $columns Array of registered column names/labels.
-	 * @return array          Modified array
+	 * @return array          Modified array.
 	 */
 	public function columns( $columns ) {
 		$new_column = array();
