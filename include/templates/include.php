@@ -12,8 +12,9 @@
  * @since <%= version %>
  */
 class <%= classname %> {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var   <%= mainclassname %>
 	 * @since <%= version %>
@@ -21,11 +22,10 @@ class <%= classname %> {
 	protected $plugin = null;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -33,10 +33,9 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 	}
