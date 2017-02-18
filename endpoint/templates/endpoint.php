@@ -7,9 +7,16 @@
  */
 
 if ( class_exists( 'WP_REST_Controller' ) ) {
+
+	/**
+	 * Endpoint class.
+	 *
+	 * @since  <%= version %>
+	 */
 	class <%= classname %> extends WP_REST_Controller {
+
 		/**
-		 * Parent plugin class
+		 * Parent plugin class.
 		 *
 		 * @var   <%= mainclassname %>
 		 * @since <%= version %>
@@ -17,27 +24,30 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		protected $plugin = null;
 
 		/**
-		 * Constructor
+		 * Constructor.
 		 *
 		 * @since  <%= version %>
 		 * @param  <%= mainclassname %> $plugin Main plugin object.
-		 * @return void
 		 */
 		public function __construct( $plugin ) {
 			$this->plugin = $plugin;
 			$this->hooks();
 		}
 
-	public function hooks() {
-		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
-	}
+		/**
+		 * Hooks.
+		 *
+		 * @since <%= version %>
+		 */
+		public function hooks() {
+			add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+		}
 
 		/**
-	     * Register the routes for the objects of the controller.
-	     *
-	     * @since  <%= version %>
-		 * @return void
-	     */
+		* Register the routes for the objects of the controller.
+		*
+		* @since  <%= version %>
+		*/
 		public function register_routes() {
 			$version = '1';
 			$namespace = '<%= pluginslug %>/v' . $version;
@@ -61,35 +71,36 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 					'callback'        => array( $this, 'get_item' ),
 					'permission_callback' => array( $this, 'get_item_permissions_check' ),
 					'args'            => array(
-			            'context'       => array(
-			                'default'     => 'view',
-			            ),
-			        ),
-			    ),
-		        array(
-		          'methods'         => WP_REST_Server::EDITABLE,
-		          'callback'        => array( $this, 'update_item' ),
-		          'permission_callback' => array( $this, 'update_item_permissions_check' ),
-		          'args'            => $this->get_endpoint_args_for_item_schema( false ),
-		        ),
-		        array(
-		          'methods'  => WP_REST_Server::DELETABLE,
-		          'callback' => array( $this, 'delete_item' ),
-		          'permission_callback' => array( $this, 'delete_item_permissions_check' ),
-		          'args'     => array(
-		            'force'    => array(
-		              'default'  => false,
-		            ),
-		          ),
-		        ),
-		    ) );
+									'context'       => array(
+											'default'     => 'view',
+									),
+							),
+					),
+						array(
+							'methods'         => WP_REST_Server::EDITABLE,
+							'callback'        => array( $this, 'update_item' ),
+							'permission_callback' => array( $this, 'update_item_permissions_check' ),
+							'args'            => $this->get_endpoint_args_for_item_schema( false ),
+						),
+						array(
+							'methods'  => WP_REST_Server::DELETABLE,
+							'callback' => array( $this, 'delete_item' ),
+							'permission_callback' => array( $this, 'delete_item_permissions_check' ),
+							'args'     => array(
+								'force'    => array(
+									'default'  => false,
+								),
+							),
+						),
+				) );
 
-		    register_rest_route( $namespace, '/' . $base . '/schema', array(
-		      'methods'         => WP_REST_Server::READABLE,
-		      'callback'        => array( $this, 'get_public_item_schema' ),
-		    ) );
+				register_rest_route( $namespace, '/' . $base . '/schema', array(
+					'methods'         => WP_REST_Server::READABLE,
+					'callback'        => array( $this, 'get_public_item_schema' ),
+				) );
 
-		    */
+				*/
 		}
 	}
-}
+
+} // End if().
