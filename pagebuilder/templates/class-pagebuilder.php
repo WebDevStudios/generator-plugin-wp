@@ -2,7 +2,7 @@
 /**
  * <%= pluginname %> Page Builder.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 

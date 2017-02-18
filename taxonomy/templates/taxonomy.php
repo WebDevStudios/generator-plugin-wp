@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= taxonomyname %>
+ * <%= taxonomyname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -20,21 +20,24 @@
  * @since <%= version %>
  */
 class <%= classname %> extends Taxonomy_Core {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
-	 * @var <%= mainclassname %>
+	 * @var    <%= mainclassname %>
 	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
 
 	/**
-	 * Constructor
-	 * Register Taxonomy. See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php
+	 * Constructor.
 	 *
-	 * @since <%= version %>
+	 * Registers Taxonomy.
+	 *
+	 * See documentation in `Taxonomy_Core`, and in `wp-includes/taxonomy.php`.
+	 *
+	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -52,10 +55,9 @@ class <%= classname %> extends Taxonomy_Core {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 	}
