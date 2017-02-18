@@ -60,9 +60,12 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 	<%= classname %>::include_file( 'includes/class-' . $filename );
 }
 spl_autoload_register( '<%= prefix %>_autoload_classes' );
+<% } else if ( autoloader == 'Composer' && php52 ) { %>
+// User composer autoload with PHP 5.2 compatibility.
+require 'vendor/autoload_52.php';
 <% } else if ( autoloader == 'Composer' ) { %>
 // User composer autoload.
-require 'vendor/autoload_52.php';
+require 'vendor/autoload.php';
 <% } else { %>
 // Include additional php files here.
 // require 'includes/admin.php';
