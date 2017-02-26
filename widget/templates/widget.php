@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= widgetname %>
+ * <%= widgetname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -18,49 +18,45 @@ class <%= classname %> extends WP_Widget {
 	 *
 	 * Will also serve as the widget class.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $widget_slug = '<%= widgetslug %>';
 
-
 	/**
 	 * Widget name displayed in Widgets dashboard.
-	 * Set in __construct since __() shouldn't take a variable.
 	 *
-	 * @var string
+	 * Set in `__construct` since `__()` shouldn't take a variable.
+	 *
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $widget_name = '';
 
-
 	/**
 	 * Default widget title displayed in Widgets dashboard.
-	 * Set in __construct since __() shouldn't take a variable.
 	 *
-	 * @var string
+	 * Set in `__construct` since `__()` shouldn't take a variable.
+	 *
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $default_widget_title = '';
 
-
 	/**
-	 * Shortcode name for this widget
+	 * Shortcode name for this widget.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected static $shortcode = '<%= widgetslug %>';
-
 
 	/**
 	 * Construct widget class.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function __construct() {
-
 		$this->widget_name          = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 		$this->default_widget_title = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 
@@ -79,28 +75,26 @@ class <%= classname %> extends WP_Widget {
 		add_shortcode( self::$shortcode, array( __CLASS__, 'get_widget' ) );
 	}
 
-
 	/**
 	 * Delete this widget's cache.
 	 *
-	 * Note: Could also delete any transients
-	 * delete_transient( 'some-transient-generated-by-this-widget' );
+	 * Note: Could also delete any transients, e.g:
+	 *
+	 *     delete_transient( 'some-transient-generated-by-this-widget' );
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function flush_widget_cache() {
 		wp_cache_delete( $this->widget_slug, 'widget' );
 	}
 
-
 	/**
 	 * Front-end display of widget.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $args     The widget arguments set up when a sidebar is registered.
 	 * @param  array $instance The widget settings as set by user.
-	 * @return void
 	 */
 	public function widget( $args, $instance ) {
 		echo self::get_widget( array(
@@ -113,13 +107,13 @@ class <%= classname %> extends WP_Widget {
 		) );
 	}
 
-
 	/**
-	 * Return the widget/shortcode output
+	 * Return the widget/shortcode output.
 	 *
 	 * @since  <%= version %>
-	 * @param  array $atts Array of widget/shortcode attributes/args.
-	 * @return string       Widget output
+	 *
+	 * @param  array $atts  Array of widget/shortcode attributes/args.
+	 * @return string       Widget output.
 	 */
 	public static function get_widget( $atts ) {
 		$widget = '';
@@ -152,11 +146,11 @@ class <%= classname %> extends WP_Widget {
 		return $widget;
 	}
 
-
 	/**
 	 * Update form values as they are saved.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $new_instance New settings for this instance as input by the user.
 	 * @param  array $old_instance Old settings for this instance.
 	 * @return array               Settings to save or bool false to cancel saving.
@@ -182,13 +176,12 @@ class <%= classname %> extends WP_Widget {
 		return $instance;
 	}
 
-
 	/**
 	 * Back-end widget form with defaults.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $instance Current settings.
-	 * @return void
 	 */
 	public function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance,
@@ -196,25 +189,25 @@ class <%= classname %> extends WP_Widget {
 				'title' => $this->default_widget_title,
 				'text'  => '',
 			)
-		);
+		); ?>
 
-		?>
 		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', '<%= slug %>' ); ?></label>
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" /></p>
 
 		<p><label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'Text:', '<%= slug %>' ); ?></label>
 		<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea></p>
 		<p class="description"><?php esc_html_e( 'Basic HTML tags are allowed.', '<%= slug %>' ); ?></p>
+
 		<?php
 	}
 }
 
-
 /**
- * Register this widget with WordPress. Can also move this function to the parent plugin.
+ * Register this widget with WordPress.
+ *
+ * Can also move this function to the parent plugin.
  *
  * @since  <%= version %>
- * @return void
  */
 function <%= widgetregister %>() {
 	register_widget( '<%= classname %>' );

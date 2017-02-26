@@ -15,7 +15,7 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 		$this->assertTrue( <%= rc.prefix %>()-><%= nameslug %> instanceof <%= classname %> );
 	}
 
-  function test_cpt_exists() {
-    $this->assertTrue( post_type_exists( '<%= cptslug %>' ) );
-  }
+	function test_cpt_exists() {
+		$this->assertTrue( post_type_exists( '<%= cptslug %>' ) );
+	}
 }

@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= cptname %>
+ * <%= cptname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
@@ -16,32 +16,39 @@
 /**
  * <%= cptname %> post type class.
  *
- * @see https://github.com/WebDevStudios/CPT_Core
  * @since <%= version %>
+ * @see   https://github.com/WebDevStudios/CPT_Core
  */
 class <%= classname %> extends CPT_Core {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
-	 * @var <%= mainclassname %>
 	 * @since  <%= version %>
+	 * @var    <%= mainclassname %>
 	 */
 	protected $plugin = null;
 
 	/**
-	 * Constructor
-	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+	 * Constructor.
+	 *
+	 * Register Custom Post Types.
+	 *
+	 * See documentation in `CPT_Core`, and in `wp-includes/post.php`.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		// Register this cpt
-		// First parameter should be an array with Singular, Plural, and Registered name.
+		/*
+		 * Register this CPT.
+		 *
+		 * First parameter should be an array with Singular, Plural, and Registered name.
+		 */
 		parent::__construct(
 			array( __( '<%= cptname %>', '<%= slug %>' ), __( '<%= cptname %>s', '<%= slug %>' ), '<%= cptslug %>' ),
 			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ) )
@@ -49,20 +56,18 @@ class <%= classname %> extends CPT_Core {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {<% if ( ! options.nocmb2 ) { %>
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
 	}
 
 	/**
-	 * Add custom fields to the CPT
+	 * Add custom fields to the CPT.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function fields() {
 		$prefix = '<%= cptprefix %>_';
@@ -78,8 +83,9 @@ class <%= classname %> extends CPT_Core {
 	 * Registers admin columns to display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $columns Array of registered column names/labels.
-	 * @return array          Modified array
+	 * @return array          Modified array.
 	 */
 	public function columns( $columns ) {
 		$new_column = array();
@@ -89,7 +95,8 @@ class <%= classname %> extends CPT_Core {
 	/**
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
-	 * @since  <%= version %>
+	 * @since <%= version %>
+	 *
 	 * @param array $column  Column currently being rendered.
 	 * @param int   $post_id ID of post to display column for.
 	 */

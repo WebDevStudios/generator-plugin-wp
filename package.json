@@ -24,10 +24,10 @@
     "widget",
     "cpt",
     "options",
-	"taxonomy",
-	"pagebuilder",
-	"endpoint",
-	"cli",
+    "taxonomy",
+    "pagebuilder",
+    "endpoint",
+    "cli",
     "plugin-wp-base.js"
   ],
   "keywords": [
@@ -42,6 +42,8 @@
   },
   "devDependencies": {
     "fs-extra": "^0.16.5",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-cssmin": "^2.0.0",
     "mocha": "*"
   }
 }

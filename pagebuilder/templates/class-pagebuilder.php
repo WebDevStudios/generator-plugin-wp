@@ -1,17 +1,20 @@
 <?php
 /**
- * <%= pluginname %> Page Builder
+ * <%= pluginname %> Page Builder.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= pluginname %>
  */
 
 /**
- * WDS Simple Page Builder Class
+ * WDS Simple Page Builder Class.
+ *
+ * @since <%= version %>
  */
 class <%= classname %> {
+
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var   <%= mainclassname %>
 	 * @since <%= version %>
@@ -19,11 +22,11 @@ class <%= classname %> {
 	protected $plugin = null;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -31,10 +34,9 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 		add_action( 'spb_init', array( $this, 'load_pagebuilder_parts' ) );
@@ -44,7 +46,6 @@ class <%= classname %> {
 	 * Registers our parts directory in the Page Builder template stack.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function load_pagebuilder_parts() {
 		spb_register_template_stack( array( $this, 'get_template_part_dir' ), 10 );
@@ -52,17 +53,29 @@ class <%= classname %> {
 
 	/**
 	 * Register our plugin's template parts directory.
+	 *
 	 * This function needs to be in the global scope to work properly.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @return string Absolute path to template parts directory.
 	 */
 	public function get_template_part_dir() {
+
+		// The absolute path to the template parts directory.
+		$default = $this->plugin->path . '<%= partsdir %>/';
+
 		/**
 		 * Filters the absolute path of the template location.
 		 *
-		 * @param string The absolute path of the template package in use.
+		 * @var   string Absolute path to template parts directory.
 		 */
-		return apply_filters( '<%= prefix %>_get_template_part_dir', $this->plugin->path . '<%= partsdir %>/' );
+		$filtered = apply_filters( '<%= prefix %>_get_template_part_dir', $default );
+
+		if ( is_string( $filtered ) ) {
+			return $filtered;
+		}
+
+		return $default;
 	}
 }
