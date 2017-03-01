@@ -3,7 +3,7 @@
  * <%= pluginname %> Page Builder
  *
  * @since <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 /**

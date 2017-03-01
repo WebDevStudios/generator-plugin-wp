@@ -3,7 +3,7 @@
  * <%= cliname %>
  *
  * @since   <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 /**

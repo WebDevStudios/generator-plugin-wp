@@ -3,7 +3,7 @@
  * <%= widgetname %>
  *
  * @since <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 /**

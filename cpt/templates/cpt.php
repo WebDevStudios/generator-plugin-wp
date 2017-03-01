@@ -3,7 +3,7 @@
  * <%= cptname %>
  *
  * @since <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 <% if ( ! composer ) {

@@ -13,7 +13,7 @@
  *
  * @link <%= homepage %>
  *
- * @package <%= name %>
+ * @package <%= mainclassname %>
  * @version <%= version %>
  */
 

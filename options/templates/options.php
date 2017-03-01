@@ -3,7 +3,7 @@
  * <%= optionsname %>
  *
  * @since <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 <% if ( ! composer && ! options.nocmb2 ) {

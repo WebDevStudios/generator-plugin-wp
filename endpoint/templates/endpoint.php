@@ -3,7 +3,7 @@
  * <%= includename %>
  *
  * @since <%= version %>
- * @package <%= pluginname %>
+ * @package <%= mainclassname %>
  */
 
 if ( class_exists( 'WP_REST_Controller' ) ) {
