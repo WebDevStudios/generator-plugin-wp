@@ -63,12 +63,5 @@ module.exports = base.extend({
   },
 
   install: function () {
-    if ( !this.options['skip-install'] ) {
-      if ( this.type === 'SASS' ) {
-        this.npmInstall(['grunt-sass'], { 'saveDev': true });
-      }
-      this.npmInstall(['grunt-contrib-cssmin'], { 'saveDev': true });
-      this.npmInstall(['grunt-banner'], { 'saveDev': true });
-    }
   }
 });
