@@ -16,8 +16,9 @@
 /**
  * <%= cptname %> post type class.
  *
- * @see   https://github.com/WebDevStudios/CPT_Core
  * @since <%= version %>
+ *
+ * @see   https://github.com/WebDevStudios/CPT_Core
  */
 class <%= classname %> extends CPT_Core {
 	/**
@@ -38,7 +39,6 @@ class <%= classname %> extends CPT_Core {
 	 * @since  <%= version %>
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -67,7 +67,6 @@ class <%= classname %> extends CPT_Core {
 	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {<% if ( ! options.nocmb2 ) { %>
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
@@ -77,7 +76,6 @@ class <%= classname %> extends CPT_Core {
 	 * Add custom fields to the CPT.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function fields() {
 
@@ -108,8 +106,8 @@ class <%= classname %> extends CPT_Core {
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
-	 * @param array $column  Column currently being rendered.
-	 * @param int   $post_id ID of post to display column for.
+	 * @param array   $column   Column currently being rendered.
+	 * @param integer $post_id  ID of post to display column for.
 	 */
 	public function columns_display( $column, $post_id ) {
 		switch ( $column ) {

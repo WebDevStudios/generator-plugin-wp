@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= taxonomyname %>
+ * <%= taxonomyname %>.
  *
  * @since <%= version %>
  * @package <%= mainclassname %>
@@ -14,7 +14,7 @@
 } %>
 
 /**
- * <%= taxonomyname %> class.
+ * <%= taxonomyname %>.
  *
  * @see https://github.com/WebDevStudios/Taxonomy_Core
  * @since <%= version %>

@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= optionsname %>
+ * <%= optionsname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= mainclassname %>
  */
 
@@ -50,6 +50,7 @@ class <%= classname %> {
 
 	/**
 	 * Options Page hook.
+	 *
 	 * @var string
 	 */
 	protected $options_page = '';
@@ -58,8 +59,8 @@ class <%= classname %> {
 	 * Constructor.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -73,9 +74,10 @@ class <%= classname %> {
 	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
+
+		// Hook in our actions to the admin.
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
 		<% if ( ! options.nocmb2 ) { %>
@@ -87,7 +89,6 @@ class <%= classname %> {
 	 * Register our setting to WP.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function admin_init() {
 		register_setting( $this->key, $this->key );
@@ -97,7 +98,6 @@ class <%= classname %> {
 	 * Add menu options page.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page(
@@ -116,7 +116,6 @@ class <%= classname %> {
 	 * Admin page markup. Mostly handled by CMB2.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function admin_page_display() {
 		?>
@@ -131,7 +130,6 @@ class <%= classname %> {
 	 * Add custom fields to the options page.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function add_options_page_metabox() {
 
@@ -146,7 +144,6 @@ class <%= classname %> {
 				'value' => array( $this->key ),
 			),
 		) );
-
 
 		// Add your fields here.
 		$cmb->add_field( array(

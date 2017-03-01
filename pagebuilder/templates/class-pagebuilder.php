@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= pluginname %> Page Builder
+ * <%= pluginname %> Page Builder.
  *
  * @since <%= version %>
  * @package <%= mainclassname %>

@@ -2,7 +2,7 @@
 /**
  * <%= includename %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= mainclassname %>
  */
 
@@ -27,7 +27,6 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
@@ -38,7 +37,6 @@ class <%= classname %> {
 	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 

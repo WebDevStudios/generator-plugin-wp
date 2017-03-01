@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= cliname %>
+ * <%= cliname %>.
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>

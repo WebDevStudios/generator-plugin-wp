@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= includename %>
+ * <%= includename %>.
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>
