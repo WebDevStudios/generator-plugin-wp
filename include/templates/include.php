@@ -39,5 +39,6 @@ class <%= classname %> {
 	 * @return void
 	 */
 	public function hooks() {
+
 	}
 }

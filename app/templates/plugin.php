@@ -237,6 +237,7 @@ final class <%= classname %> {
 		// Deactivate our plugin.
 		add_action( 'admin_init', array( $this, 'deactivate_me' ) );
 
+		// Didn't meet the requirements.
 		return false;
 	}
 
@@ -265,8 +266,7 @@ final class <%= classname %> {
 
 		// Do checks for required classes / functions
 		// function_exists('') & class_exists('').
-		// We have met all requirements.
-		// Add detailed messages to $this->activation_errors array
+		// Add detailed messages to $this->activation_errors array.
 		return true;
 	}
 
