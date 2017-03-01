@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= includename %>
+ * <%= includename %>.
  *
  * @since <%= version %>
  * @package <%= mainclassname %>
@@ -15,8 +15,9 @@ class <%= classname %> {
 	/**
 	 * Parent plugin class.
 	 *
-	 * @var   <%= mainclassname %>
 	 * @since <%= version %>
+	 *
+	 * @var   <%= mainclassname %>
 	 */
 	protected $plugin = null;
 
@@ -24,6 +25,7 @@ class <%= classname %> {
 	 * Constructor.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */

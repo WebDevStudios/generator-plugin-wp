@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= cptname %>
+ * <%= cptname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= mainclassname %>
  */
 
@@ -16,7 +16,7 @@
 /**
  * <%= cptname %> post type class.
  *
- * @see https://github.com/WebDevStudios/CPT_Core
+ * @see   https://github.com/WebDevStudios/CPT_Core
  * @since <%= version %>
  */
 class <%= classname %> extends CPT_Core {
@@ -30,9 +30,13 @@ class <%= classname %> extends CPT_Core {
 
 	/**
 	 * Constructor.
-	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php.
+	 *
+	 * Register Custom Post Types.
+	 *
+	 * See documentation in CPT_Core, and in wp-includes/post.php.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 * @return void
 	 */
@@ -93,7 +97,7 @@ class <%= classname %> extends CPT_Core {
 	 *
 	 * @since  <%= version %>
 	 * @param  array $columns Array of registered column names/labels.
-	 * @return array          Modified array
+	 * @return array          Modified array.
 	 */
 	public function columns( $columns ) {
 		$new_column = array();
