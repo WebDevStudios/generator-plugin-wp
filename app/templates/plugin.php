@@ -117,7 +117,7 @@ final class <%= classname %> {
 	protected $activation_errors = array();
 
 	/**
-	 * Singleton instance of plugin
+	 * Singleton instance of plugin.
 	 *
 	 * @var <%= classname %>
 	 * @since  <%= version %>
@@ -177,7 +177,7 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * Activate the plugin
+	 * Activate the plugin.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -189,8 +189,8 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * Deactivate the plugin
-	 * Uninstall routines should be in uninstall.php
+	 * Deactivate the plugin.
+	 * Uninstall routines should be in uninstall.php.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -351,7 +351,7 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * This plugin's url
+	 * This plugin's url.
 	 *
 	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path.

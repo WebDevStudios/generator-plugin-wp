@@ -21,7 +21,7 @@
  */
 class <%= classname %> extends CPT_Core {
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var <%= mainclassname %>
 	 * @since  <%= version %>
@@ -29,8 +29,8 @@ class <%= classname %> extends CPT_Core {
 	protected $plugin = null;
 
 	/**
-	 * Constructor
-	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+	 * Constructor.
+	 * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
@@ -40,16 +40,27 @@ class <%= classname %> extends CPT_Core {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		// Register this cpt
+		// Register this cpt.
 		// First parameter should be an array with Singular, Plural, and Registered name.
 		parent::__construct(
-			array( __( '<%= cptname %>', '<%= slug %>' ), __( '<%= cptname %>s', '<%= slug %>' ), '<%= cptslug %>' ),
-			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ) )
+			array(
+				__( '<%= cptname %>', '<%= slug %>' ),
+				__( '<%= cptname %>s', '<%= slug %>' ),
+				'<%= cptslug %>',
+			),
+			array(
+				'supports' => array(
+					'title',
+					'editor',
+					'excerpt',
+					'thumbnail',
+				),
+			)
 		);
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -59,14 +70,17 @@ class <%= classname %> extends CPT_Core {
 	}
 
 	/**
-	 * Add custom fields to the CPT
+	 * Add custom fields to the CPT.
 	 *
 	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function fields() {
+
+		// Set our prefix.
 		$prefix = '<%= cptprefix %>_';
 
+		// Define our metaboxes and fields.
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
 			'title'         => __( '<%= cptname %> Meta Box', '<%= slug %>' ),

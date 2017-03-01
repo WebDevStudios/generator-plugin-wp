@@ -17,7 +17,7 @@
  */
 class <%= classname %> {
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var    <%= mainclassname %>
 	 * @since  <%= version %>
@@ -25,7 +25,7 @@ class <%= classname %> {
 	protected $plugin = null;
 
 	/**
-	 * Option key, and option page slug
+	 * Option key, and option page slug.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -33,7 +33,7 @@ class <%= classname %> {
 	protected $key = '<%= optionsprefix %>';
 
 	/**
-	 * Options page metabox id
+	 * Options page metabox ID.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -41,7 +41,7 @@ class <%= classname %> {
 	protected $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
-	 * Options Page title
+	 * Options Page title.
 	 *
 	 * @var    string
 	 * @since  <%= version %>
@@ -49,13 +49,13 @@ class <%= classname %> {
 	protected $title = '';
 
 	/**
-	 * Options Page hook
+	 * Options Page hook.
 	 * @var string
 	 */
 	protected $options_page = '';
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
@@ -65,23 +65,26 @@ class <%= classname %> {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		$this->title = __( '<%= optionsname %>', '<%= slug %>' );
+		// Set our title.
+		$this->title = esc_attr__( '<%= optionsname %>', '<%= slug %>' );
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function hooks() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ) );<% if ( ! options.nocmb2 ) { %>
-		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );<% } %>
+		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+		<% if ( ! options.nocmb2 ) { %>
+		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );
+		<% } %>
 	}
 
 	/**
-	 * Register our setting to WP
+	 * Register our setting to WP.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -91,7 +94,7 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Add menu options page
+	 * Add menu options page.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -110,7 +113,7 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Admin page markup. Mostly handled by CMB2
+	 * Admin page markup. Mostly handled by CMB2.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -132,6 +135,7 @@ class <%= classname %> {
 	 */
 	public function add_options_page_metabox() {
 
+		// Add our CMB2 metabox.
 		$cmb = new_cmb2_box( array(
 			'id'         => $this->metabox_id,
 			'hookup'     => false,
@@ -143,17 +147,15 @@ class <%= classname %> {
 			),
 		) );
 
-		/*
-		Add your fields here
 
+		// Add your fields here.
 		$cmb->add_field( array(
-			'name'    => __( 'Test Text', 'myprefix' ),
-			'desc'    => __( 'field description (optional)', 'myprefix' ),
-			'id'      => 'test_text', // no prefix needed
+			'name'    => __( 'Test Text', '<%= slug %>' ),
+			'desc'    => __( 'field description (optional)', '<%= slug %>' ),
+			'id'      => 'test_text', // No prefix needed.
 			'type'    => 'text',
-			'default' => __( 'Default Text', 'myprefix' ),
+			'default' => __( 'Default Text', '<%= slug %>' ),
 		) );
-		*/
 
 	}<% } %>
 }

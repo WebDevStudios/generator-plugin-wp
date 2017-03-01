@@ -9,7 +9,7 @@
 if ( class_exists( 'WP_REST_Controller' ) ) {
 	class <%= classname %> extends WP_REST_Controller {
 		/**
-		 * Parent plugin class
+		 * Parent plugin class.
 		 *
 		 * @var   <%= mainclassname %>
 		 * @since <%= version %>
@@ -17,7 +17,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		protected $plugin = null;
 
 		/**
-		 * Constructor
+		 * Constructor.
 		 *
 		 * @since  <%= version %>
 		 * @param  <%= mainclassname %> $plugin Main plugin object.
@@ -43,10 +43,9 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 			$namespace = '<%= pluginslug %>/v' . $version;
 			$base = '<%= nameslug %>';
 
-			/*
-			Example register_rest_route calls.
 
-			register_rest_route( $namespace, '/' . $base, array(
+			// Example register_rest_route calls.
+			/* register_rest_route( $namespace, '/' . $base, array(
 				array(
 					'methods' => WP_REST_Server::READABLE,
 					'callback' => array( $this, 'get_items' ),

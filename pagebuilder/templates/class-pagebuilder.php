@@ -7,11 +7,11 @@
  */
 
 /**
- * WDS Simple Page Builder Class
+ * <%= pluginname %> Page Builder
  */
 class <%= classname %> {
 	/**
-	 * Parent plugin class
+	 * Parent plugin class.
 	 *
 	 * @var   <%= mainclassname %>
 	 * @since <%= version %>
@@ -19,7 +19,7 @@ class <%= classname %> {
 	protected $plugin = null;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
@@ -31,7 +31,7 @@ class <%= classname %> {
 	}
 
 	/**
-	 * Initiate our hooks
+	 * Initiate our hooks.
 	 *
 	 * @since  <%= version %>
 	 * @return void
@@ -58,6 +58,7 @@ class <%= classname %> {
 	 * @return string Absolute path to template parts directory.
 	 */
 	public function get_template_part_dir() {
+
 		/**
 		 * Filters the absolute path of the template location.
 		 *
