@@ -10,7 +10,12 @@ module.exports = base.extend({
   constructor: function () {
     base.apply(this, arguments);
 
-    this.option('notests');
+    this.option('do-install', {
+      type: Boolean,
+      required: false,
+      desc: 'Automatically install dependecies'
+    });
+
     this.option('php52', {
       type: Boolean,
       required: false,
@@ -302,7 +307,6 @@ module.exports = base.extend({
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
-      this.config.set( 'notests', this.options.notests );
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
 
@@ -338,16 +342,15 @@ module.exports = base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: this.options['skip-install']
-    });
 
-    if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
-      this.spawnCommand('composer', ['install']);
-    }
+    // If we flagged we want an install, install our dependecies.
+    if ( this.options['do-install'] ) {
+      this.installDependencies();
 
-    if ( !this.options.notests ) {
-      fs.chmodSync(this.destinationPath('bin/install-wp-tests.sh'), '700');
+      // If we're loading Composer, run a composer install.
+      if ( this.autoloader === 'Composer' ) {
+        this.spawnCommand('composer', ['install']);
+      }
     }
   }
 });
