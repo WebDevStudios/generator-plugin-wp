@@ -43,7 +43,6 @@
  *
  * @since  0.0.0
  * @param  string $class_name Name of the class being requested.
- * @return void               Early exit if class name does not follow standards.
  */
 function subgenerator_test_plugin_autoload_classes( $class_name ) {
 
