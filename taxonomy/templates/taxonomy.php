@@ -37,6 +37,7 @@ class <%= classname %> extends Taxonomy_Core {
 	 * See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 */
 	public function __construct( $plugin ) {

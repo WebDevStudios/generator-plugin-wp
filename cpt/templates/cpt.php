@@ -94,6 +94,7 @@ class <%= classname %> extends CPT_Core {
 	 * Registers admin columns to display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $columns Array of registered column names/labels.
 	 * @return array          Modified array.
 	 */
@@ -106,6 +107,7 @@ class <%= classname %> extends CPT_Core {
 	 * Handles admin column display. Hooked in via CPT_Core.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param array   $column   Column currently being rendered.
 	 * @param integer $post_id  ID of post to display column for.
 	 */

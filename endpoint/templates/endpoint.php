@@ -28,7 +28,6 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * @since  <%= version %>
 		 *
 		 * @param  <%= mainclassname %> $plugin Main plugin object.
-		 * @return void
 		 */
 		public function __construct( $plugin ) {
 			$this->plugin = $plugin;
@@ -39,8 +38,6 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 		 * Add our hooks.
 		 *
 		 * @since  <%= version %>
-		 *
-		 * @return void
 		 */
 		public function hooks() {
 			add_action( 'rest_api_init', array( $this, 'register_routes' ) );
@@ -50,8 +47,6 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 	     * Register the routes for the objects of the controller.
 	     *
 	     * @since  <%= version %>
-	     *
-		 * @return void
 	     */
 		public function register_routes() {
 

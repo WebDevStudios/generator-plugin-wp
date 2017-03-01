@@ -43,7 +43,6 @@
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested.
- * @return void               Early exit if class name does not follow standards.
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
 
