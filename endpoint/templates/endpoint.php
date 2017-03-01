@@ -98,7 +98,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 							),
 						),
 					),
-				),
+				)
 			);
 
 			register_rest_route( $namespace, '/' . $base . '/schema', array(
