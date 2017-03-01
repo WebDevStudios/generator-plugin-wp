@@ -39,44 +39,45 @@
 
 <% if ( autoloader == 'Basic' ) { %>
 /**
- * Autoloads files with classes when needed
+ * Autoloads files with classes when needed.
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested.
  * @return void
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
+
+	// If our class doesn't have our prefix, don't load it.
 	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
 		return;
 	}
 
-	$filename = strtolower( str_replace(
-		'_', '-',
-		substr( $class_name, strlen( '<%= classprefix %>' ) )
-	) );
+	// Set up our filename.
+	$filename = strtolower( str_replace( '_', '-', substr( $class_name, strlen( '<%= classprefix %>' ) ) ) );
 
+	// Include our file.
 	<%= classname %>::include_file( 'includes/class-' . $filename );
 }
 spl_autoload_register( '<%= prefix %>_autoload_classes' );
 <% } else if ( autoloader == 'Composer' && php52 ) { %>
-// User composer autoload with PHP 5.2 compatibility.
+// Use composer autoload with PHP 5.2 compatibility.
 require 'vendor/autoload_52.php';
 <% } else if ( autoloader == 'Composer' ) { %>
-// User composer autoload.
+// Use composer autoload.
 require 'vendor/autoload.php';
 <% } else { %>
 // Include additional php files here.
-// require 'includes/admin.php';
+// require 'includes/something.php';
 <% } %>
 /**
- * Main initiation class
+ * Main initiation class.
  *
  * @since  <%= version %>
  */
 final class <%= classname %> {
 
 	/**
-	 * Current version
+	 * Current version.
 	 *
 	 * @var  string
 	 * @since  <%= version %>
@@ -84,7 +85,7 @@ final class <%= classname %> {
 	const VERSION = '<%= version %>';
 
 	/**
-	 * URL of plugin directory
+	 * URL of plugin directory.
 	 *
 	 * @var string
 	 * @since  <%= version %>
@@ -92,7 +93,7 @@ final class <%= classname %> {
 	protected $url = '';
 
 	/**
-	 * Path of plugin directory
+	 * Path of plugin directory.
 	 *
 	 * @var string
 	 * @since  <%= version %>
@@ -100,7 +101,7 @@ final class <%= classname %> {
 	protected $path = '';
 
 	/**
-	 * Plugin basename
+	 * Plugin basename.
 	 *
 	 * @var string
 	 * @since  <%= version %>
@@ -108,7 +109,7 @@ final class <%= classname %> {
 	protected $basename = '';
 
 	/**
-	 * Detailed activation error messages
+	 * Detailed activation error messages.
 	 *
 	 * @var array
 	 * @since  <%= version %>
@@ -138,7 +139,7 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * Sets up our plugin
+	 * Sets up our plugin.
 	 *
 	 * @since  <%= version %>
 	 */
@@ -155,21 +156,23 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function plugin_classes() {
+
 		// Attach other plugin classes to the base plugin class.
 		// $this->plugin_class = new <%= classprefix %>Plugin_Class( $this );
+
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
-	 * Add hooks and filters
+	 * Add hooks and filters.
+	 * Priority needs to be
+	 * < 10 for CPT_Core,
+	 * < 5 for Taxonomy_Core,
+	 * and 0 for Widgets because widgets_init runs at init priority 1.
 	 *
 	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function hooks() {
-		// Priority needs to be:
-		// < 10 for CPT_Core,
-		// < 5 for Taxonomy_Core,
-		// 0 Widgets because widgets_init runs at init priority 1.
 		add_action( 'init', array( $this, 'init' ), 0 );
 	}
 
@@ -180,6 +183,7 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function _activate() {
+
 		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();
 	}
@@ -200,6 +204,7 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function init() {
+
 		// Bail early if requirements aren't met.
 		if ( ! $this->check_requirements() ) {
 			return;
@@ -220,6 +225,7 @@ final class <%= classname %> {
 	 * @return boolean result of meets_requirements
 	 */
 	public function check_requirements() {
+
 		// Bail early if plugin meets requirements.
 		if ( $this->meets_requirements() ) {
 			return true;
@@ -241,6 +247,7 @@ final class <%= classname %> {
 	 * @return void
 	 */
 	public function deactivate_me() {
+
 		// We do a check for deactivate_plugins before calling it, to protect
 		// any developers from accidentally calling it too early and breaking things.
 		if ( function_exists( 'deactivate_plugins' ) ) {
@@ -249,12 +256,13 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * Check that all plugin requirements are met
+	 * Check that all plugin requirements are met.
 	 *
 	 * @since  <%= version %>
 	 * @return boolean True if requirements are met.
 	 */
 	public function meets_requirements() {
+
 		// Do checks for required classes / functions
 		// function_exists('') & class_exists('').
 		// We have met all requirements.
@@ -263,12 +271,13 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * Adds a notice to the dashboard if the plugin requirements are not met
+	 * Adds a notice to the dashboard if the plugin requirements are not met.
 	 *
 	 * @since  <%= version %>
 	 * @return void
 	 */
 	public function requirements_not_met_notice() {
+
 		// Compile default message.
 		$default_message = sprintf(
 			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ),
@@ -279,15 +288,15 @@ final class <%= classname %> {
 		$details = null;
 
 		// Add details if any exist.
-		if ( ! empty( $this->activation_errors ) && is_array( $this->activation_errors ) ) {
+		if ( $this->activation_errors && is_array( $this->activation_errors ) ) {
 			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
 		}
 
 		// Output errors.
 		?>
 		<div id="message" class="error">
-			<p><?php echo $default_message; ?></p>
-			<?php echo $details; ?>
+			<p><?php echo esc_html( $default_message ); ?></p>
+			<?php echo esc_html( $details ); ?>
 		</div>
 		<?php
 	}
@@ -296,8 +305,8 @@ final class <%= classname %> {
 	 * Magic getter for our object.
 	 *
 	 * @since  <%= version %>
-	 * @param string $field Field to get.
-	 * @throws Exception Throws an exception if the field is invalid.
+	 * @param  string $field Field to get.
+	 * @throws Exception     Throws an exception if the field is invalid.
 	 * @return mixed
 	 */
 	public function __get( $field ) {
@@ -314,7 +323,7 @@ final class <%= classname %> {
 	}<% if ( autoloader == 'Basic' ) { %>
 
 	/**
-	 * Include a file from the includes directory
+	 * Include a file from the includes directory.
 	 *
 	 * @since  <%= version %>
 	 * @param  string $filename Name of the file to be included.
@@ -329,7 +338,7 @@ final class <%= classname %> {
 	}
 
 	/**
-	 * This plugin's directory
+	 * This plugin's directory.
 	 *
 	 * @since  <%= version %>
 	 * @param  string $path (optional) appended path.
@@ -357,7 +366,7 @@ final class <%= classname %> {
 
 /**
  * Grab the <%= classname %> object and return it.
- * Wrapper for <%= classname %>::get_instance()
+ * Wrapper for <%= classname %>::get_instance().
  *
  * @since  <%= version %>
  * @return <%= classname %>  Singleton instance of plugin class.
