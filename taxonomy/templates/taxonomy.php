@@ -2,7 +2,7 @@
 /**
  * <%= taxonomyname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= mainclassname %>
  */
 
@@ -16,43 +16,45 @@
 /**
  * <%= taxonomyname %>.
  *
- * @see https://github.com/WebDevStudios/Taxonomy_Core
  * @since <%= version %>
+ *
+ * @see   https://github.com/WebDevStudios/Taxonomy_Core
  */
 class <%= classname %> extends Taxonomy_Core {
 	/**
 	 * Parent plugin class.
 	 *
-	 * @var <%= mainclassname %>
+	 * @var    <%= mainclassname %>
 	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
 
 	/**
 	 * Constructor.
-	 * Register Taxonomy. See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php.
 	 *
-	 * @since <%= version %>
+	 * Register Taxonomy.
+	 *
+	 * See documentation in Taxonomy_Core, and in wp-includes/taxonomy.php.
+	 *
+	 * @since  <%= version %>
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
-	 * @return void
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		// Register this taxonomy.
-		// First parameter should be an array with Singular, Plural, and Registered name.
-		// Second parameter is the register taxonomy arguments.
-		// Third parameter is post types to attach to.
 		parent::__construct(
+			// Should be an array with Singular, Plural, and Registered name.
 			array(
 				__( '<%= taxonomyname %>', '<%= slug %>' ),
 				__( '<%= taxonomyname %>s', '<%= slug %>' ),
 				'<%= taxonomyslug %>',
 			),
+			// Register taxonomy arguments.
 			array(
 				'hierarchical' => false,
 			),
+			// Post types to attach to.
 			array(
 				'post',
 			)
@@ -63,8 +65,8 @@ class <%= classname %> extends Taxonomy_Core {
 	 * Initiate our hooks.
 	 *
 	 * @since <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
+
 	}
 }

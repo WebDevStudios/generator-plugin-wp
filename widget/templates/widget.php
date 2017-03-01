@@ -1,8 +1,8 @@
 <?php
 /**
- * <%= widgetname %>
+ * <%= widgetname %>.
  *
- * @since <%= version %>
+ * @since   <%= version %>
  * @package <%= mainclassname %>
  */
 
@@ -18,7 +18,7 @@ class <%= classname %> extends WP_Widget {
 	 *
 	 * Will also serve as the widget class.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $widget_slug = '<%= widgetslug %>';
@@ -28,7 +28,7 @@ class <%= classname %> extends WP_Widget {
 	 * Widget name displayed in Widgets dashboard.
 	 * Set in __construct since __() shouldn't take a variable.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $widget_name = '';
@@ -47,7 +47,7 @@ class <%= classname %> extends WP_Widget {
 	/**
 	 * Shortcode name for this widget
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected static $shortcode = '<%= widgetslug %>';
@@ -57,7 +57,6 @@ class <%= classname %> extends WP_Widget {
 	 * Construct widget class.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function __construct() {
 
@@ -89,7 +88,6 @@ class <%= classname %> extends WP_Widget {
 	 * Register the widget.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function register_widget() {
 		register_widget( '<%= classname %>' );
@@ -102,7 +100,6 @@ class <%= classname %> extends WP_Widget {
 	 * delete_transient( 'some-transient-generated-by-this-widget' );
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function flush_widget_cache() {
 		wp_cache_delete( $this->widget_slug, 'widget' );
@@ -113,9 +110,9 @@ class <%= classname %> extends WP_Widget {
 	 * Front-end display of widget.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $args     The widget arguments set up when a sidebar is registered.
 	 * @param  array $instance The widget settings as set by user.
-	 * @return void
 	 */
 	public function widget( $args, $instance ) {
 		echo self::get_widget( array(
@@ -133,8 +130,9 @@ class <%= classname %> extends WP_Widget {
 	 * Return the widget/shortcode output
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $atts Array of widget/shortcode attributes/args.
-	 * @return string       Widget output
+	 * @return string      Widget output
 	 */
 	public static function get_widget( $atts ) {
 
@@ -168,6 +166,7 @@ class <%= classname %> extends WP_Widget {
 	 * Update form values as they are saved.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $new_instance New settings for this instance as input by the user.
 	 * @param  array $old_instance Old settings for this instance.
 	 * @return array               Settings to save or bool false to cancel saving.
@@ -202,8 +201,8 @@ class <%= classname %> extends WP_Widget {
 	 * Back-end widget form with defaults.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  array $instance Current settings.
-	 * @return void
 	 */
 	public function form( $instance ) {
 
