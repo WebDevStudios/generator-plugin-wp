@@ -136,6 +136,7 @@ module.exports = base.extend({
       this.license            = this._.clean( props.license );
       this.slug               = this._.slugify( props.slug );
       this.classname          = this._wpClassify( props.classname );
+      this.mainclassname      = this.classname;
       this.classprefix        = this._wpClassPrefix( this.classname );
       this.prefix             = this._.underscored( props.prefix );
       this.year               = new Date().getFullYear();
@@ -314,6 +315,7 @@ module.exports = base.extend({
       this.config.set( 'license', this.license );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
+      this.config.set( 'mainclassname', this.classname );
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
