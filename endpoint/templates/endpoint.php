@@ -106,5 +106,84 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 				'callback' => array( $this, 'get_public_item_schema' ),
 			) );
 		}
+
+		/**
+		 * Get items.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function get_items( $request ) {}
+
+		/**
+		 * Permission check for getting items.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function get_items_permission_check( $request ) {}
+
+		/**
+		 * Get item.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function get_item( $request ) {}
+
+		/**
+		 * Permission check for getting item.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function get_item_permissions_check( $request ) {}
+
+		/**
+		 * Update item.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function update_item( $request ) {}
+
+		/**
+		 * Permission check for updating items.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function update_item_permissions_check( $request ) {}
+
+		/**
+		 * Delete item.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function delete_item( $request ) {}
+
+		/**
+		 * Permission check for deleting items.
+		 *
+		 * @since  <%= version %>
+		 *
+		 * @param  WP_REST_Request $request Full details about the request.
+		 */
+		public function delete_item_permissions_check( $request ) {}
+
+		/**
+		 * Get item schema.
+		 *
+		 * @since  <%= version %>
+		 */
+		public function get_public_item_schema() {}
 	}
 }
