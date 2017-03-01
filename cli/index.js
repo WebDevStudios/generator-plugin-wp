@@ -34,8 +34,8 @@ module.exports = base.extend({
             }
             this.pluginname = this.rc.name;
             this.cliname = this.pluginname + ' ' + this._.capitalize(this.name);
-            this.slug = this.rc.slug;
             this.clislug = this.slug + '-cli-' + this._.slugify(this.name);
+            this.uslug = this._.underscored( this.cliname );
 
             this.classname = this.rc.classprefix + this._wpClassify(this.name);
 

@@ -19,8 +19,7 @@ class <%= classname %> {
 	 *
 	 * @since <%= version %>
 	 */
-	protected
-	$plugin = null;
+	protected $plugin = null;
 
 	/**
 	 * Constructor.
@@ -55,7 +54,7 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function add_commands() {
-		WP_CLI::add_command( '<%= nameslug %>', array( $this, '<%= nameslug %>_command' ) );
+		WP_CLI::add_command( '<%= uslug %>', array( $this, '<%= uslug %>_command' ) );
 	}
 
 	/**
@@ -63,7 +62,7 @@ class <%= classname %> {
 	 *
 	 * @since <%= version %>
 	 */
-	public function <%= nameslug %>_command() {
+	public function <%= uslug %>_command() {
 
 	}
 }
