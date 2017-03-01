@@ -11,7 +11,7 @@
  * Text Domain: <%= slug %>
  * Domain Path: /languages
  *
- * @link <%= homepage %>
+ * @link    <%= homepage %>
  *
  * @package <%= mainclassname %>
  * @version <%= version %>
@@ -43,7 +43,7 @@
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested.
- * @return void
+ * @return void               Early exit if class name does not follow standards.
  */
 function <%= prefix %>_autoload_classes( $class_name ) {
 
@@ -79,7 +79,7 @@ final class <%= classname %> {
 	/**
 	 * Current version.
 	 *
-	 * @var  string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	const VERSION = '<%= version %>';
@@ -87,7 +87,7 @@ final class <%= classname %> {
 	/**
 	 * URL of plugin directory.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $url = '';
@@ -95,7 +95,7 @@ final class <%= classname %> {
 	/**
 	 * Path of plugin directory.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $path = '';
@@ -103,7 +103,7 @@ final class <%= classname %> {
 	/**
 	 * Plugin basename.
 	 *
-	 * @var string
+	 * @var    string
 	 * @since  <%= version %>
 	 */
 	protected $basename = '';
@@ -111,7 +111,7 @@ final class <%= classname %> {
 	/**
 	 * Detailed activation error messages.
 	 *
-	 * @var array
+	 * @var    array
 	 * @since  <%= version %>
 	 */
 	protected $activation_errors = array();
@@ -119,7 +119,7 @@ final class <%= classname %> {
 	/**
 	 * Singleton instance of plugin.
 	 *
-	 * @var <%= classname %>
+	 * @var    <%= classname %>
 	 * @since  <%= version %>
 	 */
 	protected static $single_instance = null;
@@ -127,8 +127,8 @@ final class <%= classname %> {
 	/**
 	 * Creates or returns an instance of this class.
 	 *
-	 * @since  <%= version %>
-	 * @return <%= classname %> A single instance of this class.
+	 * @since   <%= version %>
+	 * @return  <%= classname %> A single instance of this class.
 	 */
 	public static function get_instance() {
 		if ( null === self::$single_instance ) {
@@ -153,7 +153,6 @@ final class <%= classname %> {
 	 * Attach other plugin classes to the base plugin class.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function plugin_classes() {
 
@@ -170,7 +169,6 @@ final class <%= classname %> {
 	 * and 0 for Widgets because widgets_init runs at init priority 1.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function hooks() {
 		add_action( 'init', array( $this, 'init' ), 0 );
@@ -180,7 +178,6 @@ final class <%= classname %> {
 	 * Activate the plugin.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function _activate() {
 
@@ -193,15 +190,15 @@ final class <%= classname %> {
 	 * Uninstall routines should be in uninstall.php.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
-	public function _deactivate() {}
+	public function _deactivate() {
+		// Add deactivation cleanup functionality here.
+	}
 
 	/**
 	 * Init hooks
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function init() {
 
@@ -222,7 +219,8 @@ final class <%= classname %> {
 	 * disable it if they are not present.
 	 *
 	 * @since  <%= version %>
-	 * @return boolean result of meets_requirements
+	 *
+	 * @return boolean True if requirements met, false if not.
 	 */
 	public function check_requirements() {
 
@@ -245,7 +243,6 @@ final class <%= classname %> {
 	 * Deactivates this plugin, hook this function on admin_init.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function deactivate_me() {
 
@@ -260,6 +257,7 @@ final class <%= classname %> {
 	 * Check that all plugin requirements are met.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @return boolean True if requirements are met.
 	 */
 	public function meets_requirements() {
@@ -274,15 +272,11 @@ final class <%= classname %> {
 	 * Adds a notice to the dashboard if the plugin requirements are not met.
 	 *
 	 * @since  <%= version %>
-	 * @return void
 	 */
 	public function requirements_not_met_notice() {
 
 		// Compile default message.
-		$default_message = sprintf(
-			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ),
-			admin_url( 'plugins.php' )
-		);
+		$default_message = sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) );
 
 		// Default details to null.
 		$details = null;
@@ -305,9 +299,10 @@ final class <%= classname %> {
 	 * Magic getter for our object.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $field Field to get.
 	 * @throws Exception     Throws an exception if the field is invalid.
-	 * @return mixed
+	 * @return mixed         Value of the field.
 	 */
 	public function __get( $field ) {
 		switch ( $field ) {
@@ -326,8 +321,9 @@ final class <%= classname %> {
 	 * Include a file from the includes directory.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $filename Name of the file to be included.
-	 * @return bool   Result of include call.
+	 * @return boolean          Result of include call.
 	 */
 	public static function include_file( $filename ) {
 		$file = self::dir( $filename . '.php' );
@@ -341,8 +337,9 @@ final class <%= classname %> {
 	 * This plugin's directory.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $path (optional) appended path.
-	 * @return string       Directory and path
+	 * @return string       Directory and path.
 	 */
 	public static function dir( $path = '' ) {
 		static $dir;
@@ -354,8 +351,9 @@ final class <%= classname %> {
 	 * This plugin's url.
 	 *
 	 * @since  <%= version %>
+	 *
 	 * @param  string $path (optional) appended path.
-	 * @return string       URL and path
+	 * @return string       URL and path.
 	 */
 	public static function url( $path = '' ) {
 		static $url;
@@ -378,5 +376,6 @@ function <%= prefix %>() {
 // Kick it off.
 add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
 
+// Activation and deactivation.
 register_activation_hook( __FILE__, array( <%= prefix %>(), '_activate' ) );
 register_deactivation_hook( __FILE__, array( <%= prefix %>(), '_deactivate' ) );
