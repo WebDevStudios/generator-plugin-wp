@@ -4,8 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs');
 var request = require( 'request' );
-var async = require( 'async' );
-var child_process = require('child_process');
+var childProcess = require('child_process');
 
 module.exports = base.extend({
   constructor: function () {
@@ -312,9 +311,9 @@ module.exports = base.extend({
   },
 
   checkComposerStatus: function() {
-    var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
+    var composerResult = childProcess.spawnSync('composer',['--version', '--no-ansi']);
 
-    if ( 0 == composerResult.status) {
+    if ( 0 === composerResult.status) {
       this.autoloaderList = ['Basic', 'Composer', 'None'];
     }
 

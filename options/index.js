@@ -1,5 +1,4 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
 var ghdownload = require('github-download');
 
