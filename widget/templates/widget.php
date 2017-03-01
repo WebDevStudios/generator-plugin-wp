@@ -178,7 +178,7 @@ class <%= classname %> extends WP_Widget {
 
 		// Sanity check new data existing.
 		$title = isset( $new_instance['title'] ) ? $new_instance['title'] : '';
-		$text  = isset( $new_instance['text'] ) ? $new_instance['text'] : ''
+		$text  = isset( $new_instance['text'] ) ? $new_instance['text'] : '';
 
 		// Sanitize title before saving to database.
 		$instance['title'] = sanitize_text_field( $title );
