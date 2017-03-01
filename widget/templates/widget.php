@@ -73,12 +73,27 @@ class <%= classname %> extends WP_Widget {
 			)
 		);
 
+		// Init the widget.
+		add_action( 'widgets_init', '<%= widgetregister %>' );
+
+		// Clear cache on save.
 		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+
+		// Add a shortcode for our widget.
 		add_shortcode( self::$shortcode, array( __CLASS__, 'get_widget' ) );
 	}
 
+	/**
+	 * Register the widget.
+	 *
+	 * @since  <%= version %>
+	 * @return void
+	 */
+	public function register_widget() {
+		register_widget( '<%= classname %>' );
+	}
 
 	/**
 	 * Delete this widget's cache.
@@ -122,7 +137,6 @@ class <%= classname %> extends WP_Widget {
 	 * @return string       Widget output
 	 */
 	public static function get_widget( $atts ) {
-		$widget = '';
 
 		// Set up default values for attributes.
 		$atts = shortcode_atts(
@@ -138,18 +152,15 @@ class <%= classname %> extends WP_Widget {
 			self::$shortcode
 		);
 
-		// Before widget hook.
-		$widget .= $atts['before_widget'];
-
 		// Title.
-		$widget .= ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '';
+		$widget = esc_html( ( $atts['title'] ) ? $atts['before_title'] . $atts['title'] . $atts['after_title'] : '' );
 
+		// Text.
 		$widget .= wpautop( wp_kses_post( $atts['text'] ) );
 
-		// After widget hook.
-		$widget .= $atts['after_widget'];
 
-		return $widget;
+		// Send it back.
+		return $atts['before_widget'] . $widget . $atts['after_widget'];
 	}
 
 
@@ -166,14 +177,18 @@ class <%= classname %> extends WP_Widget {
 		// Previously saved values.
 		$instance = $old_instance;
 
+		// Sanity check new data existing.
+		$title = isset( $new_instance['title'] ) ? $new_instance['title'] : '';
+		$text  = isset( $new_instance['text'] ) ? $new_instance['text'] : ''
+
 		// Sanitize title before saving to database.
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		$instance['title'] = sanitize_text_field( $title );
 
 		// Sanitize text before saving to database.
 		if ( current_user_can( 'unfiltered_html' ) ) {
-			$instance['text'] = force_balance_tags( $new_instance['text'] );
+			$instance['text'] = force_balance_tags( $text );
 		} else {
-			$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['text'] ) ) );
+			$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $text ) ) );
 		}
 
 		// Flush cache.
@@ -191,6 +206,8 @@ class <%= classname %> extends WP_Widget {
 	 * @return void
 	 */
 	public function form( $instance ) {
+
+		// Parse our args that get passed in.
 		$instance = wp_parse_args( (array) $instance,
 			array(
 				'title' => $this->default_widget_title,
@@ -199,24 +216,24 @@ class <%= classname %> extends WP_Widget {
 		);
 
 		?>
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', '<%= slug %>' ); ?></label>
-		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" /></p>
-
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'Text:', '<%= slug %>' ); ?></label>
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea></p>
-		<p class="description"><?php esc_html_e( 'Basic HTML tags are allowed.', '<%= slug %>' ); ?></p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+				<?php esc_html_e( 'Title:', '<%= slug %>' ); ?>
+			</label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" />
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>">
+				<?php esc_html_e( 'Text:', '<%= slug %>' ); ?>
+			</label>
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>">
+				<?php echo esc_textarea( $instance['text'] ); ?>
+			</textarea>
+		</p>
+		<p class="description">
+			<?php esc_html_e( 'Basic HTML tags are allowed.', '<%= slug %>' ); ?>
+		</p>
 		<?php
 	}
 }
 
-
-/**
- * Register this widget with WordPress. Can also move this function to the parent plugin.
- *
- * @since  <%= version %>
- * @return void
- */
-function <%= widgetregister %>() {
-	register_widget( '<%= classname %>' );
-}
-add_action( 'widgets_init', '<%= widgetregister %>' );
