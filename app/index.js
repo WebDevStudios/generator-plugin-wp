@@ -23,7 +23,7 @@ module.exports = base.extend({
     this.pkg = require('../package.json');
 
     // set the initial value
-    this.currentVersionWP = '4.4';
+    this.currentVersionWP = '4.7.2';
 
     // get the latest WP version
     this.getLatestWPVersion();
