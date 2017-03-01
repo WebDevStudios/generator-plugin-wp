@@ -65,7 +65,7 @@ main generator with the `--notests` option.
 By default PHP 5.2 is not supported in the generated plugin. To generate a plugin
 with PHP 5.2 support, run the main generator with the `--php52` option.
 
-### Adding Packages with Composer
+## Adding Packages with Composer
 
 If you chose composer as the autoloader option during the plugin's initiation,
 you can use composer to add additional dependencies.
@@ -86,7 +86,7 @@ CMB2 will now appear under `vendor`
         -cmb2
 ```
 
-### Contributors
+## Contributors
 The following humans contributed to this awesome generator:
 
 ####![](https://avatars1.githubusercontent.com/u/804253?v=3&s=20) [CamdenSegal](https://github.com/CamdenSegal), ![](https://avatars0.githubusercontent.com/u/1098900?v=3&s=20) [jtsternberg](https://github.com/jtsternberg), ![](https://avatars2.githubusercontent.com/u/991511?v=3&s=20) [jazzsequence](https://github.com/jazzsequence), ![](https://avatars1.githubusercontent.com/u/16279215?v=3&s=20) [binarygary](https://github.com/binarygary), ![](https://avatars1.githubusercontent.com/u/66798?v=3&s=20) [bradp](https://github.com/bradp), ![](https://avatars3.githubusercontent.com/u/720377?v=3&s=20) [JeffreyNaval](https://github.com/JeffreyNaval), ![](https://avatars1.githubusercontent.com/u/200280?v=3&s=20) [gregrickaby](https://github.com/gregrickaby), ![](https://avatars0.githubusercontent.com/u/1777519?v=3&s=20) [DevNIX](https://github.com/DevNIX), ![](https://avatars2.githubusercontent.com/u/871924?v=3&s=20) [JPry](https://github.com/JPry), ![] (https://avatars2.githubusercontent.com/u/2522431?v=3&s=20) [RC Lations](https://github.com/rclations)![] (https://avatars2.githubusercontent.com/u/796639?v=3&s=20) [tnorthcutt](https://github.com/tnorthcutt)
