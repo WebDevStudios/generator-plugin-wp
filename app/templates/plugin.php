@@ -285,8 +285,8 @@ final class <%= classname %> {
 		// Output errors.
 		?>
 		<div id="message" class="error">
-			<p><?php echo esc_html( $default_message ); ?></p>
-			<?php echo esc_html( $details ); ?>
+			<p><?php echo wp_kses_post( $default_message ); ?></p>
+			<?php echo wp_kses_post( $details ); ?>
 		</div>
 		<?php
 	}
