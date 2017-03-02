@@ -4,7 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs');
 var request = require( 'request' );
-var childProcess = require('child_process');
+var child_process = require('child_process');
 
 module.exports = base.extend({
 
@@ -327,7 +327,7 @@ module.exports = base.extend({
   },
 
   checkComposerStatus: function() {
-    var composerResult = childProcess.spawnSync('composer',['--version', '--no-ansi']);
+    var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
 
     if ( 0 === composerResult.status) {
       this.autoloaderList = ['Basic', 'Composer', 'None'];
