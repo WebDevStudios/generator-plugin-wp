@@ -24,10 +24,10 @@
     "widget",
     "cpt",
     "options",
-   	"taxonomy",
-	  "pagebuilder",
-	  "endpoint",
-	  "cli",
+    "taxonomy",
+    "pagebuilder",
+    "endpoint",
+    "cli",
     "plugin-wp-base.js"
   ],
   "keywords": [
