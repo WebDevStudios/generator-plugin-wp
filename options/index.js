@@ -1,5 +1,4 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
 var ghdownload = require('github-download');
 
@@ -46,7 +45,7 @@ module.exports = base.extend({
       // get the main classname
       this.mainclassname = this._wpClassify( this.pluginname );
 
-      this.composer       = this.fs.exists('composer.json');
+      this.composer      = this.fs.exists('composer.json');
     }
   },
 

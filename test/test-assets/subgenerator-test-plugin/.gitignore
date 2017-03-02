@@ -1,7 +1,20 @@
-### OSX ###
+# Node/npm
+node_modules/
+npm-debug.log
+.grunt
+.sass-cache
+
+# OSX
 .DS_Store
 .AppleDouble
 .LSOverride
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 # Icon must end with two \r
 Icon
@@ -10,17 +23,14 @@ Icon
 # Thumbnails
 ._*
 
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
 
 ### Bower ###
 bower_components
@@ -28,8 +38,6 @@ bower_components
 .bower-registry
 .bower-tmp
 
-
-### Node ###
 # Logs
 logs
 *.log
@@ -64,6 +72,7 @@ node_modules
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
 # composer.lock
 
-### Sass ###
-.sass-cache
 
+# Other, add your own ignored things here.
+.idea/
+release

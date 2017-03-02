@@ -4,14 +4,20 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs');
 var request = require( 'request' );
-var async = require( 'async' );
 var child_process = require('child_process');
 
 module.exports = base.extend({
+
   constructor: function () {
+
     base.apply(this, arguments);
 
-    this.option('notests');
+    this.option('do-install', {
+      type: Boolean,
+      required: false,
+      desc: 'Automatically install dependecies'
+    });
+
     this.option('php52', {
       type: Boolean,
       required: false,
@@ -20,12 +26,14 @@ module.exports = base.extend({
   },
 
   initializing: function () {
+
+    // Grab package.json.
     this.pkg = require('../package.json');
 
-    // set the initial value
-    this.currentVersionWP = '4.4';
+    // Set the initial value.
+    this.currentVersionWP = '4.7.2';
 
-    // get the latest WP version
+    // Get the latest WP version.
     this.getLatestWPVersion();
 
     // Set Composer to false.
@@ -43,6 +51,7 @@ module.exports = base.extend({
       'Welcome to the neat ' + chalk.red('Plugin WP') + ' generator!'
     ));
 
+    // Set up all our prompts.
     var prompts = [{
       type   : 'input',
       name   : 'name',
@@ -114,39 +123,49 @@ module.exports = base.extend({
       choices: this.autoloaderList
     }];
 
+     // Sanitize inputs.
     this.prompt(prompts, function (props) {
-      // Sanitize inputs
-      this.name        = this._.clean( props.name );
-      this.homepage    = this._.clean( props.homepage );
-      this.description = this._.clean( props.description );
+      this.name               = this._.clean( props.name );
+      this.homepage           = this._.clean( props.homepage );
+      this.description        = this._.clean( props.description );
       this.descriptionEscaped = this._escapeDoubleQuotes( this.description );
-      this.version     = this._.clean( props.version );
-      this.author      = this._.clean( props.author );
-      this.authoremail = this._.clean( props.authoremail );
-      this.authorurl   = this._.clean( props.authorurl );
-      this.license     = this._.clean( props.license );
-      this.slug        = this._.slugify( props.slug );
-      this.classname   = this._wpClassify( props.classname );
-      this.classprefix = this._wpClassPrefix( this.classname );
-      this.prefix      = this._.underscored( props.prefix );
-      this.year        = new Date().getFullYear();
-      this.autoloader  = props.autoloader;
-      this.php52       = this.options.php52;
+      this.version            = this._.clean( props.version );
+      this.author             = this._.clean( props.author );
+      this.authoremail        = this._.clean( props.authoremail );
+      this.authorurl          = this._.clean( props.authorurl );
+      this.license            = this._.clean( props.license );
+      this.slug               = this._.slugify( props.slug );
+      this.classname          = this._wpClassify( props.classname );
+      this.mainclassname      = this.classname;
+      this.classprefix        = this._wpClassPrefix( this.classname );
+      this.prefix             = this._.underscored( props.prefix );
+      this.year               = new Date().getFullYear();
+      this.autoloader         = props.autoloader;
+      this.php52              = this.options.php52;
 
+      // All done.
       done();
     }.bind(this));
   },
 
   writing: {
+
     folder: function() {
       var done = this.async();
+
+      // Grab our destination path folder.
       fs.lstat( this.destinationPath( this.slug ), function(err, stats) {
+
+        // If its not an error, but it exists, flag that to the user.
         if (!err && stats.isDirectory()) {
           this.log( chalk.red( 'A plugin already exists with this folder name, exiting...' ) );
           process.exit();
         }
 
+        // Set our destination to our slug.
         this.destinationRoot( this.slug );
+
+        // Done.
         done();
       }.bind(this));
     },
@@ -227,10 +246,6 @@ module.exports = base.extend({
     },
 
     tests: function() {
-      if ( this.options.notests ) {
-        return;
-      }
-
       this.fs.copy(
         this.templatePath('phpunit.xml'),
         this.destinationPath('/phpunit.xml'),
@@ -300,10 +315,10 @@ module.exports = base.extend({
       this.config.set( 'license', this.license );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
+      this.config.set( 'mainclassname', this.classname );
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
-      this.config.set( 'notests', this.options.notests );
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
 
@@ -314,7 +329,7 @@ module.exports = base.extend({
   checkComposerStatus: function() {
     var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
 
-    if ( 0 == composerResult.status) {
+    if ( 0 === composerResult.status) {
       this.autoloaderList = ['Basic', 'Composer', 'None'];
     }
 
@@ -325,10 +340,10 @@ module.exports = base.extend({
       url: 'https://api.wordpress.org/core/version-check/1.7/',
       json: true,
       headers: { 'User-Agent': 'request' }
-    }, (err, res, data) => {
-      // check for status code
+    }, function (err, res, data) {
+      // Check for status code.
       if ( ! err && ( 200 === res.statusCode ) ) {
-        // loop through results to find only the "upgrade" version
+        // Loop through results to find only the "upgrade" version
         for ( var i in data.offers ) {
           if ( 'upgrade' === data.offers[i].response ) {
             this.currentVersionWP = data.offers[i].current;
@@ -339,16 +354,15 @@ module.exports = base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: this.options['skip-install']
-    });
 
-    if ( this.autoloader === 'Composer' && !this.options['skip-install'] ) {
-      this.spawnCommand('composer', ['install']);
-    }
+    // If we flagged we want an install, install our dependecies.
+    if ( this.options['do-install'] ) {
+      this.installDependencies();
 
-    if ( !this.options.notests ) {
-      fs.chmodSync(this.destinationPath('bin/install-wp-tests.sh'), '700');
+      // If we're loading Composer, run a composer install.
+      if ( this.autoloader === 'Composer' ) {
+        this.spawnCommand('composer', ['install']);
+      }
     }
   }
 });

@@ -1,5 +1,4 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var base = require('../plugin-wp-base');
 
 module.exports = base.extend({
@@ -31,7 +30,7 @@ module.exports = base.extend({
       this.version     = this.pkg.version;
       if ( this.name ) {
         this.name      = this._.titleize( this.name.split('-').join(' ') );
-        this.nameslug      = this._.slugify( this.name );
+        this.nameslug  = this._.slugify( this.name );
       }
       this.pluginname  = this.rc.name;
       this.includename = this.pluginname + ' ' + this._.capitalize( this.name );

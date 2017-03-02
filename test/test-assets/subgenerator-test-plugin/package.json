@@ -5,13 +5,53 @@
 	"description": "A radical new plugin for WordPress!",
 	"author": {
 		"name": "WebDevStudios",
-		"url": "http://webdevstudios.com"
+		"url": "https://webdevstudios.com"
 	},
 	"license": "GPLv2",
 	"devDependencies": {
-	    "grunt": "latest",
-	    "grunt-contrib-watch": "latest",
-	    "grunt-wp-i18n": "latest",
-	    "load-grunt-tasks": "latest"
+		"grunt": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-wp-i18n": "latest",
+		"grunt-contrib-copy": "latest",
+		"grunt-text-replace": "latest",
+		"grunt-contrib-clean": "latest",
+		"grunt-contrib-compress": "latest",
+		"grunt-wp-deploy": "latest",
+		"load-grunt-tasks": "latest",
+		"autoprefixer": "latest",
+		"babel-preset-es2015": "latest",
+		"bourbon": "latest",
+		"bourbon-neat": "latest",
+		"browser-sync": "latest",
+		"css-mqpacker": "latest",
+		"del": "latest",
+		"eslint-config-wordpress": "latest",
+		"glob": "latest",
+		"gulp": "latest",
+		"gulp-babel": "latest",
+		"gulp-cheerio": "latest",
+		"gulp-concat": "latest",
+		"gulp-cssnano": "latest",
+		"gulp-eslint": "latest",
+		"gulp-imagemin": "latest",
+		"gulp-notify": "latest",
+		"gulp-plumber": "latest",
+		"gulp-postcss": "latest",
+		"gulp-rename": "latest",
+		"gulp-sass": "latest",
+		"gulp-sass-lint": "latest",
+		"gulp-sort": "latest",
+		"gulp-sourcemaps": "latest",
+		"gulp-svgmin": "latest",
+		"gulp-svgstore": "latest",
+		"gulp-uglify": "latest",
+		"gulp-util": "latest",
+		"gulp-wp-pot": "latest",
+		"gulp.spritesmith": "latest"
+	},
+	"scripts": {
+		"test": "dockunit",
+		"preversion": "npm test",
+		"version": "grunt version && git add ."
 	}
 }

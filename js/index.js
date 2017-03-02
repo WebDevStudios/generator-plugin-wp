@@ -81,26 +81,5 @@ module.exports = base.extend({
   },
 
   install: function () {
-    if ( !this.options['skip-install'] ) {
-      this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
-      this.npmInstall(['gruntify-eslint'], { 'saveDev': true });
-
-      if ( this.type === 'Concat' ) {
-        this.npmInstall(['grunt-contrib-concat'], { 'saveDev': true });
-      }
-
-      if ( this.type === 'Browserify' ) {
-        this.npmInstall(['grunt-browserify'], { 'saveDev': true });
-        this.npmInstall(['browserify-shim'], { 'saveDev': true });
-        this.npmInstall(['babelify'], { 'saveDev': true });
-        this.npmInstall(['babel-preset-es2015'], { 'saveDev': true });
-
-        var pack = this.fs.readJSON( 'package.json' );
-        pack['browserify-shim'] = {
-          'jquery': 'global:jQuery'
-        };
-        this.fs.writeJSON( 'package.json', pack );
-      }
-    }
   }
 });

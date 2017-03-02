@@ -11,21 +11,21 @@ describe('plugin-wp:widget', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withOptions({ skipInstall: true, force: true })
+      .withOptions({ force: true })
       .withArguments('new-widget')
       .withLocalConfig({
-        "name": "Subgenerator Test",
-        "homepage": "http://webdevstudios.com",
+        "name": "Subgenerator Test Plugin",
+        "homepage": "https://webdevstudios.com",
         "description": "A radical new plugin for WordPress!",
         "version": "0.1.0",
         "author": "WebDevStudios",
         "authoremail": "contact@webdevstudios.com",
-        "authorurl": "http://webdevstudios.com",
+        "authorurl": "https://webdevstudios.com",
         "license": "GPLv2",
-        "slug": "subgenerator-test",
-        "classname": "Subgenerator_Test",
-        "prefix": "subgenerator_test",
-        "year": 2015
+        "slug": "subgenerator-test-plugin",
+        "classname": "Subgenerator_Test_Plugin",
+        "prefix": "subgenerator_test_plugin",
+        "year": 2017
       })
       .on('end', done);
   });

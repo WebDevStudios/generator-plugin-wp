@@ -1,17 +1,19 @@
 {
-  "generator-plugin-wp": {
+  "generator-plugin-wp-local": {
     "name": "Subgenerator Test Plugin",
-    "homepage": "http://webdevstudios.com",
+    "homepage": "https://webdevstudios.com",
     "description": "A radical new plugin for WordPress!",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "author": "WebDevStudios",
     "authoremail": "contact@webdevstudios.com",
-    "authorurl": "http://webdevstudios.com",
+    "authorurl": "https://webdevstudios.com",
     "license": "GPLv2",
     "slug": "subgenerator-test-plugin",
     "classname": "Subgenerator_Test_Plugin",
+    "mainclassname": "Subgenerator_Test_Plugin",
     "classprefix": "STP_",
     "prefix": "subgenerator_test_plugin",
-    "year": 2015
+    "year": 2017,
+    "currentVersionWP": "4.7.2"
   }
 }
