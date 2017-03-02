@@ -154,8 +154,6 @@ final class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function plugin_classes() {
-
-		// Attach other plugin classes to the base plugin class.
 		// $this->plugin_class = new <%= classprefix %>Plugin_Class( $this );
 
 	} // END OF PLUGIN CLASSES FUNCTION
@@ -261,8 +259,7 @@ final class <%= classname %> {
 	 */
 	public function meets_requirements() {
 
-		// Do checks for required classes / functions
-		// function_exists('') & class_exists('').
+		// Do checks for required classes / functions or similar.
 		// Add detailed messages to $this->activation_errors array.
 		return true;
 	}
