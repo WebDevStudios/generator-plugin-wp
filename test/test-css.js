@@ -12,7 +12,7 @@ describe('plugin-wp:css', function () {
       .withOptions({ force: true })
       .withPrompts({ type: 'SASS' })
       .withLocalConfig({
-        "name": "Subgenerator Test",
+        "name": "Subgenerator Test Plugin",
         "homepage": "https://webdevstudios.com",
         "description": "A radical new plugin for WordPress!",
         "version": "0.1.0",
@@ -20,9 +20,9 @@ describe('plugin-wp:css', function () {
         "authoremail": "contact@webdevstudios.com",
         "authorurl": "https://webdevstudios.com",
         "license": "GPLv2",
-        "slug": "subgenerator-test",
-        "classname": "Subgenerator_Test",
-        "prefix": "subgenerator_test",
+        "slug": "subgenerator-test-plugin",
+        "classname": "Subgenerator_Test_Plugin",
+        "prefix": "subgenerator_test_plugin",
         "year": 2017
       })
       .on('end', done);
