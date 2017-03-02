@@ -2,7 +2,7 @@
 /**
  * Subgenerator_Test_Plugin Test Bootstrapper.
  *
- * @since   0.0.0
+ * @since   0.1.0
  * @package Subgenerator_Test_Plugin
  */
 
@@ -15,7 +15,7 @@ require_once $_tests_dir . '/includes/functions.php';
 /**
  * Manually require our plugin for testing.
  *
- * @since 0.0.0
+ * @since 0.1.0
  */
 function _manually_load_subgenerator_test_plugin_plugin() {
 

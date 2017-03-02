@@ -3,7 +3,7 @@
  * Plugin Name: Subgenerator Test Plugin
  * Plugin URI:  https://webdevstudios.com
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.0
+ * Version:     0.1.0
  * Author:      WebDevStudios
  * Author URI:  https://webdevstudios.com
  * Donate link: https://webdevstudios.com
@@ -14,7 +14,7 @@
  * @link    https://webdevstudios.com
  *
  * @package Subgenerator_Test_Plugin
- * @version 0.0.0
+ * @version 0.1.0
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
@@ -41,7 +41,7 @@
 /**
  * Autoloads files with classes when needed.
  *
- * @since  0.0.0
+ * @since  0.1.0
  * @param  string $class_name Name of the class being requested.
  */
 function subgenerator_test_plugin_autoload_classes( $class_name ) {
@@ -62,7 +62,7 @@ spl_autoload_register( 'subgenerator_test_plugin_autoload_classes' );
 /**
  * Main initiation class.
  *
- * @since  0.0.0
+ * @since  0.1.0
  */
 final class Subgenerator_Test_Plugin {
 
@@ -70,15 +70,15 @@ final class Subgenerator_Test_Plugin {
 	 * Current version.
 	 *
 	 * @var    string
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
-	const VERSION = '0.0.0';
+	const VERSION = '0.1.0';
 
 	/**
 	 * URL of plugin directory.
 	 *
 	 * @var    string
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected $url = '';
 
@@ -86,7 +86,7 @@ final class Subgenerator_Test_Plugin {
 	 * Path of plugin directory.
 	 *
 	 * @var    string
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected $path = '';
 
@@ -94,7 +94,7 @@ final class Subgenerator_Test_Plugin {
 	 * Plugin basename.
 	 *
 	 * @var    string
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected $basename = '';
 
@@ -102,7 +102,7 @@ final class Subgenerator_Test_Plugin {
 	 * Detailed activation error messages.
 	 *
 	 * @var    array
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected $activation_errors = array();
 
@@ -110,14 +110,14 @@ final class Subgenerator_Test_Plugin {
 	 * Singleton instance of plugin.
 	 *
 	 * @var    Subgenerator_Test_Plugin
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected static $single_instance = null;
 
 	/**
 	 * Creates or returns an instance of this class.
 	 *
-	 * @since   0.0.0
+	 * @since   0.1.0
 	 * @return  Subgenerator_Test_Plugin A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -131,7 +131,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Sets up our plugin.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	protected function __construct() {
 		$this->basename = plugin_basename( __FILE__ );
@@ -142,11 +142,9 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Attach other plugin classes to the base plugin class.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function plugin_classes() {
-
-		// Attach other plugin classes to the base plugin class.
 		// $this->plugin_class = new STP_Plugin_Class( $this );
 
 	} // END OF PLUGIN CLASSES FUNCTION
@@ -158,7 +156,7 @@ final class Subgenerator_Test_Plugin {
 	 * < 5 for Taxonomy_Core,
 	 * and 0 for Widgets because widgets_init runs at init priority 1.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function hooks() {
 		add_action( 'init', array( $this, 'init' ), 0 );
@@ -167,7 +165,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Activate the plugin.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function _activate() {
 
@@ -179,7 +177,7 @@ final class Subgenerator_Test_Plugin {
 	 * Deactivate the plugin.
 	 * Uninstall routines should be in uninstall.php.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function _deactivate() {
 		// Add deactivation cleanup functionality here.
@@ -188,7 +186,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Init hooks
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function init() {
 
@@ -208,7 +206,7 @@ final class Subgenerator_Test_Plugin {
 	 * Check if the plugin meets requirements and
 	 * disable it if they are not present.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @return boolean True if requirements met, false if not.
 	 */
@@ -232,7 +230,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Deactivates this plugin, hook this function on admin_init.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function deactivate_me() {
 
@@ -246,14 +244,13 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Check that all plugin requirements are met.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @return boolean True if requirements are met.
 	 */
 	public function meets_requirements() {
 
-		// Do checks for required classes / functions
-		// function_exists('') & class_exists('').
+		// Do checks for required classes / functions or similar.
 		// Add detailed messages to $this->activation_errors array.
 		return true;
 	}
@@ -261,7 +258,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Adds a notice to the dashboard if the plugin requirements are not met.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 */
 	public function requirements_not_met_notice() {
 
@@ -288,7 +285,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Magic getter for our object.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $field Field to get.
 	 * @throws Exception     Throws an exception if the field is invalid.
@@ -310,7 +307,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * Include a file from the includes directory.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $filename Name of the file to be included.
 	 * @return boolean          Result of include call.
@@ -326,7 +323,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * This plugin's directory.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $path (optional) appended path.
 	 * @return string       Directory and path.
@@ -340,7 +337,7 @@ final class Subgenerator_Test_Plugin {
 	/**
 	 * This plugin's url.
 	 *
-	 * @since  0.0.0
+	 * @since  0.1.0
 	 *
 	 * @param  string $path (optional) appended path.
 	 * @return string       URL and path.
@@ -356,7 +353,7 @@ final class Subgenerator_Test_Plugin {
  * Grab the Subgenerator_Test_Plugin object and return it.
  * Wrapper for Subgenerator_Test_Plugin::get_instance().
  *
- * @since  0.0.0
+ * @since  0.1.0
  * @return Subgenerator_Test_Plugin  Singleton instance of plugin class.
  */
 function subgenerator_test_plugin() {

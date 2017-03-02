@@ -15,17 +15,17 @@ describe('plugin-wp:taxonomy', function () {
       .withArguments('new-tax' )
       .withLocalConfig({
         "name": "Subgenerator Test",
-        "homepage": "http://webdevstudios.com",
+        "homepage": "https://webdevstudios.com",
         "description": "A radical new plugin for WordPress!",
         "version": "0.1.0",
         "author": "WebDevStudios",
         "authoremail": "contact@webdevstudios.com",
-        "authorurl": "http://webdevstudios.com",
+        "authorurl": "https://webdevstudios.com",
         "license": "GPLv2",
         "slug": "subgenerator-test",
         "classname": "Subgenerator_Test",
         "prefix": "subgenerator_test",
-        "year": 2015
+        "year": 2017
       })
       .on('end', done);
   });

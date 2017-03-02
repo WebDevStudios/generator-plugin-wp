@@ -1,12 +1,12 @@
 # Subgenerator Test Plugin #
-**Contributors:**      WebDevStudios  
-**Donate link:**       https://webdevstudios.com  
-**Tags:**  
-**Requires at least:** 4.4  
-**Tested up to:**      4.7.2 
-**Stable tag:**        0.0.0  
-**License:**           GPLv2  
-**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:**      WebDevStudios
+**Donate link:**       https://webdevstudios.com
+**Tags:**
+**Requires at least:** 4.4
+**Tested up to:**      4.7.2
+**Stable tag:**        0.1.0
+**License:**           GPLv2
+**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description ##
 
@@ -27,10 +27,10 @@ A radical new plugin for WordPress!
 
 ## Changelog ##
 
-### 0.0.0 ###
+### 0.1.0 ###
 * First release
 
 ## Upgrade Notice ##
 
-### 0.0.0 ###
+### 0.1.0 ###
 First Release
