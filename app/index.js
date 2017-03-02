@@ -336,17 +336,13 @@ module.exports = base.extend({
   },
 
   getLatestWPVersion: function() {
-
-    // Grab the latest WP version.
     request.get({
       url: 'https://api.wordpress.org/core/version-check/1.7/',
       json: true,
       headers: { 'User-Agent': 'request' }
     }, (err, res, data) => {
-
       // Check for status code.
       if ( ! err && ( 200 === res.statusCode ) ) {
-
         // Loop through results to find only the "upgrade" version
         for ( var i in data.offers ) {
           if ( 'upgrade' === data.offers[i].response ) {
