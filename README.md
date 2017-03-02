@@ -46,12 +46,12 @@ called sub-generators to automatically generate files to enhance your plugin.
 
 For the names of the include, cpt, options, and widget subgenerators remember
 that the plugin prefix will be added to the class name so no need to include the
-original plugin name there! Think of it as the file name for each instead.
+original plugin name there. Think of it as the file name for each instead.
 
 ## Tests
 
 By default the plugin generator adds some built in tests for you to add on to as
-you develop your plugin! To run these tests run the `install-wp-tests.sh` script
+you develop your plugin. To run these tests run the `install-wp-tests.sh` script
 in the bin folder with the proper database details for your local setup.
 
 Once you've run the `install-wp-tests.sh` script you can run just `phpunit` in
