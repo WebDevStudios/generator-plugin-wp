@@ -20,9 +20,9 @@ module.exports = base.extend({
       choices: ['SASS', 'Basic']
     }];
 
+    // Sanitize inputs
     this.prompt(prompts, function (props) {
-      // Sanitize inputs
-      this.type        = props.type;
+      this.type = props.type;
 
       done();
     }.bind(this));

@@ -29,13 +29,13 @@ module.exports = base.extend({
         settingValues: function () {
             this.version = this.pkg.version;
             if (this.name) {
-                this.name = this._.titleize(this.name.split('-').join(' '));
+                this.name     = this._.titleize(this.name.split('-').join(' '));
                 this.nameslug = this._.slugify(this.name);
             }
             this.pluginname = this.rc.name;
-            this.cliname = this.pluginname + ' ' + this._.capitalize(this.name);
-            this.clislug = this.slug + '-cli-' + this._.slugify(this.name);
-            this.uslug = this._.underscored( this.cliname );
+            this.cliname    = this.pluginname + ' ' + this._.capitalize(this.name);
+            this.clislug    = this.slug + '-cli-' + this._.slugify(this.name);
+            this.uslug      = this._.underscored(this.cliname);
 
             this.classname = this.rc.classprefix + this._wpClassify(this.name);
 
