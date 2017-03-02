@@ -340,7 +340,7 @@ module.exports = base.extend({
       url: 'https://api.wordpress.org/core/version-check/1.7/',
       json: true,
       headers: { 'User-Agent': 'request' }
-    }, (err, res, data) => {
+    }, function (err, res, data) {
       // Check for status code.
       if ( ! err && ( 200 === res.statusCode ) ) {
         // Loop through results to find only the "upgrade" version
