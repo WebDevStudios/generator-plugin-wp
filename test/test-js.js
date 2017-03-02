@@ -8,7 +8,7 @@ describe('plugin-wp:js', function () {
   before(function (done) {
     helpers.run(path.join( __dirname, '../js'))
       .inTmpDir()
-      .withOptions({ 'skip-install': true })
+      .withOptions({ force: true })
       .withPrompts({ type: 'Browserify' })
       .withLocalConfig({
         "name": "Subgenerator Test",

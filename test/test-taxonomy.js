@@ -11,7 +11,7 @@ describe('plugin-wp:taxonomy', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withOptions({ skipInstall: true, force: true })
+      .withOptions({ force: true })
       .withArguments('new-tax' )
       .withLocalConfig({
         "name": "Subgenerator Test",

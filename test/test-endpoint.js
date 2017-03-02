@@ -11,7 +11,7 @@ describe('plugin-wp:endpoint', function () {
       .inTmpDir( function (dir) {
         fs.copySync(path.join(__dirname, './test-assets/subgenerator-test-plugin'), dir);
       })
-      .withOptions({ skipInstall: true, force: true })
+      .withOptions({ force: true })
       .withArguments('new-endpoint')
       .withLocalConfig({
         "name": "Subgenerator Test",

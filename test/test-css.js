@@ -9,7 +9,7 @@ describe('plugin-wp:css', function () {
   before(function (done) {
     helpers.run(path.join( __dirname, '../css'))
       .inTmpDir()
-      .withOptions({ 'skip-install': true })
+      .withOptions({ force: true })
       .withPrompts({ type: 'SASS' })
       .withLocalConfig({
         "name": "Subgenerator Test",
