@@ -168,6 +168,10 @@ final class Subgenerator_Test_Plugin {
 	 * @since  0.1.0
 	 */
 	public function _activate() {
+		// Bail early if requirements aren't met.
+		if ( ! $this->check_requirements() ) {
+			return;
+		}
 
 		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();

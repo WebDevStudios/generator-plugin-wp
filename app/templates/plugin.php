@@ -177,6 +177,10 @@ final class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function _activate() {
+		// Bail early if requirements aren't met.
+		if ( ! $this->check_requirements() ) {
+			return;
+		}
 
 		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();
