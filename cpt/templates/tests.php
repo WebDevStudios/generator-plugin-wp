@@ -22,7 +22,7 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	 * @since  <%= version %>
 	 */
 	function test_class_access() {
-		$this->assertInstanceOf( <%= rc.prefix %>()-><%= nameslug %>, '<%= classname %>' );
+		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= nameslug %>' );
 	}
 
 	/**
