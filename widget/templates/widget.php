@@ -82,15 +82,6 @@ class <%= classname %> extends WP_Widget {
 	}
 
 	/**
-	 * Register the widget.
-	 *
-	 * @since  <%= version %>
-	 */
-	public function register_widget() {
-		register_widget( '<%= classname %>' );
-	}
-
-	/**
 	 * Delete this widget's cache.
 	 *
 	 * Note: Could also delete any transients
