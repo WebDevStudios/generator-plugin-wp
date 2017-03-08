@@ -72,9 +72,6 @@ class <%= classname %> extends WP_Widget {
 			)
 		);
 
-		// Init the widget.
-		add_action( 'widgets_init', '<%= widgetregister %>' );
-
 		// Clear cache on save.
 		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
@@ -82,15 +79,6 @@ class <%= classname %> extends WP_Widget {
 
 		// Add a shortcode for our widget.
 		add_shortcode( self::$shortcode, array( __CLASS__, 'get_widget' ) );
-	}
-
-	/**
-	 * Register the widget.
-	 *
-	 * @since  <%= version %>
-	 */
-	public function register_widget() {
-		register_widget( '<%= classname %>' );
 	}
 
 	/**
@@ -235,4 +223,9 @@ class <%= classname %> extends WP_Widget {
 		<?php
 	}
 }
+
+function <%= widgetregister %>() {
+	register_widget( '<%= classname %>' );
+ }
+ add_action( 'widgets_init', '<%= widgetregister %>' );
 
