@@ -72,9 +72,6 @@ class <%= classname %> extends WP_Widget {
 			)
 		);
 
-		// Init the widget.
-		add_action( 'widgets_init', '<%= widgetregister %>' );
-
 		// Clear cache on save.
 		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
@@ -235,4 +232,9 @@ class <%= classname %> extends WP_Widget {
 		<?php
 	}
 }
+
+function <%= widgetregister %>() {
+	register_widget( '<%= classname %>' );
+ }
+ add_action( 'widgets_init', '<%= widgetregister %>' );
 
