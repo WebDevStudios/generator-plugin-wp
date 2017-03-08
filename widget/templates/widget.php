@@ -43,7 +43,6 @@ class <%= classname %> extends WP_Widget {
 	 */
 	protected $default_widget_title = '';
 
-
 	/**
 	 * Shortcode name for this widget
 	 *
@@ -52,7 +51,6 @@ class <%= classname %> extends WP_Widget {
 	 */
 	protected static $shortcode = '<%= widgetslug %>';
 
-
 	/**
 	 * Construct widget class.
 	 *
@@ -60,7 +58,7 @@ class <%= classname %> extends WP_Widget {
 	 */
 	public function __construct() {
 
-		$this->widget_name          = esc_html__( '<%= widgetname %>', '<%= slug %>' );
+		$this->widget_name = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 		$this->default_widget_title = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 
 		parent::__construct(
@@ -93,7 +91,6 @@ class <%= classname %> extends WP_Widget {
 		wp_cache_delete( $this->widget_slug, 'widget' );
 	}
 
-
 	/**
 	 * Front-end display of widget.
 	 *
@@ -103,16 +100,20 @@ class <%= classname %> extends WP_Widget {
 	 * @param  array $instance The widget settings as set by user.
 	 */
 	public function widget( $args, $instance ) {
-		echo self::get_widget( array(
+
+		// Set widget attributes.
+		$atts = array(
 			'before_widget' => $args['before_widget'],
 			'after_widget'  => $args['after_widget'],
 			'before_title'  => $args['before_title'],
 			'after_title'   => $args['after_title'],
 			'title'         => $instance['title'],
 			'text'          => $instance['text'],
-		) );
-	}
+		);
 
+		// Display the widget.
+		echo self::get_widget( $atts ); // WPCS XSS OK.
+	}
 
 	/**
 	 * Return the widget/shortcode output
@@ -124,31 +125,36 @@ class <%= classname %> extends WP_Widget {
 	 */
 	public static function get_widget( $atts ) {
 
-		// Set up default values for attributes.
-		$atts = shortcode_atts(
-			array(
-				'before_widget' => '',
-				'after_widget'  => '',
-				'before_title'  => '',
-				'after_title'   => '',
-				'title'         => '',
-				'text'          => '',
-			),
-			(array) $atts,
-			self::$shortcode
+		$defaults = array(
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '',
+			'after_title'   => '',
+			'title'         => '',
+			'text'          => '',
 		);
 
-		// Title.
-		$widget = esc_html( ( $atts['title'] ) ? $atts['before_title'] . $atts['title'] . $atts['after_title'] : '' );
+		// Parse defaults and create a shortcode.
+		$atts = shortcode_atts( $defaults, (array) $atts, self::$shortcode );
 
-		// Text.
-		$widget .= wpautop( wp_kses_post( $atts['text'] ) );
+		// Start an output buffer.
+		ob_start();
 
+		// Start widget markup.
+		echo $atts['before_widget']; // WPCS XSS OK.
 
-		// Send it back.
-		return $atts['before_widget'] . $widget . $atts['after_widget'];
+		// Maybe display widget title.
+		echo ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '' ; // WPCS XSS OK.
+
+		// Display widget text.
+		echo wpautop( wp_kses_post( $atts['text'] ) ); // WPCS XSS OK.
+
+		// End the widget markup.
+		echo $atts['after_widget']; // WPCS XSS OK.
+
+		// Return the output buffer.
+		return ob_get_clean();
 	}
-
 
 	/**
 	 * Update form values as they are saved.
@@ -184,7 +190,6 @@ class <%= classname %> extends WP_Widget {
 		return $instance;
 	}
 
-
 	/**
 	 * Back-end widget form with defaults.
 	 *
@@ -194,14 +199,14 @@ class <%= classname %> extends WP_Widget {
 	 */
 	public function form( $instance ) {
 
-		// Parse our args that get passed in.
-		$instance = wp_parse_args( (array) $instance,
-			array(
-				'title' => $this->default_widget_title,
-				'text'  => '',
-			)
+		// Set defaults.
+		$defaults = array(
+			'title' => $this->default_widget_title,
+			'text'  => '',
 		);
 
+		// Parse args.
+		$instance = wp_parse_args( (array) $instance, $defaults );
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
@@ -224,8 +229,10 @@ class <%= classname %> extends WP_Widget {
 	}
 }
 
+/**
+ * Register widget with WordPress.
+ */
 function <%= widgetregister %>() {
 	register_widget( '<%= classname %>' );
- }
- add_action( 'widgets_init', '<%= widgetregister %>' );
-
+}
+add_action( 'widgets_init', '<%= widgetregister %>' );
