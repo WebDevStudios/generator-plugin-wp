@@ -4,3 +4,6 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-plugin-wp' ]; then cd .. && eval "mv $currentfolder generator-plugin-wp" && cd generator-plugin-wp; fi
+notifications:
+  slack:
+    secure: HSOxec12MVmrsccR3tqFgW2e4FcsO39OrOwxhDuCJBfHUEAJs99unlk/fjxe7bRRc7X85q+jyzKu/13dO4WGT51HnPnpDL/r5SNCIDGjSlpmfRfx7XAe1FLdZbY9gYHeGbGoL9Z3jvvq4UEyv6HHhy19X+NQDBmg8yp4OxECLtLKT+kFIyGCngOuu3GcXiLurKToeDBb3L0lE0mxcnslZRGSldFSH9RfnX5v96Wst+LvXF+HXiRJb+FOdL1aeGz4UiT4kzUFWWI03WNpF7HuQojP7getM9Wzhl3os6NR7TlDN5LR8SNIvBsG0zbTG37Qt0hoFDCQ5D9igYNN9rhlOfc3t+LmujAepZXx7xiuDRQoRe1nQBAeD0pY3NhdeCFNWFUqyWpcXrdAv5/8oLfuS6w4N2tCHDG46wfmkgIFCV06TjYTce1duWiJoypPveyjA4ePlbQcxzGXwStQrHspChMp2QI8VTbLD3RQ9DwlIo5QAID/f2U4cCPs6HQeo28w60oBZrCb6bjOJikBs33M1E2oc9teFbqeMKo7xFZ9kttsIBHGpFms1oRymw+idxkgFmoNOzBhCZV16Yp/8T9Xi4OfI/jJpwwWDFLsenJarMgoXScifpO9DkFMTiXDcLP4fVTti18HiQEq6aCStzQpPfejtgnS3Okp2UWxFpb0gHM=
