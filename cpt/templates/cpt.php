@@ -59,6 +59,8 @@ class <%= classname %> extends CPT_Core {
 					'excerpt',
 					'thumbnail',
 				),
+				'menu_icon' => 'dashicons-admin-post', // https://developer.wordpress.org/resource/dashicons/
+				'public'    => true,
 			)
 		);
 	}
