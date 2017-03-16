@@ -48,8 +48,8 @@ class <%= classname %> extends CPT_Core {
 		// First parameter should be an array with Singular, Plural, and Registered name.
 		parent::__construct(
 			array(
-				__( '<%= cptname %>', '<%= slug %>' ),
-				__( '<%= cptname %>s', '<%= slug %>' ),
+				esc_html__( '<%= cptname %>', '<%= slug %>' ),
+				esc_html__( '<%= cptname %>s', '<%= slug %>' ),
 				'<%= cptslug %>',
 			),
 			array(
@@ -59,6 +59,8 @@ class <%= classname %> extends CPT_Core {
 					'excerpt',
 					'thumbnail',
 				),
+				'menu_icon' => 'dashicons-admin-post', // https://developer.wordpress.org/resource/dashicons/
+				'public'    => true,
 			)
 		);
 	}
@@ -85,7 +87,7 @@ class <%= classname %> extends CPT_Core {
 		// Define our metaboxes and fields.
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( '<%= cptname %> Meta Box', '<%= slug %>' ),
+			'title'         => esc_html__( '<%= cptname %> Meta Box', '<%= slug %>' ),
 			'object_types'  => array( '<%= cptslug %>' ),
 		) );<% } %>
 	}
