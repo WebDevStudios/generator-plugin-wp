@@ -1,0 +1,10 @@
+Subgenerators:
+	yo plugin-wp:include <include-name>
+	yo plugin-wp:cpt <cpt-name>
+	yo plugin-wp:cli <cli-command-name>
+	yo plugin-wp:taxonomy <taxonomy-name>
+	yo plugin-wp:options <options-name>
+	yo plugin-wp:widget <widget-name>
+	yo plugin-wp:endpoint <class-name>
+	yo plugin-wp:js
+	yo plugin-wp:css
