@@ -61,7 +61,8 @@ module.exports = base.extend({
       type   : 'input',
       name   : 'homepage',
       message: 'Homepage',
-      default: 'https://webdevstudios.com'
+      default: 'https://webdevstudios.com',
+      store: true
     }, {
       type   : 'input',
       name   : 'description',
@@ -77,24 +78,28 @@ module.exports = base.extend({
       name   : 'author',
       message: 'Author',
       default: 'WebDevStudios',
-      save   : true
+      save   : true,
+      store: true
     }, {
       type   : 'input',
       name   : 'authoremail',
       message: 'Author Email',
       default: 'contact@webdevstudios.com',
-      save   : true
+      save   : true,
+      store: true
     }, {
       type   : 'input',
       name   : 'authorurl',
       message: 'Author URL',
       default: 'https://webdevstudios.com',
-      save   : true
+      save   : true,
+      store: true
     }, {
       type   : 'input',
       name   : 'license',
       message: 'License',
-      default: 'GPLv2'
+      default: 'GPLv2',
+      store: true
     }, {
       type   : 'input',
       name   : 'slug',
@@ -120,7 +125,8 @@ module.exports = base.extend({
       type   : 'list',
       name   : 'autoloader',
       message: 'Use Autoloader',
-      choices: this.autoloaderList
+      choices: this.autoloaderList,
+      store: true
     }];
 
      // Sanitize inputs.
