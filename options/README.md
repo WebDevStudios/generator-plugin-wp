@@ -1,7 +1,7 @@
 # generator-plugin-wp Options Page Sub-generator
 
 ```bash
-yo plugin-wp options <options-name>
+yo plugin-wp:options <options-name>
 ```
 
 Creates a skeleton options page using [CMB2](https://github.com/WebDevStudios/CMB2) for custom fields.
