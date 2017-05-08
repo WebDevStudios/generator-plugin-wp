@@ -218,9 +218,7 @@ class <%= classname %> extends WP_Widget {
 			<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>">
 				<?php esc_html_e( 'Text:', '<%= slug %>' ); ?>
 			</label>
-			<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>">
-				<?php echo esc_textarea( $instance['text'] ); ?>
-			</textarea>
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
 		</p>
 		<p class="description">
 			<?php esc_html_e( 'Basic HTML tags are allowed.', '<%= slug %>' ); ?>
