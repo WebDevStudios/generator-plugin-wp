@@ -2,6 +2,10 @@
 /**
  * <%= cptname %>.
  *
+ * class-name: <%= classname %>
+ * class-slug: <%= nameslug %>
+ * class-active: true
+ *
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */

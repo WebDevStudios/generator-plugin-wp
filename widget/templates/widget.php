@@ -9,6 +9,10 @@
 /**
  * <%= widgetname %> class.
  *
+ * class-name: <%= classname %>
+ * class-slug: <%= nameslug %>
+ * class-active: true
+ * 
  * @since <%= version %>
  */
 class <%= classname %> extends WP_Widget {

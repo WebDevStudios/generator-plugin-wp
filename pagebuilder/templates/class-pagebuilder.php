@@ -8,6 +8,11 @@
 
 /**
  * <%= pluginname %> Page Builder.
+ *
+ * class-name: <%= classname %>
+ * class-slug: <%= nameslug %>
+ * class-active: true
+ *
  */
 class <%= classname %> {
 	/**
