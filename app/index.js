@@ -334,7 +334,7 @@ module.exports = base.extend({
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
 
-      this.config.set( 'plugin-gen-version', this.plugingenversion );
+      this.config.set( 'plugingenversion', this.plugingenversion );
 
       this.config.save();
     }
