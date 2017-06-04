@@ -166,6 +166,7 @@ final class <%= classname %> {
 				$this->$file_data['class-slug'] = new $file_data['class-name']( $this );
 			}
 		}
+		// $this->plugin_class = new <%= classprefix %>Plugin_Class( $this );
 
 	} // END OF PLUGIN CLASSES FUNCTION
 
