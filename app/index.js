@@ -44,7 +44,7 @@ module.exports = base.extend({
     this.checkComposerStatus();
 
     // Get the plugin gen version.
-    var pjson = require( './package.json' );
+    var pjson = require( '../package.json' );
     this.plugingenversion = pjson.version;
 
   },
