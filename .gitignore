@@ -3,6 +3,7 @@ node_modules/
 npm-debug.log
 .grunt
 .sass-cache
+package-lock.json
 
 # OSX
 .DS_Store
