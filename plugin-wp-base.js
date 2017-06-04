@@ -49,17 +49,6 @@ module.exports = yeoman.generators.Base.extend({
 		return mainPluginFile.replace( endComment, newInclude );
 	},
 
-	_addStringToPluginClasses: function( toAdd ) {
-		if ( ! this.rc.slug ) {
-			return;
-		}
-
-		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
-		mainPluginFile = this.__addStringToPluginClasses( mainPluginFile, toAdd );
-
-		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
-	},
-
 	_addPluginProperty: function( file, slug, className, version ) {
 
 		var toAdd = '\t/**';

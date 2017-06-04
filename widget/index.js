@@ -120,6 +120,5 @@ module.exports = base.extend({
       );
     }
 
-    this._addStringToPluginClasses( 'require( self::dir( \'includes/class-' + this._.slugify( this.name ) + '.php\' ) );' );
   }
 });
