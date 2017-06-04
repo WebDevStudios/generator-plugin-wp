@@ -7,6 +7,8 @@ module.exports = yeoman.generators.Base.extend({
 		// Calling the super constructor is important so our generator is correctly set up
 		yeoman.generators.Base.apply(this, arguments);
 
+		this.yjson = this.config.getAll() || {};
+
 		updateNotifier({
 			pkg: require('./package.json')
 		}).notify({defer: false});
@@ -49,6 +51,17 @@ module.exports = yeoman.generators.Base.extend({
 		return mainPluginFile.replace( endComment, newInclude );
 	},
 
+	_addStringToPluginClasses: function( toAdd ) {
+		if ( ! this.rc.slug ) {
+			return;
+		}
+
+		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
+		mainPluginFile = this.__addStringToPluginClasses( mainPluginFile, toAdd );
+
+		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
+	},
+
 	_addPluginProperty: function( file, slug, className, version ) {
 
 		var toAdd = '\t/**';
@@ -63,5 +76,40 @@ module.exports = yeoman.generators.Base.extend({
 
 		return file.replace( endComment, toAdd + '\n\n' + endComment );
 	},
+
+	_addPluginClass: function( file, slug, className ) {
+		if ( ! this.yjson ) {
+			var toAdd = '$this->' + slug + ' = new ' + className + '( $this );';
+			var toRemove = '\n\t\t// $this->plugin_class = new ' + this.rc.classprefix + 'Plugin_Class( $this );';
+			return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
+		}
+	},
+
+	_addPropertyMagicGetter: function( file, slug ) {
+		if ( ! this.yjson ) {
+			var toAdd      = '\t\t\tcase \'' + slug + '\':';
+			var endComment = '\t\t\t\treturn $this->$field;';
+			var newInclude = toAdd + '\n' + endComment;
+
+			return file.replace( endComment, newInclude );
+		}
+	},
+
+	_addIncludeClass: function( slug, className, version ) {
+		if ( ! this.yjson ) {
+			if ( !this.rc.slug ) {
+				return;
+			}
+
+			slug               = this._.underscored( slug );
+			var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
+
+			mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
+			mainPluginFile = this._addPluginClass( mainPluginFile, slug, className );
+			mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
+
+			this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
+		}
+	}
 
 });
