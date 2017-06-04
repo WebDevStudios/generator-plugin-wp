@@ -75,35 +75,4 @@ module.exports = yeoman.generators.Base.extend({
 		return file.replace( endComment, toAdd + '\n\n' + endComment );
 	},
 
-	_addPluginClass: function( file, slug, className ) {
-		// var toAdd = '$this->' + slug + ' = new ' + className + '( $this );';
-		// var toRemove = '\n\t\t// $this->plugin_class = new ' + this.rc.classprefix + 'Plugin_Class( $this );';
-		// return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
-	},
-
-	_addPropertyMagicGetter: function( file, slug ) {
-
-		// var toAdd = '\t\t\tcase \'' + slug + '\':';
-		// var endComment = '\t\t\t\treturn $this->$field;';
-		// var newInclude = toAdd + '\n' + endComment;
-		//
-		// return file.replace( endComment, newInclude );
-	},
-
-	_addIncludeClass: function( slug, className, version ) {
-
-		// if ( ! this.rc.slug ) {
-		// 	return;
-		// }
-		//
-		// slug    = this._.underscored( slug );
-		// var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
-		//
-		// mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
-		// mainPluginFile = this._addPluginClass( mainPluginFile, slug, className );
-		// mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
-		//
-		// this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
-	}
-
 });
