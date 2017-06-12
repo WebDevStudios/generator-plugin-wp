@@ -254,7 +254,7 @@ gulp.task( 'uglify', [ 'concat' ], () =>
 		.pipe( uglify( {
 			'mangle': false
 		} ) )
-		.pipe( gulp.dest( 'assets/scripts' ) )
+		.pipe( gulp.dest( 'assets/js' ) )
 );
 
 /**
