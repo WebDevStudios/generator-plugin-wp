@@ -1,6 +1,6 @@
 {
   "name": "generator-plugin-wp",
-  "version": "0.19.5",
+  "version": "0.19.6",
   "description": "Yeoman generator for WordPress plugins.",
   "license": "MIT",
   "main": "app/index.js",
