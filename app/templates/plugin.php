@@ -154,6 +154,18 @@ final class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function plugin_classes() {
+		$file_info = array (
+			'class-name'   => 'class-name',
+			'class-slug'   => 'class-slug',
+			'class-active' => 'class-active',
+		);
+
+		foreach (glob("{$this->path}includes/class-*.php") as $filename) {
+			$file_data = get_file_data( $filename, $file_info );
+			if ( $file_data['class-active'] ) {
+				$this->$file_data['class-slug'] = new $file_data['class-name']( $this );
+			}
+		}
 		// $this->plugin_class = new <%= classprefix %>Plugin_Class( $this );
 
 	} // END OF PLUGIN CLASSES FUNCTION
@@ -305,6 +317,11 @@ final class <%= classname %> {
 	 * @return mixed         Value of the field.
 	 */
 	public function __get( $field ) {
+
+		if ( property_exists( '<%= classname %>', $field ) ) {
+			return $this->$field;
+		}
+
 		switch ( $field ) {
 			case 'version':
 				return self::VERSION;
@@ -312,8 +329,6 @@ final class <%= classname %> {
 			case 'url':
 			case 'path':
 				return $this->$field;
-			default:
-				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
 	}<% if ( autoloader == 'Basic' ) { %>
 

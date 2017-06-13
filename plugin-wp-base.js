@@ -7,6 +7,8 @@ module.exports = yeoman.generators.Base.extend({
 		// Calling the super constructor is important so our generator is correctly set up
 		yeoman.generators.Base.apply(this, arguments);
 
+		this.yjson = this.config.getAll() || {};
+
 		updateNotifier({
 			pkg: require('./package.json')
 		}).notify({defer: false});
@@ -54,6 +56,10 @@ module.exports = yeoman.generators.Base.extend({
 			return;
 		}
 
+		if ( this.yjson ) {
+			return;
+		}
+
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 		mainPluginFile = this.__addStringToPluginClasses( mainPluginFile, toAdd );
 
@@ -76,14 +82,21 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	_addPluginClass: function( file, slug, className ) {
+		if ( this.yjson ) {
+			return;
+		}
+
 		var toAdd = '$this->' + slug + ' = new ' + className + '( $this );';
 		var toRemove = '\n\t\t// $this->plugin_class = new ' + this.rc.classprefix + 'Plugin_Class( $this );';
 		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
 	},
 
 	_addPropertyMagicGetter: function( file, slug ) {
+		if ( this.yjson ) {
+			return;
+		}
 
-		var toAdd = '\t\t\tcase \'' + slug + '\':';
+		var toAdd      = '\t\t\tcase \'' + slug + '\':';
 		var endComment = '\t\t\t\treturn $this->$field;';
 		var newInclude = toAdd + '\n' + endComment;
 
@@ -91,12 +104,15 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	_addIncludeClass: function( slug, className, version ) {
-
-		if ( ! this.rc.slug ) {
+		if ( this.yjson ) {
 			return;
 		}
 
-		slug    = this._.underscored( slug );
+		if ( !this.rc.slug ) {
+			return;
+		}
+
+		slug               = this._.underscored( slug );
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 
 		mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
@@ -104,6 +120,7 @@ module.exports = yeoman.generators.Base.extend({
 		mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
 
 		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
+
 	}
 
 });
