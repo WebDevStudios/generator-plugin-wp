@@ -41,6 +41,11 @@ module.exports = base.extend({
 
     // Check and see if Composer is available.
     this.checkComposerStatus();
+
+    // Get the plugin gen version.
+    var pjson = require( '../package.json' );
+    this.plugingenversion = pjson.version;
+
   },
 
   prompting: function () {
@@ -327,6 +332,8 @@ module.exports = base.extend({
       this.config.set( 'year', this.year );
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
+
+      this.config.set( 'plugingenversion', this.plugingenversion );
 
       this.config.save();
     }
