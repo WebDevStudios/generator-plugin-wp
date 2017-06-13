@@ -1,4 +1,4 @@
-<?php
+<?php namespace <%= mainclassname %>\<%= classname %>;
 /**
  * <%= includename %>.
  *
