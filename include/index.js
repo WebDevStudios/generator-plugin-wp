@@ -31,6 +31,7 @@ module.exports = base.extend({
       if ( this.name ) {
         this.name      = this._.titleize( this.name.split('-').join(' ') );
         this.nameslug  = this._.slugify( this.name );
+        this.property  = this._.underscored( this.nameslug );
       }
       this.pluginname  = this.rc.name;
       this.includename = this.pluginname + ' ' + this._.capitalize( this.name );
