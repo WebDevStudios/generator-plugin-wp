@@ -112,8 +112,14 @@ install_db() {
 		fi
 	fi
 
-	# create database
-	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	# create database, maybe. BOOM.
+	DB_EXISTS=$(echo 'SHOW DATABASES' | mysql -u"$DB_USER" --password="$DB_PASS" $EXTRA | grep -E "$DB_NAME\$" | wc -l | tr -d '[:space:]')
+
+	if [[ 0 == "$DB_EXISTS" ]]; then
+		mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	else
+		echo "$DB_NAME"' already exists, not gonna do that again.'
+	fi
 }
 
 install_wp
