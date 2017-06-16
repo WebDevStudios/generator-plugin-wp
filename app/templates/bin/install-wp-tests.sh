@@ -22,6 +22,14 @@ download() {
 	fi
 }
 
+echo 'Hey, this is going to create a databse or stomp out '"$DB_NAME"' if it exists, continue? [y/n]'
+read -r GO_ON
+
+if [[ 'y' != "$GO_ON" ]]; then
+	echo 'See ya! http://bit.ly/2sxOB0u'
+	exit;
+fi
+
 if [[ $WP_VERSION =~ [0-9]+\.[0-9]+(\.[0-9]+)? ]]; then
 	WP_TESTS_TAG="tags/$WP_VERSION"
 else
