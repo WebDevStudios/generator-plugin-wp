@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version]"
+if [ $# -lt 2 ]; then
+	echo "usage: $0 <db-name> <db-user> [db-pass=''] [db-host='localhost'] [wp-version='latest']"
 	exit 1
 fi
 
 DB_NAME=$1
 DB_USER=$2
-DB_PASS=$3
+DB_PASS=${3-''}
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 
