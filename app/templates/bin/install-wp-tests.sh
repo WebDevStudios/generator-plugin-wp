@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version]"
+if [ $# -lt 2 ]; then
+	echo "usage: $0 <db-name> <db-user> [db-pass=''] [db-host='localhost'] [wp-version='latest']"
 	exit 1
 fi
 
 DB_NAME=$1
 DB_USER=$2
-DB_PASS=$3
+DB_PASS=${3-''}
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 
@@ -15,12 +15,20 @@ WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
 WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
 
 download() {
-	if [ `which curl` ]; then
+	if [ "$(which curl)" ]; then
 		curl -s "$1" > "$2";
-	elif [ `which wget` ]; then
+	elif [ "$(which wget)" ]; then
 		wget -nv -O "$2" "$1"
 	fi
 }
+
+echo 'Hey, this is going to create a databse or stomp out '"$DB_NAME"' if it exists, continue? [y/n]'
+read -r GO_ON
+
+if [[ 'y' != "$GO_ON" ]]; then
+	echo 'See ya! http://bit.ly/2sxOB0u'
+	exit;
+fi
 
 if [[ $WP_VERSION =~ [0-9]+\.[0-9]+(\.[0-9]+)? ]]; then
 	WP_TESTS_TAG="tags/$WP_VERSION"
@@ -40,22 +48,22 @@ set -ex
 
 install_wp() {
 
-	if [ -d $WP_CORE_DIR ]; then
+	if [ -d "$WP_CORE_DIR" ]; then
 		return;
 	fi
 
-	mkdir -p $WP_CORE_DIR
+	mkdir -p "$WP_CORE_DIR"
 
-	if [ $WP_VERSION == 'latest' ]; then
+	if [ "$WP_VERSION" == 'latest' ]; then
 		local ARCHIVE_NAME='latest'
 	else
 		local ARCHIVE_NAME="wordpress-$WP_VERSION"
 	fi
 
-	download https://wordpress.org/${ARCHIVE_NAME}.tar.gz  /tmp/wordpress.tar.gz
-	tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
+	download https://wordpress.org/"${ARCHIVE_NAME}".tar.gz  /tmp/wordpress.tar.gz
+	tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C "$WP_CORE_DIR"
 
-	download https://raw.github.com/markoheijnen/wp-mysqli/master/db.php $WP_CORE_DIR/wp-content/db.php
+	download https://raw.github.com/markoheijnen/wp-mysqli/master/db.php "$WP_CORE_DIR"/wp-content/db.php
 }
 
 install_test_suite() {
@@ -67,16 +75,16 @@ install_test_suite() {
 	fi
 
 	# set up testing suite if it doesn't yet exist
-	if [ ! -d $WP_TESTS_DIR ]; then
+	if [ ! -d "$WP_TESTS_DIR" ]; then
 		# set up testing suite
-		mkdir -p $WP_TESTS_DIR
-		svn co --quiet https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/ $WP_TESTS_DIR/includes
+		mkdir -p "$WP_TESTS_DIR"
+		svn co --quiet https://develop.svn.wordpress.org/"${WP_TESTS_TAG}"/tests/phpunit/ "$WP_TESTS_DIR"
 	fi
 
-	cd $WP_TESTS_DIR
+	cd "$WP_TESTS_DIR"
 
 	if [ ! -f wp-tests-config.php ]; then
-		download https://develop.svn.wordpress.org/${WP_TESTS_TAG}/wp-tests-config-sample.php "$WP_TESTS_DIR"/wp-tests-config.php
+		download https://develop.svn.wordpress.org/"${WP_TESTS_TAG}"/wp-tests-config-sample.php "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s:dirname( __FILE__ ) . '/src/':'$WP_CORE_DIR':" "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s:define( 'WP_DEBUG', true );:define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true );:" "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s/youremptytestdbnamehere/$DB_NAME/" "$WP_TESTS_DIR"/wp-tests-config.php
@@ -89,23 +97,29 @@ install_test_suite() {
 
 install_db() {
 	# parse DB_HOST for port or socket references
-	local PARTS=(${DB_HOST//\:/ })
+	local PARTS=("${DB_HOST//\:/ }")
 	local DB_HOSTNAME=${PARTS[0]};
 	local DB_SOCK_OR_PORT=${PARTS[1]};
 	local EXTRA=""
 
-	if ! [ -z $DB_HOSTNAME ] ; then
+	if ! [ -z "$DB_HOSTNAME" ] ; then
 		if [ $(echo $DB_SOCK_OR_PORT | grep -e '^[0-9]\{1,\}$') ]; then
 			EXTRA=" --host=$DB_HOSTNAME --port=$DB_SOCK_OR_PORT --protocol=tcp"
-		elif ! [ -z $DB_SOCK_OR_PORT ] ; then
+		elif ! [ -z "$DB_SOCK_OR_PORT" ] ; then
 			EXTRA=" --socket=$DB_SOCK_OR_PORT"
-		elif ! [ -z $DB_HOSTNAME ] ; then
+		elif ! [ -z "$DB_HOSTNAME" ] ; then
 			EXTRA=" --host=$DB_HOSTNAME --protocol=tcp"
 		fi
 	fi
 
-	# create database
-	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	# create database, maybe. BOOM.
+	DB_EXISTS=$(echo 'SHOW DATABASES' | mysql -u"$DB_USER" --password="$DB_PASS" $EXTRA | grep -E "$DB_NAME\$" | wc -l | tr -d '[:space:]')
+
+	if [[ 0 == "$DB_EXISTS" ]]; then
+		mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	else
+		echo "$DB_NAME"' already exists, not gonna do that again.'
+	fi
 }
 
 install_wp
