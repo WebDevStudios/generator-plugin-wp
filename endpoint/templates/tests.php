@@ -42,6 +42,14 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	 * @since  <%= version %>
 	 */
 	function test_sample() {
+		/*
+		wp_set_current_user( $this->administrator );
+
+		$request = new WP_REST_Request( 'POST', '/endpoint' );
+		$request->set_param( 'key', 'value' );
+		$response = $this->server->dispatch( $request );
+		$this->assertResponseStatus( 200, $response );
+		*/
 		$this->assertTrue( true );
 	}
 
