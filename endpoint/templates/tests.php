@@ -46,9 +46,53 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test response status for API request.
+	 *
+	 * @since  <%= version %>
+	 */
+	protected function assertResponseStatus( $status, $response, $error_code = '', $debug = false ) {
+         if ( $debug ) {
+             error_log( '$response->get_data(): '. print_r( $response->get_data(), true ) );
+         }
+         $this->assertEquals( $status, $response->get_status() );
+
+         if ( $error_code ) {
+             $this->assertResponseErrorCode( $error_code, $response );
+         }
+     }
+
+	 /**
+ 	 * Test response error code for API request.
+ 	 *
+ 	 * @since  <%= version %>
+ 	 */
+     protected function assertResponseErrorCode( $error_code, $response ) {
+         $response_data = $response->get_data();
+         $this->assertEquals( $error_code, $response_data['code'] );
+     }
+
+	 /**
+ 	 * Test response data for API request.
+ 	 *
+ 	 * @since  <%= version %>
+ 	 */
+     protected function assertResponseData( $data, $response ) {
+         $response_data = $response->get_data();
+         $tested_data = array();
+         foreach( $data as $key => $value ) {
+             if ( isset( $response_data[ $key ] ) ) {
+                 $tested_data[ $key ] = $response_data[ $key ];
+             } else {
+                 $tested_data[ $key ] = null;
+             }
+         }
+         $this->assertEquals( $data, $tested_data );
+     }
+
+	/**
 	* Turn off Rest server.
 	*
-	* @since  1.2.0
+	* @since  <%= version %>
 	*/
    public function tearDown() {
 	   parent::tearDown();
