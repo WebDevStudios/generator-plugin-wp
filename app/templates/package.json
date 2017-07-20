@@ -19,7 +19,7 @@
 		"grunt-wp-deploy": "latest",
 		"load-grunt-tasks": "latest",
 		"autoprefixer": "latest",
-		"babel-preset-es2015": "latest",
+		"babel-preset-latest": "latest",
 		"bourbon": "latest",
 		"bourbon-neat": "latest",
 		"browser-sync": "latest",
