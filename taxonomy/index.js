@@ -6,7 +6,7 @@ module.exports = base.extend({
   constructor: function () {
     base.apply(this, arguments);
 
-    this.option('nocmb2');
+    this.option('cmb2');
 
     this.argument('name', {
       required: false,
@@ -139,7 +139,7 @@ module.exports = base.extend({
     if ( this.composer ) {
       this.spawnCommand('composer', ['require', 'webdevstudios/taxonomy_core']);
 
-      if ( !this.options.nocmb2 ) {
+      if ( this.options.cmb2 ) {
         this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
       }
     } else {
@@ -152,7 +152,7 @@ module.exports = base.extend({
         }, this.destinationPath('vendor/taxonomy-core') );
       }
 
-      if ( !this.fs.exists('vendor/cmb2/init.php') && !this.options.nocmb2 ) {
+      if ( !this.fs.exists('vendor/cmb2/init.php') && this.options.cmb2 ) {
         ghdownload({
           user: 'WebDevStudios',
           repo: 'CMB2',
