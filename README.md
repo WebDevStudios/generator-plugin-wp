@@ -63,6 +63,9 @@ main generator with the `--notests` option.
 By default PHP 5.2 is not supported in the generated plugin. To generate a plugin
 with PHP 5.2 support, run the main generator with the `--php52` option.
 
+## CMB2
+CMB2 is included by default with the options sub-generator. It can also be a useful tool with CPT and taxonomy sub-generators using the --cmb2 flag. 
+
 ## Adding Packages with Composer
 
 If you chose composer as the autoloader option during the plugin's initiation,
