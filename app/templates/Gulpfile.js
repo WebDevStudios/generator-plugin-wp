@@ -228,7 +228,7 @@ gulp.task( 'concat', () =>
 
 		// Convert ES6+ to ES2015.
 		.pipe( babel( {
-			presets: [ 'es2015' ]
+			presets: [ 'latest' ]
 		} ) )
 
 		// Concatenate partials into a single script.
