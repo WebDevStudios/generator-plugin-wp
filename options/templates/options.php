@@ -174,7 +174,7 @@ class <%= classname %> {
 
 		add_settings_error( self::$key . '-notices', '', __( 'Settings updated.', 'myprefix' ), 'updated' );
 		settings_errors( self::$key . '-notices' );
-	}<% } %>
+	}
 
 	/**
 	 * Wrapper function around cmb2_get_option.
@@ -204,5 +204,5 @@ class <%= classname %> {
 		}
 
 		return $val;
-	}
+	}<% } %>
 }
