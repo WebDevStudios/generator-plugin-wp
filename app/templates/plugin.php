@@ -67,6 +67,8 @@ require 'vendor/autoload_52.php';
 <% } else if ( autoloader == 'Composer' ) { %>
 // Use composer autoload.
 require 'vendor/autoload.php';
+<% } else if ( autoloader == 'Namespace' ) { %>
+
 <% } else { %>
 // Include additional php files here.
 // require 'includes/something.php';
