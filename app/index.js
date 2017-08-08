@@ -139,8 +139,7 @@ module.exports = base.extend({
       message: 'Use Autoloader',
       choices: this.autoloaderList,
       default: 'Namespace',
-      store: true,
-      save: true,
+      store: true
     }];
 
      // Sanitize inputs.

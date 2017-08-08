@@ -366,7 +366,7 @@ final class <%= classname %> {
 		}
 	}
 	<% } %>
-	<% if ( 'Basic' == autoloader || 'Namespace' == autloader ) { %>
+	<% if ( 'Basic' == autoloader || 'Namespace' == autoloader ) { %>
 	/**
 	 * Include a file from the includes directory.
 	 *
