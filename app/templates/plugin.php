@@ -2,6 +2,7 @@
 
 <% if ( 'Namespace' == autoloader ) { %>
 	namespace <%= namespace %>\<%= mainclassname %>;
+	// use Use\Path;
 <% } %>
 
 /**
