@@ -1,6 +1,8 @@
 <?php
 
-namespace <%= namespace %>\<%= mainclassname %>;
+<%= if ( 'Namespace' == autoloader ) {
+	namespace <%= namespace %>\<%= mainclassname %>;
+}
 
 /**
  * Plugin Name: <%= name %>
@@ -67,7 +69,7 @@ require 'vendor/autoload_52.php';
 <% } else if ( autoloader == 'Composer' ) { %>
 // Use composer autoload.
 require 'vendor/autoload.php';
-<% } else if ( autoloader == 'Namespace' ) { %>
+<% } else if ( 'Namespace' == autoloader ) { %>
 
 function <%= prefix %>_autoload_classes( $class_name ) {
 
@@ -340,7 +342,7 @@ final class <%= classname %> {
 		<?php
 	}
 
-	<% if ( autoloader !== 'Namespace' ) { %>
+	<% if ( 'Namespace' !== autoloader ) { %>
 	/**
 	 * Magic getter for our object.
 	 *
