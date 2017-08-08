@@ -71,7 +71,7 @@ require 'vendor/autoload.php';
 
 	function <%= prefix %>_autoload_classes( $class_name ) {
 
-		if ( false === strpos( $class_name, 'WDS\Cambium_Networks' ) ) {
+		if ( false === strpos( $class_name, '<%= namespace %>\<%= mainclassname %>' ) ) {
 			return;
 		}
 
@@ -80,13 +80,13 @@ require 'vendor/autoload.php';
 
 		// Build the filename from the last item in the array.
 		$filename = strtolower( str_ireplace(
-			array( 'WDSCN_', '_' ),
+			array( '<?= classprefix %>', '_' ),
 			array( '', '-' ),
 			end( $class_array )
 		) );
 
 		/*
-		 * Removes WDS\Cambium_Networks from the namespace and removes the \<classname> from
+		 * Removes <%= namespace %>\<%= mainclassname %> from the namespace and removes the \<classname> from
 		 * the end of the namespace. Thus, allowing us to determine what folder structure the
 		 * class resides in.
 		 */
@@ -107,7 +107,7 @@ require 'vendor/autoload.php';
 
 		WDS_Cambium_Networks::include_file( 'includes/' . $new_dir );
 	}
-	spl_autoload_register( '\WDS\Cambium_Networks\wds_autoload_classes' );
+	spl_autoload_register( '\<%= namespace %>\<%= mainclassname %>\<%= prefix %>_autoload_classes' );
 
 <% } else { %>
 // Include additional php files here.
