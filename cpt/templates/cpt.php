@@ -1,4 +1,12 @@
 <?php
+
+<% if ( 'Namespace' == autoloader ) { %>
+	namespace <%= namespace %>\<%= mainclassname %>\CPT;
+	use <%= namespace %>\<%= mainclassname %>\<%= mainclassname %>;
+	use CPT_Core;
+<% } %>
+
+
 /**
  * <%= cptname %>.
  *
@@ -21,6 +29,7 @@
  * @see   https://github.com/WebDevStudios/CPT_Core
  */
 class <%= classname %> extends CPT_Core {
+	<% if ( 'Namespace' !== autoloader ) { %>
 	/**
 	 * Parent plugin class.
 	 *
@@ -28,6 +37,7 @@ class <%= classname %> extends CPT_Core {
 	 * @since  <%= version %>
 	 */
 	protected $plugin = null;
+	<% } %>
 
 	/**
 	 * Constructor.
@@ -37,11 +47,19 @@ class <%= classname %> extends CPT_Core {
 	 * See documentation in CPT_Core, and in wp-includes/post.php.
 	 *
 	 * @since  <%= version %>
+	<% if ( 'Namespace' == autoloader ) { %>
+	 *
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
 	 */
 	public function __construct( $plugin ) {
 		$this->plugin = $plugin;
+
+	<% } else { %>
+	  *
+	  */
+	  public function __construct() {
+		<% } %>
 		$this->hooks();
 
 		// Register this cpt.
