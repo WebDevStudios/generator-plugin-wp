@@ -340,6 +340,7 @@ final class <%= classname %> {
 		<?php
 	}
 
+	<% if ( autoloader !== 'Namespace' ) { %>
 	/**
 	 * Magic getter for our object.
 	 *
@@ -360,6 +361,7 @@ final class <%= classname %> {
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
+	<% } %>
 	}<% if ( autoloader == 'Basic' ) { %>
 
 	/**
