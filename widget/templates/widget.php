@@ -44,14 +44,6 @@ class <%= classname %> extends WP_Widget {
 	protected $default_widget_title = '';
 
 	/**
-	 * Shortcode name for this widget
-	 *
-	 * @var    string
-	 * @since  <%= version %>
-	 */
-	protected static $shortcode = '<%= widgetslug %>';
-
-	/**
 	 * Construct widget class.
 	 *
 	 * @since  <%= version %>
@@ -74,9 +66,6 @@ class <%= classname %> extends WP_Widget {
 		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
-
-		// Add a shortcode for our widget.
-		add_shortcode( self::$shortcode, array( __CLASS__, 'get_widget' ) );
 	}
 
 	/**
@@ -112,18 +101,18 @@ class <%= classname %> extends WP_Widget {
 		);
 
 		// Display the widget.
-		echo self::get_widget( $atts ); // WPCS XSS OK.
+		echo $this->get_widget( $atts ); // WPCS XSS OK.
 	}
 
 	/**
-	 * Return the widget/shortcode output
+	 * Return the widget output
 	 *
 	 * @since  <%= version %>
 	 *
-	 * @param  array $atts Array of widget/shortcode attributes/args.
+	 * @param  array $atts Array of widget args.
 	 * @return string      Widget output
 	 */
-	public static function get_widget( $atts ) {
+	public function get_widget( $atts ) {
 
 		$defaults = array(
 			'before_widget' => '',
@@ -133,9 +122,6 @@ class <%= classname %> extends WP_Widget {
 			'title'         => '',
 			'text'          => '',
 		);
-
-		// Parse defaults and create a shortcode.
-		$atts = shortcode_atts( $defaults, (array) $atts, self::$shortcode );
 
 		// Start an output buffer.
 		ob_start();
