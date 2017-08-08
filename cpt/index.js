@@ -117,11 +117,19 @@ module.exports = base.extend({
 
   writing: function () {
 
-    this.fs.copyTpl(
-      this.templatePath('cpt.php'),
-      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '.php'),
-      this
-    );
+    if ( 'Namespace' !== this.autoloader ) {
+	    this.fs.copyTpl(
+		    this.templatePath( 'cpt.php' ),
+		    this.destinationPath( 'includes/class-' + this._.slugify( this.name ) + '.php' ),
+		    this
+	    );
+    } else {
+	    this.fs.copyTpl(
+		    this.templatePath( 'cpt.php' ),
+		    this.destinationPath( 'includes/CPT/class-' + this._.slugify( this.name ) + '.php' ),
+		    this
+	    );
+    }
 
     if ( !this.rc.notests ) {
       this.fs.copyTpl(
