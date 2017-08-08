@@ -36,8 +36,10 @@ module.exports = base.extend({
     // Get the latest WP version.
     this.getLatestWPVersion();
 
-    // Set Composer to false.
+    // Set up the autoloader list.
     this.autoloaderList = ['Basic', 'None'];
+
+    // If we aren't using php52, allow namespacing.
     if ( ! this.options.php52 ) {
       this.autoloaderList.unshift( 'Namespace' );
     }
@@ -46,7 +48,6 @@ module.exports = base.extend({
     if ( this.checkComposerStatus() ) {
       this.autoloaderList.push( 'Composer' );
     }
-
 
     // Get the plugin gen version.
     var pjson = require( '../package.json' );
@@ -137,6 +138,7 @@ module.exports = base.extend({
       name   : 'autoloader',
       message: 'Use Autoloader',
       choices: this.autoloaderList,
+      default: 'Namespace',
       store: true
     }];
 
