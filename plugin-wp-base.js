@@ -125,7 +125,7 @@ module.exports = yeoman.generators.Base.extend({
 		slug    = this._.underscored( slug );
 		var mainPluginFile = this.fs.read( this.destinationPath( this.rc.slug + '.php' ) );
 
-		if ( 'Namespace' !== autoloder ) {
+		if ( 'Namespace' !== this.rc.autoloader ) {
 			mainPluginFile = this._addPluginProperty( mainPluginFile, slug, className, version );
 			mainPluginFile = this._addPluginClass( mainPluginFile, slug, className );
 			mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
