@@ -105,7 +105,7 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 		require_once dirname( __FILE__ ) . '/vendor/taxonomy-core/Taxonomy_Core.php';
 	}
 
-	WDS_Cambium_Networks::include_file( 'includes/' . $new_dir );
+	<%= mainclassname %>::include_file( 'includes/' . $new_dir );
 }
 spl_autoload_register( '\<%= namespace %>\<%= mainclassname %>\<%= prefix %>_autoload_classes' );
 
