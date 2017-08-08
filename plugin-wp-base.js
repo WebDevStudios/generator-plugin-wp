@@ -88,6 +88,18 @@ module.exports = yeoman.generators.Base.extend({
 		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
 	},
 
+	_addNamespacedPluginClass: function( file, slug, className ) {
+		var toAdd = 'new ' + className + '();';
+		var toRemove = '\n\t\t// $this->plugin_class = new ' + this.rc.classprefix + 'Plugin_Class( $this );';
+		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
+	},
+
+	_addUse: function( file, slug, className ) {
+		var toAdd = 'use' + className + ';';
+		var toRemove = '\n\t\t// use Use\\Path;';
+		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
+	},
+
 	_addPropertyMagicGetter: function( file, slug ) {
 
 		var toAdd = '\t\t\tcase \'' + slug + '\':';
