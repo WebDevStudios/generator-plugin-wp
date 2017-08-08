@@ -364,9 +364,9 @@ final class <%= classname %> {
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
+	}
 	<% } %>
-	}<% if ( autoloader == 'Basic' ) { %>
-
+	<% if ( 'Basic' == autoloader || 'Namespace' == autloader ) { %>
 	/**
 	 * Include a file from the includes directory.
 	 *
