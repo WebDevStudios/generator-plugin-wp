@@ -8,7 +8,7 @@
 
 <% if ( ! composer ) {
 	%>require_once dirname( __FILE__ ) . '/../vendor/cpt-core/CPT_Core.php';<%
-	if ( ! options.nocmb2 ) { %>
+	if ( options.cmb2 ) { %>
 <%		%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
 	}
 } %>
@@ -70,7 +70,7 @@ class <%= classname %> extends CPT_Core {
 	 *
 	 * @since  <%= version %>
 	 */
-	public function hooks() {<% if ( ! options.nocmb2 ) { %>
+	public function hooks() {<% if ( options.cmb2 ) { %>
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
 	}
 
