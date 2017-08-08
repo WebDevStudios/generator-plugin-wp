@@ -1,8 +1,8 @@
 <?php
 
-<%= if ( 'Namespace' == autoloader ) {
+<% if ( 'Namespace' == autoloader ) { %>
 	namespace <%= namespace %>\<%= mainclassname %>;
-}
+<% } %>
 
 /**
  * Plugin Name: <%= name %>
