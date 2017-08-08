@@ -30,7 +30,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	protected $key = '<%= optionsprefix %>';
+	protected static $key = '<%= optionsprefix %>';
 
 	/**
 	 * Options page metabox ID.
@@ -91,7 +91,7 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function admin_init() {
-		register_setting( $this->key, $this->key );
+		register_setting( self::$key, self::$key );
 	}
 
 	/**
@@ -104,7 +104,7 @@ class <%= classname %> {
 			$this->title,
 			$this->title,
 			'manage_options',
-			$this->key,
+			self::$key,
 			array( $this, 'admin_page_display' )
 		);
 
@@ -119,9 +119,9 @@ class <%= classname %> {
 	 */
 	public function admin_page_display() {
 		?>
-		<div class="wrap cmb2-options-page <?php echo esc_attr( $this->key ); ?>">
+		<div class="wrap cmb2-options-page <?php echo esc_attr( self::$key ); ?>">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2><% if ( ! options.nocmb2 ) { %>
-			<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?><% } %>
+			<?php cmb2_metabox_form( $this->metabox_id, self::$key ); ?><% } %>
 		</div>
 		<?php
 	}<% if ( ! options.nocmb2 ) { %>
@@ -133,6 +133,9 @@ class <%= classname %> {
 	 */
 	public function add_options_page_metabox() {
 
+		// hook in our save notices
+		add_action( "cmb2_save_options-page_fields_{$this->metabox_id}", array( $this, 'settings_notices' ), 10, 2 );
+
 		// Add our CMB2 metabox.
 		$cmb = new_cmb2_box( array(
 			'id'         => $this->metabox_id,
@@ -141,7 +144,7 @@ class <%= classname %> {
 			'show_on'    => array(
 				// These are important, don't remove.
 				'key'   => 'options-page',
-				'value' => array( $this->key ),
+				'value' => array( self::$key ),
 			),
 		) );
 
@@ -154,5 +157,52 @@ class <%= classname %> {
 			'default' => __( 'Default Text', '<%= slug %>' ),
 		) );
 
+	}
+
+	/**
+	 * Register settings notices for display
+	 *
+	 * @since  0.1.0
+	 * @param  int   $object_id Option key
+	 * @param  array $updated   Array of updated fields
+	 * @return void
+	 */
+	public function settings_notices( $object_id, $updated ) {
+		if ( $object_id !== self::$key || empty( $updated ) ) {
+			return;
+		}
+
+		add_settings_error( self::$key . '-notices', '', __( 'Settings updated.', 'myprefix' ), 'updated' );
+		settings_errors( self::$key . '-notices' );
+	}
+
+	/**
+	 * Wrapper function around cmb2_get_option.
+	 *
+	 * @since  <%= version %>
+	 *
+	 * @param  string $key     Options array key
+	 * @param  mixed  $default Optional default value
+	 * @return mixed           Option value
+	 */
+	public static function get_value( $key = '', $default = false ) {
+		if ( function_exists( 'cmb2_get_option' ) ) {
+
+			// Use cmb2_get_option as it passes through some key filters.
+			return cmb2_get_option( self::$key, $key, $default );
+		}
+
+		// Fallback to get_option if CMB2 is not loaded yet.
+		$opts = get_option( self::$key, $default );
+
+		$val = $default;
+
+		if ( 'all' == $key ) {
+			$val = $opts;
+		} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+			$val = $opts[ $key ];
+		}
+
+		return $val;
 	}<% } %>
 }
