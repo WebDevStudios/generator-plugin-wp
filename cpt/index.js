@@ -46,7 +46,7 @@ module.exports = base.extend({
       this.mainclassname = this._wpClassify( this.pluginname );
 
       this.namespace  = this.rc.namespace;
-
+      this.autoloader = this.rc.autoloader;
       this.composer   = this.fs.exists('composer.json');
     }
   },
@@ -117,12 +117,13 @@ module.exports = base.extend({
 
   writing: function () {
 
-    if ( 'Namespace' !== this.autoloader ) {
+    if ( 'Namespace' !== this.rc.autoloader ) {
 	    this.fs.copyTpl(
 		    this.templatePath( 'cpt.php' ),
 		    this.destinationPath( 'includes/class-' + this._.slugify( this.name ) + '.php' ),
 		    this
 	    );
+	    console.log(this);
     } else {
 	    this.fs.copyTpl(
 		    this.templatePath( 'cpt.php' ),
