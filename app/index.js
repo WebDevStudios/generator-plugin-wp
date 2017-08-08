@@ -37,7 +37,7 @@ module.exports = base.extend({
     this.getLatestWPVersion();
 
     // Set Composer to false.
-    this.autoloaderList = ['Basic', 'None'];
+    this.autoloaderList = ['Namespace', 'Basic', 'None'];
 
     // Check and see if Composer is available.
     this.checkComposerStatus();
@@ -343,7 +343,7 @@ module.exports = base.extend({
     var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
 
     if ( 0 === composerResult.status) {
-      this.autoloaderList = ['Basic', 'Composer', 'None'];
+      this.autoloaderList = ['Namespace', 'Basic', 'Composer', 'None'];
     }
 
   },
