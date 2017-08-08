@@ -56,6 +56,13 @@ module.exports = yeoman.generators.Base.extend({
 		return mainPluginFile.replace( endComment, newInclude );
 	},
 
+	__addUsetoHead: function( mainPluginFile, toAdd ) {
+		var endComment = '\t} // END OF USE';
+		var newInclude = '\t\t' + toAdd + '\n' + endComment;
+
+		return mainPluginFile.replace( endComment, newInclude );
+	},
+
 	_addStringToPluginClasses: function( toAdd ) {
 		if ( ! this.rc.slug ) {
 			return;
@@ -95,9 +102,9 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	_addUse: function( file, slug, className ) {
-		var toAdd = 'use' + className + ';';
+		var toAdd = 'use ' + className + ';';
 		var toRemove = '\n\t\t// use Use\\Path;';
-		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
+		return this.__addUsetoHead( file.replace( toRemove, '' ), toAdd );
 	},
 
 	_addPropertyMagicGetter: function( file, slug ) {
