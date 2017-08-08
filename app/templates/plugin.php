@@ -69,45 +69,45 @@ require 'vendor/autoload_52.php';
 require 'vendor/autoload.php';
 <% } else if ( autoloader == 'Namespace' ) { %>
 
-	function <%= prefix %>_autoload_classes( $class_name ) {
+function <%= prefix %>_autoload_classes( $class_name ) {
 
-		if ( false === strpos( $class_name, '<%= namespace %>\<%= mainclassname %>' ) ) {
-			return;
-		}
-
-		// Break everything into parts.
-		$class_array = explode( '\\', $class_name );
-
-		// Build the filename from the last item in the array.
-		$filename = strtolower( str_ireplace(
-			array( '<?= classprefix %>', '_' ),
-			array( '', '-' ),
-			end( $class_array )
-		) );
-
-		/*
-		 * Removes <%= namespace %>\<%= mainclassname %> from the namespace and removes the \<classname> from
-		 * the end of the namespace. Thus, allowing us to determine what folder structure the
-		 * class resides in.
-		 */
-		$new_dir = array_slice( $class_array, 2, count( $class_array ) - 3 );
-
-		// Glue the pieces back together.
-		$new_dir = implode( '/', array_map( 'strtolower', $new_dir ) );
-
-		// Build the directory.
-		$new_dir = trailingslashit( $new_dir ) . 'class-' . $filename;
-
-		// Require CPT Core or Taxonomy Core if we're trying to load one of those namespaces.
-		if ( 0 === stripos( $new_dir, 'cpt/' ) ) {
-			require_once dirname( __FILE__ ) . '/vendor/cpt-core/CPT_Core.php';
-		} elseif ( 0 === stripos( $new_dir, 'taxonomy/' ) ) {
-			require_once dirname( __FILE__ ) . '/vendor/taxonomy-core/Taxonomy_Core.php';
-		}
-
-		WDS_Cambium_Networks::include_file( 'includes/' . $new_dir );
+	if ( false === strpos( $class_name, '<%= namespace %>\<%= mainclassname %>' ) ) {
+		return;
 	}
-	spl_autoload_register( '\<%= namespace %>\<%= mainclassname %>\<%= prefix %>_autoload_classes' );
+
+	// Break everything into parts.
+	$class_array = explode( '\\', $class_name );
+
+	// Build the filename from the last item in the array.
+	$filename = strtolower( str_ireplace(
+		array( '<%= classprefix %>', '_' ),
+		array( '', '-' ),
+		end( $class_array )
+	) );
+
+	/*
+	 * Removes <%= namespace %>\<%= mainclassname %> from the namespace and removes the \<classname> from
+	 * the end of the namespace. Thus, allowing us to determine what folder structure the
+	 * class resides in.
+	 */
+	$new_dir = array_slice( $class_array, 2, count( $class_array ) - 3 );
+
+	// Glue the pieces back together.
+	$new_dir = implode( '/', array_map( 'strtolower', $new_dir ) );
+
+	// Build the directory.
+	$new_dir = trailingslashit( $new_dir ) . 'class-' . $filename;
+
+	// Require CPT Core or Taxonomy Core if we're trying to load one of those namespaces.
+	if ( 0 === stripos( $new_dir, 'cpt/' ) ) {
+		require_once dirname( __FILE__ ) . '/vendor/cpt-core/CPT_Core.php';
+	} elseif ( 0 === stripos( $new_dir, 'taxonomy/' ) ) {
+		require_once dirname( __FILE__ ) . '/vendor/taxonomy-core/Taxonomy_Core.php';
+	}
+
+	WDS_Cambium_Networks::include_file( 'includes/' . $new_dir );
+}
+spl_autoload_register( '\<%= namespace %>\<%= mainclassname %>\<%= prefix %>_autoload_classes' );
 
 <% } else { %>
 // Include additional php files here.
