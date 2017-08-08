@@ -157,8 +157,9 @@ module.exports = base.extend({
       this.classname          = this._wpClassify( props.classname );
       this.mainclassname      = this.classname;
       this.classprefix        = this._wpClassPrefix( this.classname );
-      this.prefix             = this._.underscored( props.prefix );
-      this.year               = new Date().getFullYear();
+	  this.prefix             = this._.underscored( props.prefix );
+	  this.namespace          = this._wpNameSpace( this.author );
+	  this.year               = new Date().getFullYear();
 	  this.php52              = this.options.php52;
 	  this.autoloader         = props.autoloader;
 
@@ -338,6 +339,7 @@ module.exports = base.extend({
       this.config.set( 'classprefix', this.classprefix );
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
+      this.config.set( 'namespace', this.namespace );
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
 

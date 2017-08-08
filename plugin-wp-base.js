@@ -38,6 +38,13 @@ module.exports = yeoman.generators.Base.extend({
 		return prefix + '_';
 	},
 
+	_wpNameSpace: function( s ) {
+		var words = s.replace( /_/g, ' ' );
+		var letters = words.replace(/[a-z]/g, '');
+		var hyphens = letters.replace(/\s/g, '');
+		return hyphens.replace(/-/g,'');
+	},
+
 	_escapeDoubleQuotes: function( s ) {
 		return s.replace( /"/g, '\\"');
 	},
