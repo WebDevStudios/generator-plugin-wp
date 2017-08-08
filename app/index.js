@@ -139,7 +139,8 @@ module.exports = base.extend({
       message: 'Use Autoloader',
       choices: this.autoloaderList,
       default: 'Namespace',
-      store: true
+      store: true,
+      save: true,
     }];
 
      // Sanitize inputs.
@@ -340,6 +341,7 @@ module.exports = base.extend({
       this.config.set( 'prefix', this.prefix );
       this.config.set( 'year', this.year );
       this.config.set( 'namespace', this.namespace );
+      this.config.set( 'autoloader', this.autoloader );
 
       this.config.set( 'currentVersionWP', this.currentVersionWP );
 
