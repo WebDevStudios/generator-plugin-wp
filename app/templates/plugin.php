@@ -1,4 +1,7 @@
-<?php namespace <%= mainclassname %>;
+<?php
+
+namespace <%= mainclassname %>;
+
 /**
  * Plugin Name: <%= name %>
  * Plugin URI:  <%= homepage %>

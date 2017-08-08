@@ -37,10 +37,16 @@ module.exports = base.extend({
     this.getLatestWPVersion();
 
     // Set Composer to false.
-    this.autoloaderList = ['Namespace', 'Basic', 'None'];
+    this.autoloaderList = ['Basic', 'None'];
+    if ( ! this.options.php52 ) {
+      this.autoloaderList.unshift( 'Namespace' );
+    }
 
     // Check and see if Composer is available.
-    this.checkComposerStatus();
+    if ( this.checkComposerStatus() ) {
+      this.autoloaderList.push( 'Composer' );
+    }
+
 
     // Get the plugin gen version.
     var pjson = require( '../package.json' );
@@ -151,8 +157,8 @@ module.exports = base.extend({
       this.classprefix        = this._wpClassPrefix( this.classname );
       this.prefix             = this._.underscored( props.prefix );
       this.year               = new Date().getFullYear();
-      this.autoloader         = props.autoloader;
-      this.php52              = this.options.php52;
+	  this.php52              = this.options.php52;
+	  this.autoloader         = props.autoloader;
 
       // All done.
       done();
@@ -343,8 +349,10 @@ module.exports = base.extend({
     var composerResult = child_process.spawnSync('composer',['--version', '--no-ansi']);
 
     if ( 0 === composerResult.status) {
-      this.autoloaderList = ['Namespace', 'Basic', 'Composer', 'None'];
+      return true;
     }
+
+    return false;
 
   },
 
