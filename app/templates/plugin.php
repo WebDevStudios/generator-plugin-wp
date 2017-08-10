@@ -1,10 +1,5 @@
 <?php
 
-<% if ( 'Namespace' == autoloader ) { %>
-	namespace <%= namespace %>\<%= mainclassname %>;
-	// use Use\Path;
-<% } %>
-
 /**
  * Plugin Name: <%= name %>
  * Plugin URI:  <%= homepage %>
@@ -42,7 +37,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
+<% if ( 'Namespace' == autoloader ) { %>
+namespace <%= namespace %>\<%= mainclassname %>;
+// END USE
+<% } %>
 <% if ( autoloader == 'Basic' ) { %>
 /**
  * Autoloads files with classes when needed.
