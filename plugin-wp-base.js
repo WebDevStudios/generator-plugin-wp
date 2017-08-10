@@ -57,9 +57,8 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	__addUsetoHead: function( mainPluginFile, toAdd ) {
-		var endComment = '\t} // END OF USE';
-		var newInclude = '\t\t' + toAdd + '\n' + endComment;
-
+		var endComment = '// end namespace declaration';
+		var newInclude = toAdd + '\n' + endComment;
 		return mainPluginFile.replace( endComment, newInclude );
 	},
 
@@ -101,9 +100,9 @@ module.exports = yeoman.generators.Base.extend({
 		return this.__addStringToPluginClasses( file.replace( toRemove, '' ), toAdd );
 	},
 
-	_addUse: function( file, slug, className ) {
-		var toAdd = 'use ' + className + ';';
-		var toRemove = '\n\t\t// use Use\\Path;';
+	_addUse: function( file, slug, className, subgen ) {
+		var toAdd = 'use ' + this.rc.namespace + '/' this.rc.mainclassname + '/' + className + ';';
+		var toRemove = '// END USE';
 		return this.__addUsetoHead( file.replace( toRemove, '' ), toAdd );
 	},
 
@@ -116,7 +115,7 @@ module.exports = yeoman.generators.Base.extend({
 		return file.replace( endComment, newInclude );
 	},
 
-	_addIncludeClass: function( slug, className, version ) {
+	_addIncludeClass: function( slug, className, version, subgen ) {
 
 		if ( ! this.rc.slug ) {
 			return;
@@ -131,7 +130,7 @@ module.exports = yeoman.generators.Base.extend({
 			mainPluginFile = this._addPropertyMagicGetter( mainPluginFile, slug );
 		} else {
 			mainPluginFile = this._addNamespacedPluginClass( mainPluginFile, slug, className );
-			mainPluginFile = this._addUse( mainPluginFile, slug, className );
+			mainPluginFile = this._addUse( mainPluginFile, slug, className, subgen );
 		}
 		this.fs.write( this.destinationPath( this.rc.slug + '.php' ), mainPluginFile );
 	}
