@@ -6,7 +6,6 @@ use <%= namespace %>\<%= mainclassname %>\<%= mainclassname %>;
 use CPT_Core;
 <% } %>
 
-
 /**
  * <%= cptname %>.
  *

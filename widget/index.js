@@ -36,6 +36,8 @@ module.exports = base.extend({
       this.widgetname     = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname      = this.rc.classprefix + this._wpClassify( this.name );
       this.mainclassname  = this._wpClassify( this.pluginname );
+      this.namespace  = this.rc.namespace;
+      this.autoloader = this.rc.autoloader;
       this.slug           = this.rc.slug;
       this.widgetslug     = this.slug + '-' + this._.slugify( this.name );
       this.widgetregister = this._.underscored( this.slug + ' register ' + this.name );
@@ -106,11 +108,19 @@ module.exports = base.extend({
   },
 
   writing: function () {
-    this.fs.copyTpl(
-      this.templatePath('widget.php'),
-      this.destinationPath('includes/class-' + this._.slugify( this.name ) + '.php'),
-      this
-    );
+    if ( 'Namespace' !== this.rc.autoloader ) {
+	  this.fs.copyTpl(
+		  this.templatePath( 'widget.php' ),
+		  this.destinationPath( 'includes/class-' + this._.slugify( this.name ) + '.php' ),
+		  this
+	  );
+  } else {
+	           this.fs.copyTpl(
+		this.templatePath( 'widget.php' ),
+		this.destinationPath( 'includes/widgets/class-' + this._.slugify( this.name ) + '.php' ),
+		this
+	);
+}
 
     if ( !this.rc.notests ) {
       this.fs.copyTpl(
@@ -120,6 +130,10 @@ module.exports = base.extend({
       );
     }
 
-    this._addStringToPluginClasses( 'require( self::dir( \'includes/class-' + this._.slugify( this.name ) + '.php\' ) );' );
+    if ( 'Namespace' !== this.rc.autoloader ) {
+	    this._addStringToPluginClasses( 'require( self::dir( \'includes/class-' + this._.slugify( this.name ) + '.php\' ) );' );
+    } else {
+	    this._addIncludeClass( this._.slugify( this.name ), this.classname, this.version, 'Widget' );
+    }
   }
 });

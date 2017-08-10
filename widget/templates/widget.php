@@ -6,6 +6,11 @@
  * @package <%= mainclassname %>
  */
 
+<% if ( 'Namespace' == autoloader ) { %>
+namespace <%= namespace %>\<%= mainclassname %>\Widget;
+use <%= namespace %>\<%= mainclassname %>\<%= mainclassname %>;
+<% } %>
+
 /**
  * <%= widgetname %> class.
  *
