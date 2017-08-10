@@ -123,7 +123,6 @@ module.exports = base.extend({
 		    this.destinationPath( 'includes/class-' + this._.slugify( this.name ) + '.php' ),
 		    this
 	    );
-	    console.log(this);
     } else {
 	    this.fs.copyTpl(
 		    this.templatePath( 'cpt.php' ),
@@ -140,7 +139,7 @@ module.exports = base.extend({
       );
     }
 
-    this._addIncludeClass( this._.slugify( this.name ), this.classname, this.version );
+    this._addIncludeClass( this._.slugify( this.name ), this.classname, this.version, 'CPT' );
   },
 
   install: function () {
