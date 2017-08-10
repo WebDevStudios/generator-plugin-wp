@@ -101,7 +101,7 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	_addUse: function( file, slug, className, subgen ) {
-		var toAdd = 'use ' + this.rc.namespace + '/' this.rc.mainclassname + '/' + className + ';';
+		var toAdd = 'use ' + this.rc.namespace + '\\' + this.rc.mainclassname + '\\'+ subgen +'\\' + className + ';';
 		var toRemove = '// END USE';
 		return this.__addUsetoHead( file.replace( toRemove, '' ), toAdd );
 	},

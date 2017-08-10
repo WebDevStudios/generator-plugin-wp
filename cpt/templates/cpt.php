@@ -1,9 +1,9 @@
 <?php
 
 <% if ( 'Namespace' == autoloader ) { %>
-	namespace <%= namespace %>\<%= mainclassname %>\CPT;
-	use <%= namespace %>\<%= mainclassname %>\<%= mainclassname %>;
-	use CPT_Core;
+namespace <%= namespace %>\<%= mainclassname %>\CPT;
+use <%= namespace %>\<%= mainclassname %>\<%= mainclassname %>;
+use CPT_Core;
 <% } %>
 
 
@@ -47,7 +47,7 @@ class <%= classname %> extends CPT_Core {
 	 * See documentation in CPT_Core, and in wp-includes/post.php.
 	 *
 	 * @since  <%= version %>
-	<% if ( 'Namespace' == autoloader ) { %>
+	<% if ( 'Namespace' !== autoloader ) { %>
 	 *
 	 *
 	 * @param  <%= mainclassname %> $plugin Main plugin object.
