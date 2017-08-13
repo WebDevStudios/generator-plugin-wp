@@ -38,7 +38,7 @@ class <%= classname %> {
 	 * @var    string
 	 * @since  <%= version %>
 	 */
-	protected $metabox_id = '<%= optionsprefix %>_metabox';
+	protected static $metabox_id = '<%= optionsprefix %>_metabox';
 
 	/**
 	 * Options Page title.
@@ -78,12 +78,13 @@ class <%= classname %> {
 	public function hooks() {
 
 		// Hook in our actions to the admin.
+		<% if ( options.nocmb2 ) { %>
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
-		<% if ( ! options.nocmb2 ) { %>
+		<% } else { %>
 		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );
 		<% } %>
-	}
+	}<% if ( options.nocmb2 ) { %>
 
 	/**
 	 * Register our setting to WP.
@@ -107,9 +108,6 @@ class <%= classname %> {
 			self::$key,
 			array( $this, 'admin_page_display' )
 		);
-
-		// Include CMB CSS in the head to avoid FOUC.
-		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 	}
 
 	/**
@@ -119,12 +117,12 @@ class <%= classname %> {
 	 */
 	public function admin_page_display() {
 		?>
-		<div class="wrap cmb2-options-page <?php echo esc_attr( self::$key ); ?>">
-			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2><% if ( ! options.nocmb2 ) { %>
-			<?php cmb2_metabox_form( $this->metabox_id, self::$key ); ?><% } %>
+		<div class="wrap options-page <?php echo esc_attr( self::$key ); ?>">
+			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+			<?php // Your settings here. ?>
 		</div>
 		<?php
-	}<% if ( ! options.nocmb2 ) { %>
+	}<% } else { %>
 
 	/**
 	 * Add custom fields to the options page.
@@ -133,19 +131,26 @@ class <%= classname %> {
 	 */
 	public function add_options_page_metabox() {
 
-		// hook in our save notices
-		add_action( "cmb2_save_options-page_fields_{$this->metabox_id}", array( $this, 'settings_notices' ), 10, 2 );
-
 		// Add our CMB2 metabox.
 		$cmb = new_cmb2_box( array(
-			'id'         => $this->metabox_id,
-			'hookup'     => false,
-			'cmb_styles' => false,
-			'show_on'    => array(
-				// These are important, don't remove.
-				'key'   => 'options-page',
-				'value' => array( self::$key ),
-			),
+			'id'           => self::$metabox_id,
+			'title'        => $this->title,
+			'object_types' => array( 'options-page' ),
+
+			/*
+			 * The following parameters are specific to the options-page box
+			 * Several of these parameters are passed along to add_menu_page()/add_submenu_page().
+			 */
+
+			'option_key'   => self::$key, // The option key and admin menu page slug.
+			// 'icon_url'        => 'dashicons-palmtree', // Menu icon. Only applicable if 'parent_slug' is left empty.
+			// 'menu_title'      => esc_html__( 'Options', 'cmb2' ), // Falls back to 'title' (above).
+			// 'parent_slug'     => 'themes.php', // Make options page a submenu item of the themes menu.
+			// 'capability'      => 'manage_options', // Cap required to view options-page.
+			// 'position'        => 1, // Menu position. Only applicable if 'parent_slug' is left empty.
+			// 'admin_menu_hook' => 'network_admin_menu', // 'network_admin_menu' to add network-level options page.
+			// 'display_cb'      => false, // Override the options-page form output (CMB2_Hookup::options_page_output()).
+			// 'save_button'     => esc_html__( 'Save Theme Options', 'cmb2' ), // The text for the options-page save button. Defaults to 'Save'.
 		) );
 
 		// Add your fields here.
@@ -157,23 +162,6 @@ class <%= classname %> {
 			'default' => __( 'Default Text', '<%= slug %>' ),
 		) );
 
-	}
-
-	/**
-	 * Register settings notices for display
-	 *
-	 * @since  0.1.0
-	 * @param  int   $object_id Option key
-	 * @param  array $updated   Array of updated fields
-	 * @return void
-	 */
-	public function settings_notices( $object_id, $updated ) {
-		if ( $object_id !== self::$key || empty( $updated ) ) {
-			return;
-		}
-
-		add_settings_error( self::$key . '-notices', '', __( 'Settings updated.', 'myprefix' ), 'updated' );
-		settings_errors( self::$key . '-notices' );
 	}
 
 	/**
