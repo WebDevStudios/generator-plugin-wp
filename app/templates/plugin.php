@@ -39,7 +39,7 @@
  */
 <% if ( 'Namespace' == autoloader ) { %>
 namespace <%= namespace %>\<%= mainclassname %>;
-// END USE
+// end namespace declaration
 <% } %>
 <% if ( autoloader == 'Basic' ) { %>
 /**
