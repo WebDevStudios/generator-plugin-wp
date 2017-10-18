@@ -360,6 +360,7 @@ module.exports = base.extend({
         for ( var i in data.offers ) {
           if ( 'upgrade' === data.offers[i].response ) {
             this.currentVersionWP = data.offers[i].current;
+            return;
           }
         }
       }
