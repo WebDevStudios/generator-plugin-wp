@@ -333,6 +333,7 @@ module.exports = base.extend({
       this.config.set( 'authoremail', this.authoremail );
       this.config.set( 'authorurl', this.authorurl );
       this.config.set( 'license', this.license );
+      this.config.set( 'licenseuri', this.licenseuri );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
       this.config.set( 'mainclassname', this.classname );
