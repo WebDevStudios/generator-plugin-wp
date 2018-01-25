@@ -6,7 +6,7 @@
 **Tested up to:**      <%= currentVersionWP %> 
 **Stable tag:**        <%= version %>  
 **License:**           <%= license %>  
-**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
+**License URI:**       <%= licenseuri %>  
 
 ## Description ##
 
