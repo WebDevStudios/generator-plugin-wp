@@ -105,7 +105,7 @@ module.exports = base.extend({
       message: 'License',
       default: 'GPLv2',
       save   : true,
-      store. : true
+      store  : true
     }, {
       type   : 'input',
       name   : 'licenseuri',
