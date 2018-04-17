@@ -2,6 +2,8 @@
 
 > [Yeoman](http://yeoman.io) generator for WordPress plugins.
 
+<a href="https://webdevstudios.com/contact/"><img src="https://webdevstudios.com/wp-content/uploads/2018/04/wds-github-banner.png" alt="WebDevStudios. WordPress for big brands."></a>
+
 ## Getting Started
 
 Pre-requisites: You'll need [node](https://nodejs.org/download/) which comes
