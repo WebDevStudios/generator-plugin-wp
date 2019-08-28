@@ -73,10 +73,10 @@ CMB2 is included by default with the options sub-generator. It can also be a use
 If you chose composer as the autoloader option during the plugin's initiation,
 you can use composer to add additional dependencies.
 
-Let's `cd` into our new plugin's directory and add [CMB2](https://github.com/WebDevStudios/CMB2):
+Let's `cd` into our new plugin's directory and add [CMB2](https://github.com/CMB2/CMB2):
 
 ```bash
-composer require webdevstudios/cmb2
+composer require cmb2/cmb2
 ```
 
 CMB2 will now appear under `vendor`
@@ -85,7 +85,7 @@ CMB2 will now appear under `vendor`
 -plugins
   -wds-foo-plugin
     -vendor
-      -webdevstudios
+      -cmb2
         -cmb2
 ```
 
