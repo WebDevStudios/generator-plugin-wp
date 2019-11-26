@@ -10,7 +10,6 @@
  * <%= mainclassname %>.
  *
  * @since   <%= version %>
- * @package <%= mainclassname %>
  */
 class <%= mainclassname %>_Test extends WP_UnitTestCase {
 
