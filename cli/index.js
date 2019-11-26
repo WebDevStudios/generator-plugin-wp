@@ -36,7 +36,7 @@ module.exports = base.extend({
             this.cliname    = this.pluginname + ' ' + this._.capitalize(this.name);
             this.clislug    = this.slug + '-cli-' + this._.slugify(this.name);
             this.uslug      = this._.underscored(this.cliname);
-
+            this.classslug  = this._.underscored( this._wpClassify( this.name ) );
             this.classname = this.rc.classprefix + this._wpClassify(this.name);
 
             // get the main classname
