@@ -40,6 +40,7 @@ module.exports = base.extend({
       this.taxonomyname    = this.pluginname + ' ' + this._.capitalize( this.name );
       this.classname  = this.rc.classprefix + this._wpClassify( this.name );
       this.slug       = this.rc.slug;
+      this.classslug      = this._.underscored( this._wpClassify( this.name ) );
       this.taxonomyslug    = this._.slugify( this.classname ).substr( 0, 20 );
       this.taxonomyprefix  = this._.underscored( this.taxonomyslug );
 
