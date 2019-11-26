@@ -5,6 +5,13 @@
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */
+
+/**
+ * <%= mainclassname %>.
+ *
+ * @since   <%= version %>
+ * @package <%= mainclassname %>
+ */
 class <%= mainclassname %>_Test extends WP_UnitTestCase {
 
 	/**
@@ -12,8 +19,8 @@ class <%= mainclassname %>_Test extends WP_UnitTestCase {
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_class_exists() {
-		$this->assertTrue( class_exists( '<%= classname %>') );
+	public function test_class_exists() {
+		$this->assertTrue( class_exists( '<%= classname %>' ) );
 	}
 
 	/**
@@ -21,8 +28,8 @@ class <%= mainclassname %>_Test extends WP_UnitTestCase {
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_get_instance() {
-		$this->assertInstanceOf(  '<%= classname %>', <%= prefix %>() );
+	public function test_get_instance() {
+		$this->assertInstanceOf( '<%= classname %>', <%= prefix %>() );
 	}
 
 	/**
@@ -30,7 +37,7 @@ class <%= mainclassname %>_Test extends WP_UnitTestCase {
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_sample() {
+	public function test_sample() {
 		$this->assertTrue( true );
 	}
 }
