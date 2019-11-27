@@ -40,6 +40,7 @@ module.exports = base.extend({
       this.classname      = this.rc.classprefix + this._wpClassify( this.name );
       this.slug           = this.rc.slug;
       this.optionsslug    = this.slug + '-' + this._.slugify( this.name );
+      this.classslug      = this._.underscored( this._wpClassify( this.name ) );
       this.optionsprefix  = this._.underscored( this.slug + ' ' + this.name );
 
       // get the main classname
