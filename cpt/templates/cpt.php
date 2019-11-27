@@ -5,14 +5,22 @@
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */
-
-<% if ( ! composer ) {
-	%>require_once dirname( __FILE__ ) . '/../vendor/cpt-core/CPT_Core.php';<%
-	if ( options.cmb2 ) { %>
-<%		%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
-	}
+<% if ( ! composer ) { %>
+/**
+ * Include CPT Core
+ *
+ * @since   <%= version %>
+ */
+require_once dirname( __FILE__ ) . '/../vendor/cpt-core/CPT_Core.php';
+<% if ( options.cmb2 ) { %>
+/**
+ * Include CMB2
+ *
+ * @since   <%= version %>
+ */
+require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
+<% }
 } %>
-
 /**
  * <%= cptname %> post type class.
  *
@@ -53,13 +61,13 @@ class <%= classname %> extends CPT_Core {
 				'<%= cptslug %>',
 			),
 			array(
-				'supports' => array(
+				'supports'  => array(
 					'title',
 					'editor',
 					'excerpt',
 					'thumbnail',
 				),
-				'menu_icon' => 'dashicons-admin-post', // https://developer.wordpress.org/resource/dashicons/
+				'menu_icon' => 'dashicons-admin-post', // https://developer.wordpress.org/resource/dashicons/ - Developer Resources: Dashicons.
 				'public'    => true,
 			)
 		);
@@ -85,11 +93,13 @@ class <%= classname %> extends CPT_Core {
 		$prefix = '<%= cptprefix %>_';
 
 		// Define our metaboxes and fields.
-		$cmb = new_cmb2_box( array(
-			'id'            => $prefix . 'metabox',
-			'title'         => esc_html__( '<%= cptname %> Meta Box', '<%= slug %>' ),
-			'object_types'  => array( '<%= cptslug %>' ),
-		) );<% } %>
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . 'metabox',
+				'title'        => esc_html__( '<%= cptname %> Meta Box', '<%= slug %>' ),
+				'object_types' => array( '<%= cptslug %>' ),
+			)
+		);<% } %>
 	}
 
 	/**
