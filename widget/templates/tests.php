@@ -23,15 +23,6 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that we can access our class through our helper function.
-	 *
-	 * @since  <%= version %>
-	 */
-	public function test_class_access() {
-		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= nameslug %> );
-	}
-
-	/**
 	 * Replace this with some actual testing code.
 	 *
 	 * @since  <%= version %>
