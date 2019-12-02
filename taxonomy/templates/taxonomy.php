@@ -5,14 +5,22 @@
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */
-
-<% if ( ! composer ) {
-	%>require_once dirname( __FILE__ ) . '/../vendor/taxonomy-core/Taxonomy_Core.php';<%
-	if ( options.cmb2 ) { %>
-<%		%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
-	}
+<% if ( ! composer ) { %>
+/**
+ * Include Taxonomy Core
+ *
+ * @since   <%= version %>
+ */
+require_once dirname( __FILE__ ) . '/../vendor/taxonomy-core/Taxonomy_Core.php';
+<% if ( options.cmb2 ) { %>
+/**
+ * Include CMB2
+ *
+ * @since   <%= version %>
+ */
+require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
+<% }
 } %>
-
 /**
  * <%= taxonomyname %>.
  *
