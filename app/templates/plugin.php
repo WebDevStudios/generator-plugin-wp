@@ -8,6 +8,7 @@
  * Author URI:  <%= authorurl %>
  * Donate link: <%= homepage %>
  * License:     <%= license %>
+ * License URI: <%= licenseuri %>
  * Text Domain: <%= slug %>
  * Domain Path: /languages
  *
@@ -18,7 +19,7 @@
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
-
+<% if ( license == 'GPLv2' ) { %>
 /**
  * Copyright (c) <%= year %> <%= author %> (email : <%= authoremail %>)
  *
@@ -35,8 +36,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */
-
+ */<% } else { %>
+/**
+ * Copyright (c) <%= year %> <%= author %> (email : <%= authoremail %>)
+ */<% } %>
 <% if ( autoloader == 'Basic' ) { %>
 /**
  * Autoloads files with classes when needed.
