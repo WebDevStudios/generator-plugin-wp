@@ -104,7 +104,15 @@ module.exports = base.extend({
       name   : 'license',
       message: 'License',
       default: 'GPLv2',
-      store: true
+      save   : true,
+      store  : true
+    }, {
+      type   : 'input',
+      name   : 'licenseuri',
+      message: 'License URI',
+      default: 'http://www.gnu.org/licenses/gpl-2.0.html',
+      save   : true,
+      store  : true
     }, {
       type   : 'input',
       name   : 'slug',
@@ -145,6 +153,7 @@ module.exports = base.extend({
       this.authoremail        = this._.clean( props.authoremail );
       this.authorurl          = this._.clean( props.authorurl );
       this.license            = this._.clean( props.license );
+      this.licenseuri         = this._.clean( props.licenseuri );
       this.slug               = this._.slugify( props.slug );
       this.classname          = this._wpClassify( props.classname );
       this.mainclassname      = this.classname;
@@ -324,6 +333,7 @@ module.exports = base.extend({
       this.config.set( 'authoremail', this.authoremail );
       this.config.set( 'authorurl', this.authorurl );
       this.config.set( 'license', this.license );
+      this.config.set( 'licenseuri', this.licenseuri );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
       this.config.set( 'mainclassname', this.classname );
