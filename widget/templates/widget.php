@@ -50,7 +50,7 @@ class <%= classname %> extends WP_Widget {
 	 */
 	public function __construct() {
 
-		$this->widget_name = esc_html__( '<%= widgetname %>', '<%= slug %>' );
+		$this->widget_name          = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 		$this->default_widget_title = esc_html__( '<%= widgetname %>', '<%= slug %>' );
 
 		parent::__construct(
@@ -63,7 +63,7 @@ class <%= classname %> extends WP_Widget {
 		);
 
 		// Clear cache on save.
-		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
+		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 	}
@@ -101,7 +101,7 @@ class <%= classname %> extends WP_Widget {
 		);
 
 		// Display the widget.
-		echo $this->get_widget( $atts ); // WPCS XSS OK.
+		echo $this->get_widget( $atts ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -127,16 +127,16 @@ class <%= classname %> extends WP_Widget {
 		ob_start();
 
 		// Start widget markup.
-		echo $atts['before_widget']; // WPCS XSS OK.
+		echo $atts['before_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		// Maybe display widget title.
-		echo ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '' ; // WPCS XSS OK.
+		echo ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : ''; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		// Display widget text.
-		echo wpautop( wp_kses_post( $atts['text'] ) ); // WPCS XSS OK.
+		echo wpautop( wp_kses_post( $atts['text'] ) ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		// End the widget markup.
-		echo $atts['after_widget']; // WPCS XSS OK.
+		echo $atts['after_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		// Return the output buffer.
 		return ob_get_clean();
