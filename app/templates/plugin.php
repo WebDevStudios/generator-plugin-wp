@@ -155,7 +155,6 @@ final class <%= classname %> {
 	 */
 	public function plugin_classes() {
 		// $this->plugin_class = new <%= classprefix %>Plugin_Class( $this );
-
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -176,7 +175,7 @@ final class <%= classname %> {
 	 *
 	 * @since  <%= version %>
 	 */
-	public function _activate() {
+	public function activate() {
 		// Bail early if requirements aren't met.
 		if ( ! $this->check_requirements() ) {
 			return;
@@ -192,7 +191,7 @@ final class <%= classname %> {
 	 *
 	 * @since  <%= version %>
 	 */
-	public function _deactivate() {
+	public function deactivate() {
 		// Add deactivation cleanup functionality here.
 	}
 
@@ -276,7 +275,11 @@ final class <%= classname %> {
 	public function requirements_not_met_notice() {
 
 		// Compile default message.
-		$default_message = sprintf( __( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ), admin_url( 'plugins.php' ) );
+		$default_message = sprintf(
+			// Translators: Admin plugins URL.
+			__( '<%= name %> is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', '<%= slug %>' ),
+			admin_url( 'plugins.php' )
+		);
 
 		// Default details to null.
 		$details = null;
@@ -328,7 +331,7 @@ final class <%= classname %> {
 	public static function include_file( $filename ) {
 		$file = self::dir( $filename . '.php' );
 		if ( file_exists( $file ) ) {
-			return include_once( $file );
+			return include_once $file;
 		}
 		return false;
 	}
@@ -377,5 +380,5 @@ function <%= prefix %>() {
 add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
 
 // Activation and deactivation.
-register_activation_hook( __FILE__, array( <%= prefix %>(), '_activate' ) );
-register_deactivation_hook( __FILE__, array( <%= prefix %>(), '_deactivate' ) );
+register_activation_hook( __FILE__, array( <%= prefix %>(), 'activate' ) );
+register_deactivation_hook( __FILE__, array( <%= prefix %>(), 'deactivate' ) );
