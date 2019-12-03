@@ -5,11 +5,14 @@
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */
-
-<% if ( ! composer && ! options.nocmb2 ) {
-	%>require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';<%
-} %>
-
+<% if ( ! composer && ! options.nocmb2 ) { %>
+/**
+ * Include CMB2
+ *
+ * @since <%= version %>
+ */
+require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
+<% } %>
 /**
  * <%= optionsname %> class.
  *
@@ -76,14 +79,11 @@ class <%= classname %> {
 	 * @since  <%= version %>
 	 */
 	public function hooks() {
-
 		// Hook in our actions to the admin.
-		<% if ( options.nocmb2 ) { %>
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
-		<% } else { %>
-		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );
-		<% } %>
+<% if ( options.nocmb2 ) {
+%>		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_menu', array( $this, 'add_options_page' ) );<% } else {
+%>		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );<% } %>
 	}<% if ( options.nocmb2 ) { %>
 
 	/**
@@ -132,36 +132,39 @@ class <%= classname %> {
 	public function add_options_page_metabox() {
 
 		// Add our CMB2 metabox.
-		$cmb = new_cmb2_box( array(
-			'id'           => self::$metabox_id,
-			'title'        => $this->title,
-			'object_types' => array( 'options-page' ),
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => self::$metabox_id,
+				'title'        => $this->title,
+				'object_types' => array( 'options-page' ),
 
-			/*
-			 * The following parameters are specific to the options-page box
-			 * Several of these parameters are passed along to add_menu_page()/add_submenu_page().
-			 */
+				/*
+				* The following parameters are specific to the options-page box
+				* Several of these parameters are passed along to add_menu_page()/add_submenu_page().
+				*/
 
-			'option_key'   => self::$key, // The option key and admin menu page slug.
-			// 'icon_url'        => 'dashicons-palmtree', // Menu icon. Only applicable if 'parent_slug' is left empty.
-			// 'menu_title'      => esc_html__( 'Options', 'cmb2' ), // Falls back to 'title' (above).
-			// 'parent_slug'     => 'themes.php', // Make options page a submenu item of the themes menu.
-			// 'capability'      => 'manage_options', // Cap required to view options-page.
-			// 'position'        => 1, // Menu position. Only applicable if 'parent_slug' is left empty.
-			// 'admin_menu_hook' => 'network_admin_menu', // 'network_admin_menu' to add network-level options page.
-			// 'display_cb'      => false, // Override the options-page form output (CMB2_Hookup::options_page_output()).
-			// 'save_button'     => esc_html__( 'Save Theme Options', 'cmb2' ), // The text for the options-page save button. Defaults to 'Save'.
-		) );
+				'option_key'   => self::$key, // The option key and admin menu page slug.
+				// 'icon_url'        => 'dashicons-palmtree', // Menu icon. Only applicable if 'parent_slug' is left empty.
+				// 'menu_title'      => esc_html__( 'Options', 'cmb2' ), // Falls back to 'title' (above).
+				// 'parent_slug'     => 'themes.php', // Make options page a submenu item of the themes menu.
+				// 'capability'      => 'manage_options', // Cap required to view options-page.
+				// 'position'        => 1, // Menu position. Only applicable if 'parent_slug' is left empty.
+				// 'admin_menu_hook' => 'network_admin_menu', // 'network_admin_menu' to add network-level options page.
+				// 'display_cb'      => false, // Override the options-page form output (CMB2_Hookup::options_page_output()).
+				// 'save_button'     => esc_html__( 'Save Theme Options', 'cmb2' ), // The text for the options-page save button. Defaults to 'Save'.
+			)
+		);
 
 		// Add your fields here.
-		$cmb->add_field( array(
-			'name'    => __( 'Test Text', '<%= slug %>' ),
-			'desc'    => __( 'field description (optional)', '<%= slug %>' ),
-			'id'      => 'test_text', // No prefix needed.
-			'type'    => 'text',
-			'default' => __( 'Default Text', '<%= slug %>' ),
-		) );
-
+		$cmb->add_field(
+			array(
+				'name'    => __( 'Test Text', '<%= slug %>' ),
+				'desc'    => __( 'field description (optional)', '<%= slug %>' ),
+				'id'      => 'test_text', // No prefix needed.
+				'type'    => 'text',
+				'default' => __( 'Default Text', '<%= slug %>' ),
+			)
+		);
 	}
 
 	/**
@@ -169,9 +172,9 @@ class <%= classname %> {
 	 *
 	 * @since  <%= version %>
 	 *
-	 * @param  string $key     Options array key
-	 * @param  mixed  $default Optional default value
-	 * @return mixed           Option value
+	 * @param  string $key     Options array key.
+	 * @param  mixed  $default Optional default value.
+	 * @return mixed           Option value.
 	 */
 	public static function get_value( $key = '', $default = false ) {
 		if ( function_exists( 'cmb2_get_option' ) ) {
@@ -185,7 +188,7 @@ class <%= classname %> {
 
 		$val = $default;
 
-		if ( 'all' == $key ) {
+		if ( 'all' === $key ) {
 			$val = $opts;
 		} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
 			$val = $opts[ $key ];

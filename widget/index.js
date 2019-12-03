@@ -37,6 +37,7 @@ module.exports = base.extend({
       this.classname      = this.rc.classprefix + this._wpClassify( this.name );
       this.mainclassname  = this._wpClassify( this.pluginname );
       this.slug           = this.rc.slug;
+      this.classslug      = this._.underscored( this._wpClassify( this.name ) );
       this.widgetslug     = this.slug + '-' + this._.slugify( this.name );
       this.widgetregister = this._.underscored( this.slug + ' register ' + this.name );
     }
