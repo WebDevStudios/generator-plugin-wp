@@ -359,6 +359,9 @@ module.exports = base.extend({
   },
 
   getLatestWPVersion: function() {
+    // Save the generator (this) to a variable so that we can access it within the nested function below.
+    var generator = this;
+
     request.get({
       url: 'https://api.wordpress.org/core/version-check/1.7/',
       json: true,
@@ -369,7 +372,7 @@ module.exports = base.extend({
         // Loop through results to find only the "upgrade" version
         for ( var i in data.offers ) {
           if ( 'upgrade' === data.offers[i].response ) {
-            this.currentVersionWP = data.offers[i].current;
+            generator.currentVersionWP = data.offers[i].current;
             return;
           }
         }
