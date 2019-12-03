@@ -1,12 +1,12 @@
 # <%= name %> #
-**Contributors:**      <%= author %>  
-**Donate link:**       <%= homepage %>  
-**Tags:**  
-**Requires at least:** 4.4  
-**Tested up to:**      <%= currentVersionWP %> 
-**Stable tag:**        <%= version %>  
-**License:**           <%= license %>  
-**License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:**      <%= author %>
+**Donate link:**       <%= homepage %>
+**Tags:**
+**Requires at least:** 5.0.7
+**Tested up to:**      <%= currentVersionWP %>
+**Stable tag:**        <%= version %>
+**License:**           <%= license %>
+**License URI:**       <%= licenseuri %>
 
 ## Description ##
 

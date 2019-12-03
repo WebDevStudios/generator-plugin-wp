@@ -31,7 +31,7 @@ module.exports = base.extend({
     this.pkg = require('../package.json');
 
     // Set the initial value.
-    this.currentVersionWP = '4.8.1';
+    this.currentVersionWP = '5.0.7';
 
     // Get the latest WP version.
     this.getLatestWPVersion();
@@ -104,7 +104,15 @@ module.exports = base.extend({
       name   : 'license',
       message: 'License',
       default: 'GPLv2',
-      store: true
+      save   : true,
+      store  : true
+    }, {
+      type   : 'input',
+      name   : 'licenseuri',
+      message: 'License URI',
+      default: 'http://www.gnu.org/licenses/gpl-2.0.html',
+      save   : true,
+      store  : true
     }, {
       type   : 'input',
       name   : 'slug',
@@ -145,6 +153,7 @@ module.exports = base.extend({
       this.authoremail        = this._.clean( props.authoremail );
       this.authorurl          = this._.clean( props.authorurl );
       this.license            = this._.clean( props.license );
+      this.licenseuri         = this._.clean( props.licenseuri );
       this.slug               = this._.slugify( props.slug );
       this.classname          = this._wpClassify( props.classname );
       this.mainclassname      = this.classname;
@@ -324,6 +333,7 @@ module.exports = base.extend({
       this.config.set( 'authoremail', this.authoremail );
       this.config.set( 'authorurl', this.authorurl );
       this.config.set( 'license', this.license );
+      this.config.set( 'licenseuri', this.licenseuri );
       this.config.set( 'slug', this.slug );
       this.config.set( 'classname', this.classname );
       this.config.set( 'mainclassname', this.classname );
@@ -349,6 +359,9 @@ module.exports = base.extend({
   },
 
   getLatestWPVersion: function() {
+    // Save the generator (this) to a variable so that we can access it within the nested function below.
+    var generator = this;
+
     request.get({
       url: 'https://api.wordpress.org/core/version-check/1.7/',
       json: true,
@@ -359,7 +372,7 @@ module.exports = base.extend({
         // Loop through results to find only the "upgrade" version
         for ( var i in data.offers ) {
           if ( 'upgrade' === data.offers[i].response ) {
-            this.currentVersionWP = data.offers[i].current;
+            generator.currentVersionWP = data.offers[i].current;
             return;
           }
         }
