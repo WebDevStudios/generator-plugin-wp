@@ -142,7 +142,7 @@ module.exports = base.extend({
       this.spawnCommand('composer', ['require', 'webdevstudios/cpt-core']);
 
       if ( this.options.cmb2 ) {
-        this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
+        this.spawnCommand('composer', ['require', 'cmb2/cmb2']);
       }
     } else {
       this.mkdir('vendor');
@@ -156,7 +156,7 @@ module.exports = base.extend({
 
       if ( !this.fs.exists('vendor/cmb2/init.php') && this.options.cmb2 ) {
         ghdownload({
-          user: 'WebDevStudios',
+          user: 'CMB2',
           repo: 'CMB2',
           ref : 'master'
         }, this.destinationPath('vendor/cmb2') );

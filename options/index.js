@@ -138,13 +138,13 @@ module.exports = base.extend({
 
     if ( this.composer ) {
       if ( !this.options.nocmb2 ) {
-        this.spawnCommand('composer', ['require', 'webdevstudios/cmb2']);
+        this.spawnCommand('composer', ['require', 'cmb2/cmb2']);
       }
     } else {
       this.mkdir('vendor');
       if ( !this.fs.exists('vendor/cmb2/init.php') && !this.options.nocmb2 ) {
         ghdownload({
-          user: 'WebDevStudios',
+          user: 'CMB2',
           repo: 'CMB2',
           ref : 'master'
         }, this.destinationPath('vendor/cmb2') );
