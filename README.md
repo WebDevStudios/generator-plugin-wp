@@ -1,4 +1,5 @@
-# generator-plugin-wp [![Build Status](https://secure.travis-ci.org/WebDevStudios/generator-plugin-wp.png?branch=master)](https://travis-ci.org/WebDevStudios/generator-plugin-wp)
+# generator-plugin-wp [![buddy pipeline](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897/badge.svg?token=b19f7845d92cd278783aaf2a268140f517c248d43cedbb5b5b9243d5c3fee2a0 "buddy pipeline")](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897)
+
 
 > [Yeoman](http://yeoman.io) generator for WordPress plugins.
 
