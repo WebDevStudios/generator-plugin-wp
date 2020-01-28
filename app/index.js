@@ -215,6 +215,11 @@ module.exports = base.extend({
           this.destinationPath('/.editorconfig'),
           this
       );
+      this.fs.copyTpl(
+          this.templatePath('_nvmrc'),
+          this.destinationPath('/.nvmrc'),
+          this
+      );
     },
 
     configs: function() {

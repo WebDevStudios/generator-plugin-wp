@@ -7,7 +7,7 @@
 
 ## Getting Started
 
-Pre-requisites: You'll need [node](https://nodejs.org/download/) which comes
+Pre-requisites: You'll need [node](https://nodejs.org/) (recommended version [`10.x`](https://nodejs.org/download/release/latest-v10.x/)) which comes
 with [npm](https://github.com/npm/npm#super-easy-install).
 
 If you don't have [Yeoman](http://yeoman.io/) installed:
