@@ -1,4 +1,4 @@
-# generator-plugin-wp [![buddy pipeline](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897/badge.svg?token=b19f7845d92cd278783aaf2a268140f517c248d43cedbb5b5b9243d5c3fee2a0 "buddy pipeline")](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897)
+# generator-plugin-wp [![buddy pipeline](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897/badge.svg?token=2471ae60766a1e9a657f772e493188dde748aa18c236d0b1c325e80be13a2ac6 "buddy pipeline")](https://app.buddy.works/webdevstudios/generator-plugin-wp/pipelines/pipeline/226897)
 
 
 > [Yeoman](http://yeoman.io) generator for WordPress plugins.
@@ -67,7 +67,7 @@ By default PHP 5.2 is not supported in the generated plugin. To generate a plugi
 with PHP 5.2 support, run the main generator with the `--php52` option.
 
 ## CMB2
-CMB2 is included by default with the options sub-generator. It can also be a useful tool with CPT and taxonomy sub-generators using the --cmb2 flag. 
+CMB2 is included by default with the options sub-generator. It can also be a useful tool with CPT and taxonomy sub-generators using the --cmb2 flag.
 
 ## Adding Packages with Composer
 
