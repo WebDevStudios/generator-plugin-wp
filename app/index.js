@@ -201,16 +201,6 @@ module.exports = base.extend({
         this
       );
       this.fs.copyTpl(
-          this.templatePath('_sass-lint.yml'),
-          this.destinationPath('/.sass-lint.yml'),
-          this
-      );
-      this.fs.copyTpl(
-          this.templatePath('_eslintrc.js'),
-          this.destinationPath('/.eslintrc.js'),
-          this
-      );
-      this.fs.copyTpl(
           this.templatePath('_editorconfig'),
           this.destinationPath('/.editorconfig'),
           this
@@ -236,16 +226,17 @@ module.exports = base.extend({
         );
       }
       this.fs.copy(
-        this.templatePath('Gruntfile.js'),
-        this.destinationPath('/Gruntfile.js')
-      );
-      this.fs.copy(
-          this.templatePath('Gulpfile.js'),
-          this.destinationPath('/Gulpfile.js')
-      );
-      this.fs.copy(
           this.templatePath('phpcs.xml'),
           this.destinationPath('/phpcs.xml')
+      );
+      this.fs.copyTpl(
+          this.templatePath('config/settings.js'),
+          this.destinationPath('/config/settings.js'),
+          this
+      );
+      this.fs.copy(
+          this.templatePath('config/webpack.config.js'),
+          this.destinationPath('/config/webpack.config.js')
       );
     },
 
@@ -314,6 +305,18 @@ module.exports = base.extend({
       this.fs.copyTpl(
         this.templatePath('assets/repo/README.md'),
         this.destinationPath('assets/repo/README.md'),
+        this
+      );
+
+      this.fs.copy(
+        this.templatePath('assets/js/index.js'),
+        this.destinationPath('assets/js/index.js'),
+        this
+      );
+
+      this.fs.copy(
+        this.templatePath('assets/css/style.css'),
+        this.destinationPath('assets/css/style.css'),
         this
       );
 
