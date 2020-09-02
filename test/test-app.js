@@ -22,11 +22,14 @@ describe('plugin-wp:app', function () {
       'package.json',
       '.bowerrc',
       '.gitignore',
-      'Gruntfile.js',
       'README.md',
       'test-plugin-name.php',
+      'assets/css/style.css',
+      'assets/js/index.js',
       'assets/README.md',
-      'includes/README.md'
+      'includes/README.md',
+      'config/settings.js',
+      'config/webpack.config.js'
     ]);
   });
 });
