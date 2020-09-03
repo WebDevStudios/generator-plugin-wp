@@ -9,7 +9,7 @@
 /**
  * <%= pluginname %> Page Builder.
  */
-class <%= classname %> {
+class <%= classname %> { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class.
 	 *

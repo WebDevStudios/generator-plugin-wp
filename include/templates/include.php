@@ -11,7 +11,7 @@
  *
  * @since <%= version %>
  */
-class <%= classname %> {
+class <%= classname %> { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class.
 	 *

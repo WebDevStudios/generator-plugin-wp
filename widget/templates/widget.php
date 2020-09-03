@@ -11,7 +11,7 @@
  *
  * @since <%= version %>
  */
-class <%= classname %> extends WP_Widget {
+class <%= classname %> extends WP_Widget { // @codingStandardsIgnoreLine
 
 	/**
 	 * Unique identifier for this widget.
@@ -216,7 +216,7 @@ class <%= classname %> extends WP_Widget {
 /**
  * Register widget with WordPress.
  */
-function <%= widgetregister %>() {
+function <%= widgetregister %>() { // @codingStandardsIgnoreLine
 	register_widget( '<%= classname %>' );
 }
 add_action( 'widgets_init', '<%= widgetregister %>' );

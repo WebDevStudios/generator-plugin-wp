@@ -1,19 +1,19 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * <%= pluginname %> Page Builder Tests.
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>
  */
-class <%= classname %>_Test extends WP_UnitTestCase {
+class <%= classname %>_Test extends WP_UnitTestCase { // @codingStandardsIgnoreLine
 
 	/**
 	 * Test if our class exists.
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_class_exists() {
-		$this->assertTrue( class_exists( '<%= classname %>') );
+	public function test_class_exists() {
+		$this->assertTrue( class_exists( '<%= classname %>' ) );
 	}
 
 	/**
@@ -21,8 +21,8 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_class_access() {
-		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= nameslug %> );
+	public function test_class_access() {
+		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= nameslug %> ); // @codingStandardsIgnoreLine
 	}
 
 	/**
@@ -30,7 +30,7 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	 *
 	 * @since  <%= version %>
 	 */
-	function test_sample() {
+	public function test_sample() {
 		$this->assertTrue( true );
 	}
 }

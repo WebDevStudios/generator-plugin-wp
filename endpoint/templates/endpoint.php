@@ -12,7 +12,7 @@ if ( class_exists( 'WP_REST_Controller' ) ) {
 	 *
 	 * @since   <%= version %>
 	 */
-	class <%= classname %> extends WP_REST_Controller {
+	class <%= classname %> extends WP_REST_Controller { // @codingStandardsIgnoreLine
 		/**
 		 * Parent plugin class.
 		 *
