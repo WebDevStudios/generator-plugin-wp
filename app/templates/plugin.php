@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine WordPress.Files.FileName.InvalidClassFileName
 /**
  * Plugin Name: <%= name %>
  * Plugin URI:  <%= homepage %>
