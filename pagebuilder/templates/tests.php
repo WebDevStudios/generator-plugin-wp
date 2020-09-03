@@ -1,4 +1,12 @@
-<?php // @codingStandardsIgnoreLine
+<?php
+/**
+ * <%= pluginname %> Page Builder Tests.
+ *
+ * @since   <%= version %>
+ * @package <%= mainclassname %>
+ */
+
+
 /**
  * <%= pluginname %> Page Builder Tests.
  *
