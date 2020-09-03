@@ -6,7 +6,6 @@
  * @package <%= mainclassname %>
  */
 
-
 /**
  * <%= pluginname %> Page Builder Tests.
  *
