@@ -4,23 +4,23 @@
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>
- */
-<% if ( ! composer ) { %>
+ */ // @codingStandardsIgnoreLine
+<% if ( ! composer ) { %> // @codingStandardsIgnoreLine
 /**
  * Include CPT Core
  *
  * @since   <%= version %>
  */
 require_once dirname( __FILE__ ) . '/../vendor/cpt-core/CPT_Core.php';
-<% if ( options.cmb2 ) { %>
+<% if ( options.cmb2 ) { %> // @codingStandardsIgnoreLine
 /**
  * Include CMB2
  *
  * @since   <%= version %>
  */
 require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
-<% }
-} %>
+<% } // @codingStandardsIgnoreLine
+} %> // @codingStandardsIgnoreLine
 /**
  * <%= cptname %> post type class.
  *
@@ -28,7 +28,7 @@ require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
  *
  * @see   https://github.com/WebDevStudios/CPT_Core
  */
-class <%= classname %> extends CPT_Core {
+class <%= classname %> extends CPT_Core { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class.
 	 *
@@ -78,7 +78,7 @@ class <%= classname %> extends CPT_Core {
 	 *
 	 * @since  <%= version %>
 	 */
-	public function hooks() {<% if ( options.cmb2 ) { %>
+	public function hooks() {<% if ( options.cmb2 ) { %> // @codingStandardsIgnoreLine
 		add_action( 'cmb2_init', array( $this, 'fields' ) );
 	}
 
@@ -99,7 +99,7 @@ class <%= classname %> extends CPT_Core {
 				'title'        => esc_html__( '<%= cptname %> Meta Box', '<%= slug %>' ),
 				'object_types' => array( '<%= cptslug %>' ),
 			)
-		);<% } %>
+		);<% } %> // @codingStandardsIgnoreLine
 	}
 
 	/**
@@ -124,7 +124,7 @@ class <%= classname %> extends CPT_Core {
 	 * @param integer $post_id  ID of post to display column for.
 	 */
 	public function columns_display( $column, $post_id ) {
-		switch ( $column ) {
+		switch ( $column ) { // @codingStandardsIgnoreLine
 		}
 	}
 }

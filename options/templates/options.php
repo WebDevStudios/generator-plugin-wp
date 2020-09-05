@@ -4,21 +4,21 @@
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>
- */
-<% if ( ! composer && ! options.nocmb2 ) { %>
+ */ // @codingStandardsIgnoreLine
+<% if ( ! composer && ! options.nocmb2 ) { %> // @codingStandardsIgnoreLine
 /**
  * Include CMB2
  *
  * @since <%= version %>
  */
 require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
-<% } %>
+<% } %> // @codingStandardsIgnoreLine
 /**
  * <%= optionsname %> class.
  *
  * @since <%= version %>
  */
-class <%= classname %> {
+class <%= classname %> { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class.
 	 *
@@ -80,11 +80,11 @@ class <%= classname %> {
 	 */
 	public function hooks() {
 		// Hook in our actions to the admin.
-<% if ( options.nocmb2 ) {
-%>		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ) );<% } else {
-%>		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );<% } %>
-	}<% if ( options.nocmb2 ) { %>
+<% if ( options.nocmb2 ) { // @codingStandardsIgnoreLine
+%>		add_action( 'admin_init', array( $this, 'admin_init' ) ); // @codingStandardsIgnoreLine
+		add_action( 'admin_menu', array( $this, 'add_options_page' ) );<% } else { // @codingStandardsIgnoreLine
+%>		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );<% } %> // @codingStandardsIgnoreLine
+	}<% if ( options.nocmb2 ) { %> // @codingStandardsIgnoreLine
 
 	/**
 	 * Register our setting to WP.
@@ -122,7 +122,7 @@ class <%= classname %> {
 			<?php // Your settings here. ?>
 		</div>
 		<?php
-	}<% } else { %>
+	}<% } else { %> // @codingStandardsIgnoreLine
 
 	/**
 	 * Add custom fields to the options page.
@@ -195,5 +195,5 @@ class <%= classname %> {
 		}
 
 		return $val;
-	}<% } %>
+	}<% } %> // @codingStandardsIgnoreLine
 }

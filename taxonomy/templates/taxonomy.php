@@ -4,23 +4,23 @@
  *
  * @since   <%= version %>
  * @package <%= mainclassname %>
- */
-<% if ( ! composer ) { %>
+ */ // @codingStandardsIgnoreLine
+<% if ( ! composer ) { %> // @codingStandardsIgnoreLine
 /**
  * Include Taxonomy Core
  *
  * @since   <%= version %>
  */
 require_once dirname( __FILE__ ) . '/../vendor/taxonomy-core/Taxonomy_Core.php';
-<% if ( options.cmb2 ) { %>
+<% if ( options.cmb2 ) { %> // @codingStandardsIgnoreLine
 /**
  * Include CMB2
  *
  * @since   <%= version %>
  */
 require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
-<% }
-} %>
+<% } // @codingStandardsIgnoreLine
+} %> // @codingStandardsIgnoreLine
 /**
  * <%= taxonomyname %>.
  *
@@ -28,7 +28,7 @@ require_once dirname( __FILE__ ) . '/../vendor/cmb2/init.php';
  *
  * @see   https://github.com/WebDevStudios/Taxonomy_Core
  */
-class <%= classname %> extends Taxonomy_Core {
+class <%= classname %> extends Taxonomy_Core { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class.
 	 *

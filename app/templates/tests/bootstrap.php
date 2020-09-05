@@ -17,7 +17,7 @@ require_once $_tests_dir . '/includes/functions.php';
  *
  * @since <%= version %>
  */
-function _manually_load_<%= prefix %>_plugin() {
+function _manually_load_<%= prefix %>_plugin() { // @codingStandardsIgnoreLine
 
 	// Include the REST API main plugin file if we're using it so we can run endpoint tests.
 	if ( class_exists( 'WP_REST_Controller' ) && file_exists( WP_PLUGIN_DIR . '/rest-api/plugin.php' ) ) {

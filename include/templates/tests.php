@@ -11,7 +11,7 @@
  *
  * @since   <%= version %>
  */
-class <%= classname %>_Test extends WP_UnitTestCase {
+class <%= classname %>_Test extends WP_UnitTestCase { // @codingStandardsIgnoreLine
 
 	/**
 	 * Test if our class exists.
@@ -28,7 +28,7 @@ class <%= classname %>_Test extends WP_UnitTestCase {
 	 * @since  <%= version %>
 	 */
 	public function test_class_access() {
-		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= property %> );
+		$this->assertInstanceOf( '<%= classname %>', <%= rc.prefix %>()-><%= property %> ); // @codingStandardsIgnoreLine
 	}
 
 	/**

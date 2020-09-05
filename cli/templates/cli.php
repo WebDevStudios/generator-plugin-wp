@@ -11,7 +11,7 @@
  *
  * @since <%= version %>
  */
-class <%= classname %> {
+class <%= classname %> { // @codingStandardsIgnoreLine
 	/**
 	 * Parent plugin class
 	 *
@@ -62,7 +62,7 @@ class <%= classname %> {
 	 *
 	 * @since <%= version %>
 	 */
-	public function <%= uslug %>_command() {
+	public function <%= uslug %>_command() { // @codingStandardsIgnoreLine
 
 	}
 }

@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine WordPress.Files.FileName.InvalidClassFileName
 /**
  * Plugin Name: <%= name %>
  * Plugin URI:  <%= homepage %>
@@ -19,7 +19,7 @@
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
-<% if ( license == 'GPLv2' ) { %>
+<% if ( license == 'GPLv2' ) { %> // @codingStandardsIgnoreLine
 /**
  * Copyright (c) <%= year %> <%= author %> (email : <%= authoremail %>)
  *
@@ -36,18 +36,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */<% } else { %>
+ */<% } else { %> // @codingStandardsIgnoreLine
 /**
  * Copyright (c) <%= year %> <%= author %> (email : <%= authoremail %>)
- */<% } %>
-<% if ( autoloader == 'Basic' ) { %>
+ */<% } %> // @codingStandardsIgnoreLine
+<% if ( autoloader == 'Basic' ) { %> // @codingStandardsIgnoreLine
 /**
  * Autoloads files with classes when needed.
  *
  * @since  <%= version %>
  * @param  string $class_name Name of the class being requested.
+ * @return void
  */
-function <%= prefix %>_autoload_classes( $class_name ) {
+function <%= prefix %>_autoload_classes( $class_name ) { // @codingStandardsIgnoreLine
 
 	// If our class doesn't have our prefix, don't load it.
 	if ( 0 !== strpos( $class_name, '<%= classprefix %>' ) ) {
@@ -58,25 +59,25 @@ function <%= prefix %>_autoload_classes( $class_name ) {
 	$filename = strtolower( str_replace( '_', '-', substr( $class_name, strlen( '<%= classprefix %>' ) ) ) );
 
 	// Include our file.
-	<%= classname %>::include_file( 'includes/class-' . $filename );
+	<%= classname %>::include_file( 'includes/class-' . $filename ); // @codingStandardsIgnoreLine
 }
 spl_autoload_register( '<%= prefix %>_autoload_classes' );
-<% } else if ( autoloader == 'Composer' && php52 ) { %>
+<% } else if ( autoloader == 'Composer' && php52 ) { %> // @codingStandardsIgnoreLine
 // Use composer autoload with PHP 5.2 compatibility.
 require 'vendor/autoload_52.php';
-<% } else if ( autoloader == 'Composer' ) { %>
+<% } else if ( autoloader == 'Composer' ) { %> // @codingStandardsIgnoreLine
 // Use composer autoload.
 require 'vendor/autoload.php';
-<% } else { %>
+<% } else { %> // @codingStandardsIgnoreLine
 // Include additional php files here.
-// require 'includes/something.php';
-<% } %>
+// require 'includes/something.php'; // @codingStandardsIgnoreLine
+<% } %> // @codingStandardsIgnoreLine
 /**
  * Main initiation class.
  *
  * @since  <%= version %>
  */
-final class <%= classname %> {
+final class <%= classname %> { // @codingStandardsIgnoreLine
 
 	/**
 	 * Current version.
@@ -177,6 +178,7 @@ final class <%= classname %> {
 	 * Activate the plugin.
 	 *
 	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function activate() {
 		// Bail early if requirements aren't met.
@@ -202,6 +204,7 @@ final class <%= classname %> {
 	 * Init hooks
 	 *
 	 * @since  <%= version %>
+	 * @return void
 	 */
 	public function init() {
 
@@ -321,7 +324,7 @@ final class <%= classname %> {
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
 		}
-	}<% if ( autoloader == 'Basic' ) { %>
+	}<% if ( autoloader == 'Basic' ) { %> // @codingStandardsIgnoreLine
 
 	/**
 	 * Include a file from the includes directory.
@@ -365,7 +368,7 @@ final class <%= classname %> {
 		static $url;
 		$url = $url ? $url : trailingslashit( plugin_dir_url( __FILE__ ) );
 		return $url . $path;
-	}<% } %>
+	}<% } %> // @codingStandardsIgnoreLine
 }
 
 /**
@@ -375,13 +378,13 @@ final class <%= classname %> {
  * @since  <%= version %>
  * @return <%= classname %>  Singleton instance of plugin class.
  */
-function <%= prefix %>() {
-	return <%= classname %>::get_instance();
+function <%= prefix %>() { // @codingStandardsIgnoreLine
+	return <%= classname %>::get_instance(); // @codingStandardsIgnoreLine
 }
 
 // Kick it off.
-add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) );
+add_action( 'plugins_loaded', array( <%= prefix %>(), 'hooks' ) ); // @codingStandardsIgnoreLine
 
 // Activation and deactivation.
-register_activation_hook( __FILE__, array( <%= prefix %>(), 'activate' ) );
-register_deactivation_hook( __FILE__, array( <%= prefix %>(), 'deactivate' ) );
+register_activation_hook( __FILE__, array( <%= prefix %>(), 'activate' ) ); // @codingStandardsIgnoreLine
+register_deactivation_hook( __FILE__, array( <%= prefix %>(), 'deactivate' ) ); // @codingStandardsIgnoreLine
